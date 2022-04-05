@@ -39,6 +39,28 @@
       "frameworks": {
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
+          "dependencies": {
+            "Krypton.Docking": {
+              "target": "Package",
+              "version": "[5.550.2108.1, )"
+            },
+            "Krypton.Navigator": {
+              "target": "Package",
+              "version": "[5.550.2108.1, )"
+            },
+            "Krypton.Ribbon": {
+              "target": "Package",
+              "version": "[5.550.2108.1, )"
+            },
+            "Krypton.Toolkit": {
+              "target": "Package",
+              "version": "[5.550.2108.1, )"
+            },
+            "Krypton.Workspace": {
+              "target": "Package",
+              "version": "[5.550.2108.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

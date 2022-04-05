@@ -22,7 +22,12 @@ namespace Couriers_GUI
 
 			Label label = new Label();
 			label.Text = "Hello!";
-			tableLayoutPanel1.Controls.Add(label, 0, 0);
+			//tableLayoutPanel1.Controls.Add(label, 0, 0);
+		}
+
+		private void kryptonButton1_Click(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

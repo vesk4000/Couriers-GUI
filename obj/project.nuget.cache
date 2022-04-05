@@ -1,8 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "t3ObKYb8vpOr1KSiRU3lguLT/f5i9ZpqVfUpmYtryOKQyXYRmwGleQe9o9MaGBI4rIdmBgPrzN6h079QEU+4rw==",
+  "dgSpecHash": "HeO9ftCHyDRs6dvNl15EX553MgWTo/tBdU8KJFcG9B1eyO6jdfHQZKC7H8LiF78PkZd9how+BLUm5oBXp8qdrQ==",
   "success": true,
   "projectFilePath": "C:\\Vesk\\Development\\Couriers-GUI\\Couriers GUI.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Vesk\\.nuget\\packages\\krypton.docking\\5.550.2108.1\\krypton.docking.5.550.2108.1.nupkg.sha512",
+    "C:\\Users\\Vesk\\.nuget\\packages\\krypton.navigator\\5.550.2108.1\\krypton.navigator.5.550.2108.1.nupkg.sha512",
+    "C:\\Users\\Vesk\\.nuget\\packages\\krypton.ribbon\\5.550.2108.1\\krypton.ribbon.5.550.2108.1.nupkg.sha512",
+    "C:\\Users\\Vesk\\.nuget\\packages\\krypton.toolkit\\5.550.2108.1\\krypton.toolkit.5.550.2108.1.nupkg.sha512",
+    "C:\\Users\\Vesk\\.nuget\\packages\\krypton.workspace\\5.550.2108.1\\krypton.workspace.5.550.2108.1.nupkg.sha512"
+  ],
   "logs": []
 }
