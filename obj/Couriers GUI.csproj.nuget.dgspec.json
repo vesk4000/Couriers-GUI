@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Vesk\\Development\\Couriers-GUI\\Couriers GUI.csproj": {}
+    "C:\\Users\\zala2\\Documents\\VDM\\Couriers-GUI\\Couriers GUI.csproj": {}
   },
   "projects": {
-    "C:\\Vesk\\Development\\Couriers-GUI\\Couriers GUI.csproj": {
+    "C:\\Users\\zala2\\Documents\\VDM\\Couriers-GUI\\Couriers GUI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Vesk\\Development\\Couriers-GUI\\Couriers GUI.csproj",
+        "projectUniqueName": "C:\\Users\\zala2\\Documents\\VDM\\Couriers-GUI\\Couriers GUI.csproj",
         "projectName": "Couriers GUI",
-        "projectPath": "C:\\Vesk\\Development\\Couriers-GUI\\Couriers GUI.csproj",
-        "packagesPath": "C:\\Users\\Vesk\\.nuget\\packages\\",
-        "outputPath": "C:\\Vesk\\Development\\Couriers-GUI\\obj\\",
+        "projectPath": "C:\\Users\\zala2\\Documents\\VDM\\Couriers-GUI\\Couriers GUI.csproj",
+        "packagesPath": "C:\\Users\\zala2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\zala2\\Documents\\VDM\\Couriers-GUI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Vesk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\zala2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -79,7 +79,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
