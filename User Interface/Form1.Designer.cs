@@ -29,23 +29,24 @@ namespace Couriers_GUI
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.multipleTableContainer1 = new Couriers_GUI.User_Interface.MultipleTableContainer();
+			this.multipleTableControl1 = new Couriers_GUI.User_Interface.Custom_Controls.MultipleTableControl();
 			this.SuspendLayout();
 			// 
-			// multipleTableContainer1
+			// multipleTableControl1
 			// 
-			this.multipleTableContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.multipleTableContainer1.Location = new System.Drawing.Point(0, 0);
-			this.multipleTableContainer1.Name = "multipleTableContainer1";
-			this.multipleTableContainer1.Size = new System.Drawing.Size(800, 450);
-			this.multipleTableContainer1.TabIndex = 0;
+			this.multipleTableControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.multipleTableControl1.Location = new System.Drawing.Point(0, 0);
+			this.multipleTableControl1.Name = "multipleTableControl1";
+			this.multipleTableControl1.Size = new System.Drawing.Size(700, 338);
+			this.multipleTableControl1.TabIndex = 0;
 			// 
 			// Form1
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
-			this.Controls.Add(this.multipleTableContainer1);
+			this.ClientSize = new System.Drawing.Size(700, 338);
+			this.Controls.Add(this.multipleTableControl1);
+			this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.Name = "Form1";
 			this.Text = "Form1";
 			this.ResumeLayout(false);
@@ -54,7 +55,7 @@ namespace Couriers_GUI
 
 		#endregion
 
-		private User_Interface.MultipleTableContainer multipleTableContainer1;
+		private User_Interface.Custom_Controls.MultipleTableControl multipleTableControl1;
 	}
 }
 
