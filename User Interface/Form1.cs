@@ -15,6 +15,7 @@ namespace Couriers_GUI
 		public Form1()
 		{
 			InitializeComponent();
+			
 		}
 
 		private void tableLayoutPanel1_Click(object sender, EventArgs e)

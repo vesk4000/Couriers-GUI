@@ -42,5 +42,11 @@ namespace Couriers_GUI.User_Interface
 			dataGridView1.DataSource = lst;
 			Console.WriteLine("test");
 		}
+
+		public event EventHandler button1Click
+		{
+			add { this.button1.Click += value; }
+			remove { this.button1.Click -= value; }
+		}
 	}
 }
