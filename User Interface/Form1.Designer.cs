@@ -29,27 +29,27 @@ namespace Couriers_GUI
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.multipleTableControl1 = new Couriers_GUI.User_Interface.Custom_Controls.MultipleTableControl();
-			this.SuspendLayout();
-			// 
-			// multipleTableControl1
-			// 
-			this.multipleTableControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.multipleTableControl1.Location = new System.Drawing.Point(0, 0);
-			this.multipleTableControl1.Name = "multipleTableControl1";
-			this.multipleTableControl1.Size = new System.Drawing.Size(700, 338);
-			this.multipleTableControl1.TabIndex = 0;
-			// 
-			// Form1
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(700, 338);
-			this.Controls.Add(this.multipleTableControl1);
-			this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.Name = "Form1";
-			this.Text = "Form1";
-			this.ResumeLayout(false);
+            this.multipleTableControl1 = new Couriers_GUI.User_Interface.Custom_Controls.MultipleTableControl();
+            this.SuspendLayout();
+            // 
+            // multipleTableControl1
+            // 
+            this.multipleTableControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.multipleTableControl1.Location = new System.Drawing.Point(0, 0);
+            this.multipleTableControl1.Name = "multipleTableControl1";
+            this.multipleTableControl1.Size = new System.Drawing.Size(650, 412);
+            this.multipleTableControl1.TabIndex = 0;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(650, 412);
+            this.Controls.Add(this.multipleTableControl1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Name = "Form1";
+            this.Text = "Form1";
+            this.ResumeLayout(false);
 
 		}
 

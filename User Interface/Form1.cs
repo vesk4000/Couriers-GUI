@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Couriers_GUI.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,10 +13,12 @@ namespace Couriers_GUI
 {
 	public partial class Form1 : Form
 	{
+		CouriersDBContext data;
+
 		public Form1()
 		{
 			InitializeComponent();
-			
+			data = new CouriersDBContext();
 		}
 
 		private void tableLayoutPanel1_Click(object sender, EventArgs e)

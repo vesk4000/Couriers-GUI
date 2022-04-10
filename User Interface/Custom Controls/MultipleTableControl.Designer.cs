@@ -29,37 +29,37 @@ namespace Couriers_GUI.User_Interface.Custom_Controls
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.kryptonPanel1 = new Krypton.Toolkit.KryptonPanel();
-			((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
-			this.SuspendLayout();
-			// 
-			// kryptonPanel1
-			// 
-			this.kryptonPanel1.AutoScroll = true;
-			this.kryptonPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.kryptonPanel1.Location = new System.Drawing.Point(0, 0);
-			this.kryptonPanel1.Name = "kryptonPanel1";
-			this.kryptonPanel1.Size = new System.Drawing.Size(547, 451);
-			this.kryptonPanel1.TabIndex = 0;
-			this.kryptonPanel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.kryptonPanel1_MouseClick);
-			// 
-			// MultipleTableControl
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.kryptonPanel1);
-			this.Name = "MultipleTableControl";
-			this.Size = new System.Drawing.Size(547, 451);
-			this.Load += new System.EventHandler(this.MultipleTableControl_Load);
-			this.Click += new System.EventHandler(this.MultipleTableControl_Click);
-			this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MultipleTableControl_MouseClick);
-			((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
-			this.ResumeLayout(false);
+            this.kryptonPanel1 = new Krypton.Toolkit.KryptonPanel();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // kryptonPanel1
+            // 
+            this.kryptonPanel1.AutoScroll = true;
+            this.kryptonPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.kryptonPanel1.Location = new System.Drawing.Point(0, 0);
+            this.kryptonPanel1.Name = "kryptonPanel1";
+            this.kryptonPanel1.Size = new System.Drawing.Size(532, 476);
+            this.kryptonPanel1.TabIndex = 0;
+            this.kryptonPanel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.kryptonPanel1_MouseClick);
+            // 
+            // MultipleTableControl
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.kryptonPanel1);
+            this.Name = "MultipleTableControl";
+            this.Size = new System.Drawing.Size(532, 476);
+            this.Load += new System.EventHandler(this.MultipleTableControl_Load);
+            this.Click += new System.EventHandler(this.MultipleTableControl_Click);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MultipleTableControl_MouseClick);
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
+            this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
 		private Krypton.Toolkit.KryptonPanel kryptonPanel1;
-	}
+    }
 }

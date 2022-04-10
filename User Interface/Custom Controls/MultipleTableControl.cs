@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Couriers_GUI.Backend.Services.Implementations;
+using Couriers_GUI.Backend.Services.ServiceModels;
+using Couriers_GUI.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,10 +16,12 @@ namespace Couriers_GUI.User_Interface.Custom_Controls
 	public partial class MultipleTableControl : UserControl
 	{
 		public List<DataGridView> tables = new List<DataGridView>();
+		private CouriersDBContext data;
 
 		public MultipleTableControl()
 		{
 			InitializeComponent();
+			data = new CouriersDBContext();
 		}
 
 		private int newLocation = 0;
@@ -51,19 +56,19 @@ namespace Couriers_GUI.User_Interface.Custom_Controls
 
 		private void MultipleTableControl_MouseClick(object sender, MouseEventArgs e)
 		{
-			var table = new DataGridView();
-			var lst = new List<Test>();
-			lst.Add(new Test("asd", "sad2"));
-			lst.Add(new Test("asdsda", "sadsadsad2"));
-			lst.Add(new Test("dasdd", "asdsadsad"));
-			lst.Add(new Test("sadsad", "ssadsadad2"));
-			table.Dock = DockStyle.Left;
-			table.DataSource = lst;
-			table.AutoSize = true;
-			//dataGridView1.Refresh();
-			tables.Add(table);
-			kryptonPanel1.Controls.Add(table);
-		}
+            //var table = new DataGridView();
+            //var lst = new List<Test>();
+            //lst.Add(new Test("asd", "sad2"));
+            //lst.Add(new Test("asdsda", "sadsadsad2"));
+            //lst.Add(new Test("dasdd", "asdsadsad"));
+            //lst.Add(new Test("sadsad", "ssadsadad2"));
+            //table.Dock = DockStyle.Left;
+            //table.DataSource = lst;
+            //table.AutoSize = true;
+            //dataGridView1.Refresh();
+            //tables.Add(table);
+            //kryptonPanel1.Controls.Add(table);
+        }
 
 		private void MultipleTableControl_Click(object sender, EventArgs e)
 		{
@@ -87,5 +92,5 @@ namespace Couriers_GUI.User_Interface.Custom_Controls
 			tables.Add(table);
 			kryptonPanel1.Controls.Add(table);
 		}
-	}
+    }
 }
