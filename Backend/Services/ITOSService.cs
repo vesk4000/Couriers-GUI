@@ -9,9 +9,9 @@ namespace Couriers_GUI.Backend.Services
 {
     interface ITOSService
     {
-        void Create(TypesOfService tos);
+        void Create(string type);
 
-        void Edit(TypesOfService tos);
+        void Edit(int id, string type);
 
         void Remove(int id);
 

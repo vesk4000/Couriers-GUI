@@ -92,5 +92,14 @@ namespace Couriers_GUI.User_Interface.Custom_Controls
 			tables.Add(table);
 			kryptonPanel1.Controls.Add(table);
 		}
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+			AddressService addressService = new AddressService(data);
+
+			addressService.Remove(7);
+
+			tables.First().DataSource = addressService.All(); 
+        }
     }
 }

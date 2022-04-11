@@ -9,9 +9,9 @@ namespace Couriers_GUI.Backend.Services
 {
     interface IRecipientService
     {
-        void Create(Recipient recipient);
+        void Create(string name);
 
-        void Edit(Recipient recipient);
+        void Edit(int id, string name);
 
         void Remove(int id);
 

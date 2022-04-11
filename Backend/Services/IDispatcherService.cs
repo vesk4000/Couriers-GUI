@@ -9,9 +9,9 @@ namespace Couriers_GUI.Backend.Services
 {
     interface IDispatcherService
     {
-        void Create(Dispatcher dispatcher);
+        void Create(string name, string phoneNumber);
 
-        void Edit(Dispatcher dispatcher);
+        void Edit(int id, string name, string phoneNumber);
 
         void Remove(int id);
 

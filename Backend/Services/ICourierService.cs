@@ -9,9 +9,9 @@ namespace Couriers_GUI.Backend.Services
 {
     interface ICourierService
     {
-        void Create(Courier courier);
+        void Create(string name, string phoneNumber);
 
-        void Edit(Courier courier);
+        void Edit(int id, string name, string phoneNumber);
 
         void Remove(int id);
 
