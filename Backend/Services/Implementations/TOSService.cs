@@ -18,9 +18,13 @@ namespace Couriers_GUI.Backend.Services.Implementations
 			this.data = data;
 		}
 
-		public IEnumerable<TypesOfService> All()
+		public IEnumerable<TypesOfServiceDetailsServiceModel> All()
 			=> this.data
 				.TypesOfServices
+				.Select(t => new TypesOfServiceDetailsServiceModel(){
+					Id = t.Id,
+					Type = t.Type
+				})
 				.ToList();
 
 		public void Create(string type)

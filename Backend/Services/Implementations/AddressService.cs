@@ -18,9 +18,13 @@ namespace Couriers_GUI.Backend.Services.Implementations
             this.data = data;
         }
 
-        public IEnumerable<Address> All()
+        public IEnumerable<AddressDetailsServiceModel> All()
             => this.data
                 .Addresses
+                .Select(a => new AddressDetailsServiceModel(){
+                    Id = a.Id,
+                    AddressText = a.AddressText
+                })
                 .ToList();
 
         public void Create(AddressCreateServiceModel address)

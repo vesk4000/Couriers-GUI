@@ -18,6 +18,6 @@ namespace Couriers_GUI.Backend.Services
 
         bool Exists(int id);
 
-        IEnumerable<Address> All();
+        IEnumerable<AddressDetailsServiceModel> All();
     }
 }
