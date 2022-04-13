@@ -1,4 +1,5 @@
-﻿using Couriers_GUI.Models;
+﻿using Couriers_GUI.Backend.Services.ServiceModels;
+using Couriers_GUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,6 @@ namespace Couriers_GUI.Backend.Services
 
         bool Exists(int id);
 
-        IEnumerable<Recipient> All();
+        IEnumerable<RecipientDetailsServiceModel> All();
     }
 }

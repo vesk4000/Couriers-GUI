@@ -18,9 +18,14 @@ namespace Couriers_GUI.Backend.Services.Implementations
 			this.data = data;
 		}
 
-		public IEnumerable<Courier> All()
+		public IEnumerable<CourierDetailsServiceModel> All()
 			=> this.data
 				.Couriers
+				.Select(c => new CourierDetailsServiceModel(){
+					Id = c.Id,
+					Name = c.Name,
+					PhoneNumber = c.PhoneNumber
+				})
 				.ToList();
 
 		//TODO: create with service models
