@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Couriers_GUI.User_Interface
+namespace Couriers_GUI.User_Interface.Custom_Controls
 {
-    public partial class Form1 : Form
+    public partial class NavigablePanel : UserControl
     {
-        public Form1()
+        public NavigablePanel()
         {
             InitializeComponent();
         }
