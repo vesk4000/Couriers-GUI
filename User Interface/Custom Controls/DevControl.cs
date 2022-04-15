@@ -10,12 +10,11 @@ using System.Windows.Forms;
 
 namespace Couriers_GUI.User_Interface.Custom_Controls
 {
-	public partial class NavigablePanel : UserControl
+	public partial class DevControl : UserControl
 	{
-		public NavigablePanel()
+		public DevControl()
 		{
 			InitializeComponent();
-			InterfaceSingleton.NavigablePanelContent = panel1;
 		}
 	}
 }
