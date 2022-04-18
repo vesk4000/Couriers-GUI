@@ -16,5 +16,7 @@ namespace Couriers_GUI.User_Interface.Custom_Controls
 		{
 			InitializeComponent();
 		}
-	}
+
+        
+    }
 }
