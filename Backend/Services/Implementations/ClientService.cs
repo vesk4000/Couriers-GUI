@@ -47,7 +47,12 @@ namespace Couriers_GUI.Backend.Services.Implementations
 				.Clients
 				.Any(a => a.Id == id);
 
-		public void Remove(int id)
+        public IEnumerable<ClientDetailsServiceModel> GetByContainingText(string containText)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(int id)
 			=> data.Database.ExecuteSqlRaw("EXEC dbo.delete_clients {0}", id);
 	}
 }

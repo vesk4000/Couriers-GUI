@@ -38,7 +38,12 @@ namespace Couriers_GUI.Backend.Services.Implementations
 				.TypesOfServices
 				.Any(a => a.Id == id);
 
-		public void Remove(int id)
+        public IEnumerable<TypesOfServiceDetailsServiceModel> GetByContainingText(string containText)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(int id)
 			=> data.Database.ExecuteSqlRaw("EXEC dbo.delete_types {0}", id);
 	}
 }

@@ -19,5 +19,7 @@ namespace Couriers_GUI.Backend.Services
         bool Exists(int id);
 
         IEnumerable<OrderDetailsServiceModel> All();
+
+        IEnumerable<OrderDetailsServiceModel> GetByFilters(string containText, DateTime startOrderDate = new DateTime(), DateTime endOrderDate = new DateTime(), DateTime startReceiveDate = new DateTime(), DateTime endReceiveDate = new DateTime(), decimal minTotal = 0, decimal maxTotal = int.MaxValue);
     }
 }

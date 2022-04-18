@@ -19,5 +19,7 @@ namespace Couriers_GUI.Backend.Services
         bool Exists(int id);
 
         IEnumerable<RecipientDetailsServiceModel> All();
+
+        IEnumerable<RecipientDetailsServiceModel> GetByContainingText(string containText);
     }
 }

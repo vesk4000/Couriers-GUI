@@ -12,16 +12,16 @@ namespace Couriers_GUI.Backend.Services.ServiceModels
 
         public string Total { get; set; }
 
-        public int? AddressId { get; set; }
+        public string Address { get; set; }
 
-        public int? TypeId { get; set; }
+        public string Type { get; set; }
 
-        public int? DispatcherId { get; set; }
+        public string Dispatcher { get; set; }
 
-        public int? ClientId { get; set; }
+        public string Client { get; set; }
 
-        public int? CourierId { get; set; }
+        public string Courier { get; set; }
 
-        public int? RecipientId { get; set; }
+        public string Recipient { get; set; }
     }
 }

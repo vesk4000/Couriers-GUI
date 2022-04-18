@@ -27,7 +27,7 @@ namespace Couriers_GUI.User_Interface.Development
 		{
 			OrderService orderService = new OrderService(data);
 
-			dataGridView1.DataSource = orderService.All();
+			dataGridView1.DataSource = orderService.GetByFilters("", default, default, default, default, 6, (decimal)6.5);
 		}
 	}
 }
