@@ -10,48 +10,33 @@ using System.Windows.Forms;
 
 namespace Couriers_GUI.User_Interface.Custom_Controls
 {
-	class TabButton : UserControl
+	public abstract class TabButton : UserControl
 	{
 		public UserControl panelToNavigateTo;
 
 		public void ClickButton()
 		{
-			if(Parent is null)
+			if(Parent is not Pages.TablesTabsPage)
             {
 				MessageBox.Show("Error, no tab panel");
 				return;
             }
-			foreach(NavigationButton button in InterfaceSingleton.navigationButtons)
+			var parent = Parent as Pages.TablesTabsPage;
+			foreach(TabButton button in parent.Buttons)
 				button.SetStateOff();
-			this.SetStateToggled();
+			SetStateToggled();
 			if(InterfaceSingleton.NavigablePanelContent is not null)
 			{
 				InterfaceSingleton.NavigablePanelContent.Controls.Clear();
 				if(panelToNavigateTo is not null)
-				{
-					InterfaceSingleton.NavigablePanelContent.Controls.Add(panelToNavigateTo);
-				}
-					
+					InterfaceSingleton.NavigablePanelContent.Controls.Add(panelToNavigateTo);	
 			}
 		}
 
-		public void SetStateOff()
-		{
-			label1.ForeColor = System.Drawing.Color.FromArgb(InterfaceSingleton.COLOR_GREY);
-			//kryptonPanel1.Palette
-			BackColor = System.Drawing.Color.Transparent;
-		}
+		public abstract void SetStateOff();
 
-		public void SetStateHover()
-		{
-			label1.ForeColor = System.Drawing.Color.FromArgb(InterfaceSingleton.COLOR_BACKGROUND);
-		}
+		public abstract void SetStateHover();
 
-		public void SetStateToggled()
-		{
-			label1.ForeColor = System.Drawing.Color.FromArgb(InterfaceSingleton.COLOR_BACKGROUND);
-			BackColor = System.Drawing.Color.FromArgb(unchecked((int)0x40_FF_FF_FF));
-			label1.BackColor = System.Drawing.Color.Transparent;
-		}
+		public abstract void SetStateToggled();
 	}
 }
