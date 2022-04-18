@@ -63,9 +63,49 @@ namespace Couriers_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap file_circle_exclamation_solid {
+            get {
+                object obj = ResourceManager.GetObject("file_circle_exclamation_solid", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap laptop_code_solid {
+            get {
+                object obj = ResourceManager.GetObject("laptop_code_solid", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap question_solid {
             get {
                 object obj = ResourceManager.GetObject("question-solid", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap server_solid {
+            get {
+                object obj = ResourceManager.GetObject("server_solid", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap table_solid {
+            get {
+                object obj = ResourceManager.GetObject("table_solid", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

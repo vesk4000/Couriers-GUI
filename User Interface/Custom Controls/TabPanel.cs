@@ -10,12 +10,10 @@ using System.Windows.Forms;
 
 namespace Couriers_GUI.User_Interface.Custom_Controls
 {
-	public partial class NavigablePanel : UserControl
+	abstract class TabPanel : UserControl
 	{
-		public NavigablePanel()
-		{
-			InitializeComponent();
-			InterfaceSingleton.NavigablePanelContent = panel1;
-		}
+		public List<TabButton> navigationButtons = new List<TabButton>();
+		
+		public abstract void ChangeTab();
 	}
 }

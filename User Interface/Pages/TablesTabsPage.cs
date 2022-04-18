@@ -8,14 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Couriers_GUI.User_Interface.Custom_Controls
+namespace Couriers_GUI.User_Interface.Pages
 {
-	public partial class NavigablePanel : UserControl
-	{
-		public NavigablePanel()
-		{
-			InitializeComponent();
-			InterfaceSingleton.NavigablePanelContent = panel1;
-		}
-	}
+    public partial class TablesTabsPage : UserControl
+    {
+        public TablesTabsPage()
+        {
+            InitializeComponent();
+        }
+    }
 }
