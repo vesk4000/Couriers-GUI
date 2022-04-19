@@ -45,9 +45,8 @@ namespace Couriers_GUI.Backend.Services.Implementations
                 .Any(a => a.Id == id);
 
         public IEnumerable<AddressDetailsServiceModel> GetByContainingText(string containText)
-        {
-            throw new NotImplementedException();
-        }
+            => All()
+                .Where(a => (a.Id + " " + a.AddressText).Contains(containText));
 
         public void Remove(int id)
             => data.Database.ExecuteSqlRaw("EXEC dbo.delete_addresses {0}", id);

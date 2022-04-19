@@ -71,14 +71,12 @@ namespace Couriers_GUI.Backend.Services.Implementations
 			if (endReceiveDate == default)
 				endReceiveDate = DateTime.MaxValue;
 
-
 			return All()
 					.Where(o =>
 					(o.Id + " " + o.Address + " " + o.Client + " " + o.Courier + " " + o.Dispatcher + " " + o.Recipient + " " + o.Type).ToString().Contains(containText)
 					&& (o.ReceiveDate >= startReceiveDate && o.ReceiveDate <= endReceiveDate)
 					&& (o.OrderDate >= startOrderDate && o.OrderDate <= endOrderDate)
-					&& (decimal.Parse(o.Total.Split(' ')[0]) >= minTotal && decimal.Parse(o.Total.Split(' ')[0]) <= maxTotal))
-					.ToList();
+					&& (decimal.Parse(o.Total.Split(' ')[0]) >= minTotal && decimal.Parse(o.Total.Split(' ')[0]) <= maxTotal));
 		}
 
         public void Remove(int id)

@@ -39,9 +39,8 @@ namespace Couriers_GUI.Backend.Services.Implementations
                 .Any(a => a.Id == id);
 
         public IEnumerable<RecipientDetailsServiceModel> GetByContainingText(string containText)
-        {
-            throw new NotImplementedException();
-        }
+            => All()
+                .Where(r => (r.Id + " " + r.Name).Contains(containText));
 
         public void Remove(int id)
             => data.Database.ExecuteSqlRaw("EXEC dbo.delete_recipients {0}", id);
