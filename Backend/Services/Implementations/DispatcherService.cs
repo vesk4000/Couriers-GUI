@@ -45,7 +45,8 @@ namespace Couriers_GUI.Backend.Services.Implementations
 
 		public IEnumerable<DispatcherDetailsServiceModel> GetByContainingText(string containText)
 			=> All()
-				.Where(d => (d.Id + " " + d.Name + " " + d.PhoneNumber).Contains(containText));
+				.Where(d => (d.Id + " " + d.Name + " " + d.PhoneNumber).Contains(containText))
+				.ToList();
 
         public void Remove(int id)
 			=> data.Database.ExecuteSqlRaw("EXEC dbo.delete_dispatchers {0}", id);

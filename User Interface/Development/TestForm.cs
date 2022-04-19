@@ -21,13 +21,15 @@ namespace Couriers_GUI.User_Interface.Development
 			InitializeComponent();
 
 			data = new CouriersDBContext();
+
+			dataGridView1.AutoResizeColumns();
 		}
 
 		private void button1_Click(object sender, EventArgs e)
 		{
 			OrderService orderService = new OrderService(data);
 
-			dataGridView1.DataSource = orderService.GetByFilters("", default, default, default, default, 6, (decimal)6.5);
+			dataGridView1.DataSource = orderService.GetByFilters("Иван", default, default, default, default, 6, (decimal)6.5);
 		}
 	}
 }

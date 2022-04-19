@@ -13,12 +13,17 @@ namespace Couriers_GUI
 		///  The main entry point for the application.
 		/// </summary>
 		[STAThread]
-		static void Main()
+		static void Main(string[] args)
 		{
 			Application.SetHighDpiMode(HighDpiMode.SystemAware);
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new User_Interface.Form1());
+			
+			// TODO: Write a better version of the code that determines which form to open
+			if (args[0] == "test")
+				Application.Run(new User_Interface.Development.TestForm());
+			else
+				Application.Run(new User_Interface.Form1());
 		}
 	}
 }

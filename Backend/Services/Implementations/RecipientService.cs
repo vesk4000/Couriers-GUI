@@ -40,7 +40,8 @@ namespace Couriers_GUI.Backend.Services.Implementations
 
         public IEnumerable<RecipientDetailsServiceModel> GetByContainingText(string containText)
             => All()
-                .Where(r => (r.Id + " " + r.Name).Contains(containText));
+                .Where(r => (r.Id + " " + r.Name).Contains(containText))
+                .ToList();
 
         public void Remove(int id)
             => data.Database.ExecuteSqlRaw("EXEC dbo.delete_recipients {0}", id);

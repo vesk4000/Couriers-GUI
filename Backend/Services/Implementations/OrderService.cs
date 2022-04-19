@@ -73,10 +73,11 @@ namespace Couriers_GUI.Backend.Services.Implementations
 
 			return All()
 					.Where(o =>
-					(o.Id + " " + o.Address + " " + o.Client + " " + o.Courier + " " + o.Dispatcher + " " + o.Recipient + " " + o.Type).ToString().Contains(containText)
+					(o.Id + " " + o.Address + " " + o.Client + " " + o.Courier + " " + o.Dispatcher + " " + o.Recipient + " " + o.Type).Contains(containText)
 					&& (o.ReceiveDate >= startReceiveDate && o.ReceiveDate <= endReceiveDate)
 					&& (o.OrderDate >= startOrderDate && o.OrderDate <= endOrderDate)
-					&& (decimal.Parse(o.Total.Split(' ')[0]) >= minTotal && decimal.Parse(o.Total.Split(' ')[0]) <= maxTotal));
+					&& (decimal.Parse(o.Total.Split(' ')[0]) >= minTotal && decimal.Parse(o.Total.Split(' ')[0]) <= maxTotal))
+					.ToList();
 		}
 
         public void Remove(int id)
