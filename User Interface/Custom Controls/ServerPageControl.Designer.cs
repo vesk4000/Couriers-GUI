@@ -58,7 +58,7 @@ namespace Couriers_GUI.User_Interface.Custom_Controls
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ServerPageControl";
-            this.Size = new System.Drawing.Size(388, 265);
+            this.Size = new System.Drawing.Size(434, 313);
             this.ResumeLayout(false);
             this.PerformLayout();
 

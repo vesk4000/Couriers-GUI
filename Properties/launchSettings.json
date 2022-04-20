@@ -1,8 +1,7 @@
 {
   "profiles": {
     "Couriers GUI": {
-      "commandName": "Project",
-      "commandLineArgs": "test"
+      "commandName": "Project"
     }
   }
 }
