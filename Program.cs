@@ -18,10 +18,17 @@ namespace Couriers_GUI
 			Application.SetHighDpiMode(HighDpiMode.SystemAware);
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			
+
 			// TODO: Write a better version of the code that determines which form to open
-			if (args[0] == "test")
-				Application.Run(new User_Interface.Development.TestForm());
+
+
+			if (args.Count() != 0)
+			{
+				if (args[0] == "test")
+					Application.Run(new User_Interface.Development.TestForm());
+				else
+					Application.Run(new User_Interface.Form1());
+			}
 			else
 				Application.Run(new User_Interface.Form1());
 		}
