@@ -31,6 +31,7 @@ namespace Couriers_GUI.User_Interface.Custom_Controls
 		{
             this.label1 = new System.Windows.Forms.Label();
             this.completableTextBox1 = new Couriers_GUI.User_Interface.Custom_Controls.CompletableTextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -50,10 +51,20 @@ namespace Couriers_GUI.User_Interface.Custom_Controls
             this.completableTextBox1.TabIndex = 1;
             this.completableTextBox1.Text = "completableTextBox1";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(179, 117);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // ServerPageControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.completableTextBox1);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -68,5 +79,6 @@ namespace Couriers_GUI.User_Interface.Custom_Controls
 
 		private System.Windows.Forms.Label label1;
         private CompletableTextBox completableTextBox1;
+        private System.Windows.Forms.Button button1;
     }
 }
