@@ -49,7 +49,6 @@ namespace Couriers_GUI.User_Interface.Custom_Controls
             this.completableTextBox1.Name = "completableTextBox1";
             this.completableTextBox1.Size = new System.Drawing.Size(100, 23);
             this.completableTextBox1.TabIndex = 1;
-            this.completableTextBox1.Text = "completableTextBox1";
             // 
             // button1
             // 
