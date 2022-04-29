@@ -1,4 +1,5 @@
-﻿using Couriers_GUI.Backend.Services.ServiceModels;
+﻿using Couriers_GUI.Backend.Services.Interfaces;
+using Couriers_GUI.Backend.Services.ServiceModels;
 using Couriers_GUI.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Couriers_GUI.Backend.Services.Implementations
 {
-    public class RecipientService : IRecipientService
+    public class RecipientService : ITableService<RecipientServiceModel>
     {
         private readonly CouriersDBContext data;
 
@@ -18,27 +19,27 @@ namespace Couriers_GUI.Backend.Services.Implementations
             this.data = data;
         }
 
-        public IEnumerable<RecipientDetailsServiceModel> All()
+        public IEnumerable<RecipientServiceModel> All()
             => this.data
                 .Recipients
-                .Select(r => new RecipientDetailsServiceModel(){
+                .Select(r => new RecipientServiceModel(){
                     Id = r.Id,
                     Name = r.Name
                 })
                 .ToList();
 
-        public void Create(string name)
-            => this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_AddRecipient {0}", name);
+        public void Create(RecipientServiceModel recipient)
+            => this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_AddRecipient {0}", recipient.Name);
 
-        public void Edit(int id, string name)
-            => this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_UpdateRecipient {0}, {1}", id, name);
+        public void Edit(RecipientServiceModel recipient)
+            => this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_UpdateRecipient {0}, {1}", recipient.Id, recipient.Name);
 
         public bool Exists(int id)
             => this.data
                 .Recipients
                 .Any(a => a.Id == id);
 
-        public IEnumerable<RecipientDetailsServiceModel> GetByContainingText(string containText)
+        public IEnumerable<RecipientServiceModel> GetByContainingText(string containText)
             => All()
                 .Where(r => (r.Id + " " + r.Name).Contains(containText))
                 .ToList();

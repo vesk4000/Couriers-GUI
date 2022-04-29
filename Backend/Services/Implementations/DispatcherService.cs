@@ -1,4 +1,5 @@
-﻿using Couriers_GUI.Backend.Services.ServiceModels;
+﻿using Couriers_GUI.Backend.Services.Interfaces;
+using Couriers_GUI.Backend.Services.ServiceModels;
 using Couriers_GUI.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Couriers_GUI.Backend.Services.Implementations
 {
-	public class DispatcherService : IDispatcherService
+	public class DispatcherService : ITableService<DispatcherServiceModel>
 	{
 		private readonly CouriersDBContext data;
 
@@ -18,10 +19,10 @@ namespace Couriers_GUI.Backend.Services.Implementations
 			this.data = data;
 		}
 
-		public IEnumerable<DispatcherDetailsServiceModel> All()
+		public IEnumerable<DispatcherServiceModel> All()
 			=> this.data
 				.Dispatchers
-				.Select(d => new DispatcherDetailsServiceModel(){
+				.Select(d => new DispatcherServiceModel(){
 					Id = d.Id,
 					Name = d.Name,
 					PhoneNumber = d.PhoneNumber
@@ -30,20 +31,20 @@ namespace Couriers_GUI.Backend.Services.Implementations
 
 		//TODO: Create with service models
 
-		public void Create(string name, string phoneNumber)
-			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_AddDispatcher {0}, {1}", name, phoneNumber);
+		public void Create(DispatcherServiceModel dispatcher)
+			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_AddDispatcher {0}, {1}", dispatcher.Name, dispatcher.PhoneNumber);
 
 		//TODO: Edit with service models
 
-		public void Edit(int id, string name, string phoneNumber)
-			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_UpdateDispatcher {0}, {1}, {2}", id, name, phoneNumber);
+		public void Edit(DispatcherServiceModel dispatcher)
+			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_UpdateDispatcher {0}, {1}, {2}", dispatcher.Id, dispatcher.Name, dispatcher.PhoneNumber);
 
 		public bool Exists(int id)
 			=> this.data
 				.Dispatchers
 				.Any(a => a.Id == id);
 
-		public IEnumerable<DispatcherDetailsServiceModel> GetByContainingText(string containText)
+		public IEnumerable<DispatcherServiceModel> GetByContainingText(string containText)
 			=> All()
 				.Where(d => (d.Id + " " + d.Name + " " + d.PhoneNumber).Contains(containText))
 				.ToList();

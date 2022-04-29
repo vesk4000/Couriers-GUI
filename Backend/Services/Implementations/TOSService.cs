@@ -1,4 +1,5 @@
-﻿using Couriers_GUI.Backend.Services.ServiceModels;
+﻿using Couriers_GUI.Backend.Services.Interfaces;
+using Couriers_GUI.Backend.Services.ServiceModels;
 using Couriers_GUI.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Couriers_GUI.Backend.Services.Implementations
 {
-	public class TOSService : ITOSService
+	public class TOSService : ITableService<TypesOfServiceServiceModel>
 	{
 		private readonly CouriersDBContext data;
 
@@ -18,27 +19,27 @@ namespace Couriers_GUI.Backend.Services.Implementations
 			this.data = data;
 		}
 
-		public IEnumerable<TypesOfServiceDetailsServiceModel> All()
+		public IEnumerable<TypesOfServiceServiceModel> All()
 			=> this.data
 				.TypesOfServices
-				.Select(t => new TypesOfServiceDetailsServiceModel(){
+				.Select(t => new TypesOfServiceServiceModel(){
 					Id = t.Id,
 					Type = t.Type
 				})
 				.ToList();
 
-		public void Create(string type)
-			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_AddTypeOfService {0}", type);
+		public void Create(TypesOfServiceServiceModel tos)
+			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_AddTypeOfService {0}", tos.Type);
 
-		public void Edit(int id, string type)
-			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_UpdateTypeOfService {0}, {1}", id, type);
+		public void Edit(TypesOfServiceServiceModel tos)
+			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_UpdateTypeOfService {0}, {1}", tos.Id, tos.Type);
 
 		public bool Exists(int id)
 			=> this.data
 				.TypesOfServices
 				.Any(a => a.Id == id);
 
-        public IEnumerable<TypesOfServiceDetailsServiceModel> GetByContainingText(string containText)
+        public IEnumerable<TypesOfServiceServiceModel> GetByContainingText(string containText)
 			=> All()
 				.Where(t => (t.Id + " " + t.Type).Contains(containText))
 				.ToList();

@@ -1,4 +1,5 @@
-﻿using Couriers_GUI.Backend.Services.ServiceModels;
+﻿using Couriers_GUI.Backend.Services.Interfaces;
+using Couriers_GUI.Backend.Services.ServiceModels;
 using Couriers_GUI.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Couriers_GUI.Backend.Services.Implementations
 {
-	public class CourierService : ICourierService
+	public class CourierService : ITableService<CourierServiceModel>
 	{
 		private readonly CouriersDBContext data;
 
@@ -18,10 +19,10 @@ namespace Couriers_GUI.Backend.Services.Implementations
 			this.data = data;
 		}
 
-		public IEnumerable<CourierDetailsServiceModel> All()
+		public IEnumerable<CourierServiceModel> All()
 			=> this.data
 				.Couriers
-				.Select(c => new CourierDetailsServiceModel(){
+				.Select(c => new CourierServiceModel(){
 					Id = c.Id,
 					Name = c.Name,
 					PhoneNumber = c.PhoneNumber
@@ -30,20 +31,20 @@ namespace Couriers_GUI.Backend.Services.Implementations
 
 		//TODO: create with service models
 
-		public void Create(string name, string phoneNumber)
-			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_AddCourier {0}, {1}", name, phoneNumber);
+		public void Create(CourierServiceModel courier)
+			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_AddCourier {0}, {1}", courier.Name, courier.PhoneNumber);
 
 		//TODO: edit with service models
 
-		public void Edit(int id, string name, string phoneNumber)
-			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_UpdateCourier {0}, {1}, {2}", id, name, phoneNumber);
+		public void Edit(CourierServiceModel courier)
+			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_UpdateCourier {0}, {1}, {2}", courier.Id, courier.Name, courier.PhoneNumber);
 
 		public bool Exists(int id)
 			=> this.data
 				.Couriers
 				.Any(a => a.Id == id);
 
-        public IEnumerable<CourierDetailsServiceModel> GetByContainingText(string containText)
+        public IEnumerable<CourierServiceModel> GetByContainingText(string containText)
 			=> All()
 				.Where(c => (c.Id + " " + c.Name + " " + c.PhoneNumber).Contains(containText))
 				.ToList();

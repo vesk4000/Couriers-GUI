@@ -1,6 +1,6 @@
 ﻿namespace Couriers_GUI.Backend.Services.ServiceModels
 {
-    public class CourierEditServiceModel
+    public class CourierServiceModel
     {
         public int Id { get; set; }
 
