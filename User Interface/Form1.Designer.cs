@@ -29,23 +29,23 @@ namespace Couriers_GUI.User_Interface
         /// </summary>
         private void InitializeComponent()
         {
-            this.navigablePanel1 = new Couriers_GUI.User_Interface.Custom_Controls.NavigablePanel();
+            this.navigationPanel1 = new Couriers_GUI.UserInterface.Navigation.NavigationPanel();
             this.SuspendLayout();
             // 
-            // navigablePanel1
+            // navigationPanel1
             // 
-            this.navigablePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.navigablePanel1.Location = new System.Drawing.Point(0, 0);
-            this.navigablePanel1.Name = "navigablePanel1";
-            this.navigablePanel1.Size = new System.Drawing.Size(606, 320);
-            this.navigablePanel1.TabIndex = 0;
+            this.navigationPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.navigationPanel1.Location = new System.Drawing.Point(0, 0);
+            this.navigationPanel1.Name = "navigationPanel1";
+            this.navigationPanel1.Size = new System.Drawing.Size(606, 320);
+            this.navigationPanel1.TabIndex = 0;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(606, 320);
-            this.Controls.Add(this.navigablePanel1);
+            this.Controls.Add(this.navigationPanel1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -54,6 +54,6 @@ namespace Couriers_GUI.User_Interface
 
         #endregion
 
-        private Custom_Controls.NavigablePanel navigablePanel1;
+        private UserInterface.Navigation.NavigationPanel navigationPanel1;
     }
 }
