@@ -1,27 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Couriers_GUI.User_Interface.Custom_Controls
+namespace Couriers_GUI.UserInterface.Tabs
 {
-	public abstract class TabButton : UserControl
+	public class TabButton : UserControl
 	{
 		public UserControl panelToNavigateTo;
+		public TabPanel parent;
 
 		public void ClickButton()
 		{
-			if(Parent is not TabPanel)
-            {
+			if(parent is null)
+			{
 				MessageBox.Show("Error, no tab panel");
 				return;
-            }
-			TabPanel parent = Parent as TabPanel;
+			}
 
 			foreach(TabButton button in parent.tabButtons)
 				button.SetStateOff();
@@ -31,14 +28,28 @@ namespace Couriers_GUI.User_Interface.Custom_Controls
 			{
 				parent.currentTabPanel.Controls.Clear();
 				if(panelToNavigateTo is not null)
+                {
 					parent.currentTabPanel.Controls.Add(panelToNavigateTo);
+					panelToNavigateTo.Dock = DockStyle.Fill;
+                }
+				else
+				{
+					MessageBox.Show("Error, panelToNavigateTo");
+					return;
+				}
+					
 			}
+			else
+            {
+				MessageBox.Show("Error, no place for tab contents");
+				return;
+            }
 		}
 
-		public abstract void SetStateOff();
+		public virtual void SetStateOff() { }
 
-		public abstract void SetStateHover();
+		public virtual void SetStateHover() { }
 
-		public abstract void SetStateOn();
-    }
+		public virtual void SetStateOn() { }
+	}
 }

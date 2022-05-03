@@ -1,21 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Couriers_GUI.User_Interface.Custom_Controls
+namespace Couriers_GUI.UserInterface.Tabs
 {
-	public abstract class TabPanel : UserControl
+	public class TabPanel : UserControl
 	{
 		public List<TabButton> tabButtons = new List<TabButton>();
 		public Krypton.Toolkit.KryptonPanel currentTabPanel;
-		
-		public abstract void ChangeTab();
-
-    }
+	}
 }
