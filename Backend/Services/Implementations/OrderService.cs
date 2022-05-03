@@ -10,16 +10,21 @@ using System.Threading.Tasks;
 
 namespace Couriers_GUI.Backend.Services.Implementations
 {
-	public class OrderService : ITableService<OrderServiceModel>
+	public class OrderService : ITableService<OrderServiceModel, OrderDetailsServiceModel>
 	{
 		private readonly CouriersDBContext data;
+
+		public OrderService()
+		{
+			this.data = new CouriersDBContext();
+		}
 
 		public OrderService(CouriersDBContext data)
 		{
 			this.data = data;
 		}
 
-		public IEnumerable<OrderServiceModel> All()
+		public IEnumerable<OrderDetailsServiceModel> All()
 		{
 			var orders = this.data
 							.Orders
@@ -31,7 +36,7 @@ namespace Couriers_GUI.Backend.Services.Implementations
 							.Include(o => o.Type);
 
 			return orders
-					  .Select(o => new OrderServiceModel()
+					  .Select(o => new OrderDetailsServiceModel()
 					  {
 						  Id = o.Id,
 						  OrderDate = o.OrderDate,
@@ -58,7 +63,7 @@ namespace Couriers_GUI.Backend.Services.Implementations
 				.Orders
 				.Any(a => a.Id == id);
 
-        public IEnumerable<OrderServiceModel> GetByContainingText(string containText)
+        public IEnumerable<OrderDetailsServiceModel> GetByContainingText(string containText)
         {
 			return All()
 					.Where(o =>
@@ -66,7 +71,7 @@ namespace Couriers_GUI.Backend.Services.Implementations
 					.ToList();
 		}
 
-        public IEnumerable<OrderServiceModel> GetByFilters(string containText, DateTime startOrderDate = default, DateTime endOrderDate = default, DateTime startReceiveDate = default, DateTime endReceiveDate = default, decimal minTotal = 0, decimal maxTotal = int.MaxValue)
+        public IEnumerable<OrderDetailsServiceModel> GetByFilters(string containText, DateTime startOrderDate = default, DateTime endOrderDate = default, DateTime startReceiveDate = default, DateTime endReceiveDate = default, decimal minTotal = 0, decimal maxTotal = int.MaxValue)
         {
 			if (startOrderDate == default)
 				startOrderDate = DateTime.MinValue;

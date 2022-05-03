@@ -15,7 +15,7 @@ namespace Couriers_GUI.Backend.Services.Implementations
 {
 	static class DBCreateService
 	{
-        public static void CreateDatabase(string username)
+        public static void CreateDatabase()
         {
             try
             {
@@ -24,7 +24,7 @@ namespace Couriers_GUI.Backend.Services.Implementations
                 // split script on GO command
                 System.Collections.Generic.IEnumerable<string> commandStrings = Regex.Split(script, @"^\s*GO\s*$",
                                          RegexOptions.Multiline | RegexOptions.IgnoreCase);
-                using (SqlConnection connection = new SqlConnection($"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=master;Data Source=.\\SQLEXPRESS;User Id={username};Password="))
+                using (SqlConnection connection = new SqlConnection($"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=master;Data Source=.\\SQLEXPRESS;User Id={System.Security.Principal.WindowsIdentity.GetCurrent().Name};Password="))
                 {
                     connection.Open();
                     foreach (string commandString in commandStrings)

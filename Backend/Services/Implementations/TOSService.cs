@@ -10,9 +10,14 @@ using System.Threading.Tasks;
 
 namespace Couriers_GUI.Backend.Services.Implementations
 {
-	public class TOSService : ITableService<TypesOfServiceServiceModel>
+	public class TOSService : ITableService<TypesOfServiceServiceModel, TypesOfServiceServiceModel>
 	{
 		private readonly CouriersDBContext data;
+
+		public TOSService()
+		{
+			this.data = new CouriersDBContext();
+		}
 
 		public TOSService(CouriersDBContext data)
 		{

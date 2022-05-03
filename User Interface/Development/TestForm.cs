@@ -27,7 +27,9 @@ namespace Couriers_GUI.User_Interface.Development
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			DBCreateService.CreateDatabase(@"HDDENEV01\icyde");
+			OrderService service = new OrderService();
+
+			dataGridView1.DataSource = service.All();
 		}
     }
 }

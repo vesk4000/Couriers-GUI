@@ -10,9 +10,14 @@ using System.Threading.Tasks;
 
 namespace Couriers_GUI.Backend.Services.Implementations
 {
-    public class AddressService : ITableService<AddressServiceModel>
+    public class AddressService : ITableService<AddressServiceModel, AddressServiceModel>
     {
         private readonly CouriersDBContext data;
+
+        public AddressService()
+        {
+            this.data = new CouriersDBContext();
+        }
 
         public AddressService(CouriersDBContext data)
         {
