@@ -1,4 +1,5 @@
-﻿using Couriers_GUI.Backend.Services.ServiceModels;
+﻿using Couriers_GUI.Backend.Services.Interfaces;
+using Couriers_GUI.Backend.Services.ServiceModels;
 using Couriers_GUI.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Couriers_GUI.Backend.Services.Implementations
 {
-	public class ClientService : IClientService
+	public class ClientService : ITableService<ClientServiceModel>
 	{
 		private readonly CouriersDBContext data;
 
@@ -18,39 +19,31 @@ namespace Couriers_GUI.Backend.Services.Implementations
 			this.data = data;
 		}
 
-		public IEnumerable<ClientDetailsServiceModel> All()
+		public IEnumerable<ClientServiceModel> All()
 			=> this.data
 				.Clients
-				.Select(c => new ClientDetailsServiceModel(){
+				.Select(c => new ClientServiceModel(){
 					Id = c.Id,
 					Name = c.Name,
 					PhoneNumber = c.PhoneNumber
 				})
 				.ToList();
 
-		//TODO
-		//public void Create(ClientCreateServiceModel client)
-		//    => this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_AddClient {0}", client.Name, client.PhoneNumber);
+		public IEnumerable<ClientServiceModel> GetByContainingText(string containText)
+			=> All()
+				.Where(c => (c.Id + " " + c.Name + " " + c.PhoneNumber).Contains(containText))
+				.ToList();
 
-		public void Create(string name, string phoneNumber)
-			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_AddClient {0}, {1}", name, phoneNumber);
+		public void Create(ClientServiceModel client)
+		    => this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_AddClient {0}", client.Name, client.PhoneNumber);
 
-		//TODO
-		//public void Edit(ClientEditServiceModel client)
-		//	=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_UpdateClient {0}, {1}", client.Id, client.Name, client.PhoneNumber);
-
-		public void Edit(int id, string name, string phoneNumber)
-			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_UpdateClient {0}, {1}, {2}", id, name, phoneNumber);
+		public void Edit(ClientServiceModel client)
+			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_UpdateClient {0}, {1}", client.Id, client.Name, client.PhoneNumber);
 
 		public bool Exists(int id)
 			=> this.data
 				.Clients
 				.Any(a => a.Id == id);
-
-        public IEnumerable<ClientDetailsServiceModel> GetByContainingText(string containText)
-			=> All()
-				.Where(c => (c.Id + " " + c.Name + " " + c.PhoneNumber).Contains(containText))
-				.ToList();
 
 		public void Remove(int id)
 			=> data.Database.ExecuteSqlRaw("EXEC dbo.delete_clients {0}", id);

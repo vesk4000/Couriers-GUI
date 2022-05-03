@@ -1,4 +1,5 @@
-﻿using Couriers_GUI.Backend.Services.ServiceModels;
+﻿using Couriers_GUI.Backend.Services.Interfaces;
+using Couriers_GUI.Backend.Services.ServiceModels;
 using Couriers_GUI.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Couriers_GUI.Backend.Services.Implementations
 {
-    public class AddressService : IAddressService
+    public class AddressService : ITableService<AddressServiceModel>
     {
         private readonly CouriersDBContext data;
 
@@ -18,22 +19,22 @@ namespace Couriers_GUI.Backend.Services.Implementations
             this.data = data;
         }
 
-        public IEnumerable<AddressDetailsServiceModel> All()
+        public IEnumerable<AddressServiceModel> All()
             => this.data
                 .Addresses
-                .Select(a => new AddressDetailsServiceModel(){
+                .Select(a => new AddressServiceModel(){
                     Id = a.Id,
                     AddressText = a.AddressText
                 })
                 .ToList();
 
-        public void Create(AddressCreateServiceModel address)
+        public void Create(AddressServiceModel address)
             => this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_AddAddress {0}", address.AddressText);
 
         public void Create(string addressText)
             => this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_AddAddress {0}", addressText);
         
-        public void Edit(AddressEditServiceModel address)
+        public void Edit(AddressServiceModel address)
             => this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_UpdateAddress {0}, {1}", address.Id, address.AddressText);
 
         public void Edit(int id, string addressText)
@@ -44,7 +45,7 @@ namespace Couriers_GUI.Backend.Services.Implementations
                 .Addresses
                 .Any(a => a.Id == id);
 
-        public IEnumerable<AddressDetailsServiceModel> GetByContainingText(string containText)
+        public IEnumerable<AddressServiceModel> GetByContainingText(string containText)
             => All()
                 .Where(a => (a.Id + " " + a.AddressText).Contains(containText))
                 .ToList();

@@ -1,4 +1,5 @@
-﻿using Couriers_GUI.Backend.Services.ServiceModels;
+﻿using Couriers_GUI.Backend.Services.Interfaces;
+using Couriers_GUI.Backend.Services.ServiceModels;
 using Couriers_GUI.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Couriers_GUI.Backend.Services.Implementations
 {
-	public class OrderService : IOrderService
+	public class OrderService : ITableService<OrderServiceModel>
 	{
 		private readonly CouriersDBContext data;
 
@@ -18,7 +19,7 @@ namespace Couriers_GUI.Backend.Services.Implementations
 			this.data = data;
 		}
 
-		public IEnumerable<OrderDetailsServiceModel> All()
+		public IEnumerable<OrderServiceModel> All()
 		{
 			var orders = this.data
 							.Orders
@@ -30,7 +31,7 @@ namespace Couriers_GUI.Backend.Services.Implementations
 							.Include(o => o.Type);
 
 			return orders
-					  .Select(o => new OrderDetailsServiceModel()
+					  .Select(o => new OrderServiceModel()
 					  {
 						  Id = o.Id,
 						  OrderDate = o.OrderDate,
@@ -46,18 +47,26 @@ namespace Couriers_GUI.Backend.Services.Implementations
 					  .ToList();
 		}
 
-		public void Create(DateTime orderDate, DateTime receiveDate, decimal total, int addressId, int typeId, int DispatcherId, int ClientId, int CourierId, int RecipientId)
-			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_AddOrder {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}", orderDate, receiveDate, total, addressId, typeId, DispatcherId, ClientId, CourierId, RecipientId);
+		public void Create(OrderServiceModel order)
+			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_AddOrder {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}", order.OrderDate, order.ReceiveDate, order.Total, order.AddressId, order.TypeId, order.DispatcherId, order.ClientId, order.CourierId, order.RecipientId);
 
-		public void Edit(int id, DateTime orderDate, DateTime receiveDate, decimal total, int addressId, int typeId, int DispatcherId, int ClientId, int CourierId, int RecipientId)
-			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_UpdateOrder {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}", id, orderDate, receiveDate, total, addressId, typeId, DispatcherId, ClientId, CourierId, RecipientId);
+		public void Edit(OrderServiceModel order)
+			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_UpdateOrder {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}", order.Id, order.OrderDate, order.ReceiveDate, order.Total, order.AddressId, order.TypeId, order.DispatcherId, order.ClientId, order.CourierId, order.RecipientId);
 
 		public bool Exists(int id)
 			=> this.data
 				.Orders
 				.Any(a => a.Id == id);
 
-        public IEnumerable<OrderDetailsServiceModel> GetByFilters(string containText, DateTime startOrderDate = default, DateTime endOrderDate = default, DateTime startReceiveDate = default, DateTime endReceiveDate = default, decimal minTotal = 0, decimal maxTotal = int.MaxValue)
+        public IEnumerable<OrderServiceModel> GetByContainingText(string containText)
+        {
+			return All()
+					.Where(o =>
+					(o.Id + " " + o.Address + " " + o.Client + " " + o.Courier + " " + o.Dispatcher + " " + o.Recipient + " " + o.Type).Contains(containText))
+					.ToList();
+		}
+
+        public IEnumerable<OrderServiceModel> GetByFilters(string containText, DateTime startOrderDate = default, DateTime endOrderDate = default, DateTime startReceiveDate = default, DateTime endReceiveDate = default, decimal minTotal = 0, decimal maxTotal = int.MaxValue)
         {
 			if (startOrderDate == default)
 				startOrderDate = DateTime.MinValue;

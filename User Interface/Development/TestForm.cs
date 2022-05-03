@@ -27,9 +27,7 @@ namespace Couriers_GUI.User_Interface.Development
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			OrderService orderService = new OrderService(data);
-
-			dataGridView1.DataSource = orderService.GetByFilters("Иван", default, default, default, default, 6, (decimal)6.5);
+			DBCreateService.CreateDatabase(@"HDDENEV01\icyde");
 		}
-	}
+    }
 }
