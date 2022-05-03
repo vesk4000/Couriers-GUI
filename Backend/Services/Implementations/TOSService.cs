@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Couriers_GUI.Backend.Services.Implementations
 {
-	public class TOSService : ITableService<TypesOfServiceServiceModel, TypesOfServiceServiceModel>
+	public class TOSService : ITableService<TypesOfServiceServiceModel>
 	{
 		private readonly CouriersDBContext data;
 
@@ -51,5 +51,13 @@ namespace Couriers_GUI.Backend.Services.Implementations
 
 		public void Remove(int id)
 			=> data.Database.ExecuteSqlRaw("EXEC dbo.delete_types {0}", id);
-	}
+
+        public bool Validate(TypesOfServiceServiceModel type)
+        {
+			if (type.Type.Length > 50
+					  || type.Type == string.Empty)
+				return false;
+			return true;
+		}
+    }
 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Couriers_GUI.Backend.Services.Implementations
 {
-	public class ClientService : ITableService<ClientServiceModel, ClientServiceModel>
+	public class ClientService : ITableService<ClientServiceModel>
 	{
 		private readonly CouriersDBContext data;
 
@@ -52,5 +52,15 @@ namespace Couriers_GUI.Backend.Services.Implementations
 
 		public void Remove(int id)
 			=> data.Database.ExecuteSqlRaw("EXEC dbo.delete_clients {0}", id);
-	}
+
+        public bool Validate(ClientServiceModel client)
+        {
+			if (client.Name.Length > 50
+				|| client.Name == string.Empty
+				|| (client.PhoneNumber.Length != 10 && client.PhoneNumber[0] == '0')
+				|| ((client.PhoneNumber.Length > 13 || client.PhoneNumber.Length < 12) && client.PhoneNumber[0] == '+'))
+				return false;
+			return true;
+        }
+    }
 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Couriers_GUI.Backend.Services.Implementations
 {
-	public class OrderService : ITableService<OrderServiceModel, OrderDetailsServiceModel>
+	public class OrderService : ITableService<OrderDetailsServiceModel>
 	{
 		private readonly CouriersDBContext data;
 
@@ -46,17 +46,46 @@ namespace Couriers_GUI.Backend.Services.Implementations
 						  Client = $"{o.Client.Id, -3} | {o.Client.Name, -15} | {o.Client.PhoneNumber}",
 						  Courier = $"{o.Courier.Id, -3} | {o.Courier.Name, -15} | {o.Courier.PhoneNumber}",
 						  Dispatcher = $"{o.Dispatcher.Id, -3} | {o.Dispatcher.Name, -15} | {o.Dispatcher.PhoneNumber}",
-						  Recipient = $"{o.Address.Id, -3} | {o.Recipient.Name, -15}",
+						  Recipient = $"{o.Recipient.Id, -3} | {o.Recipient.Name, -15}",
 						  Type = $"{o.Type.Id, -3} | {o.Type.Type, -15}"
 					  })
 					  .ToList();
 		}
 
-		public void Create(OrderServiceModel order)
-			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_AddOrder {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}", order.OrderDate, order.ReceiveDate, order.Total, order.AddressId, order.TypeId, order.DispatcherId, order.ClientId, order.CourierId, order.RecipientId);
+		public bool Validate(OrderDetailsServiceModel order)
+        {
+			AddressService address = new AddressService(data);
+			ClientService client = new ClientService(data);
+			CourierService courier = new CourierService(data);
+			DispatcherService dispatcher = new DispatcherService(data);
+			RecipientService recipient = new RecipientService(data);
+			TOSService type = new TOSService(data);
+			decimal total;
 
-		public void Edit(OrderServiceModel order)
-			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_UpdateOrder {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}", order.Id, order.OrderDate, order.ReceiveDate, order.Total, order.AddressId, order.TypeId, order.DispatcherId, order.ClientId, order.CourierId, order.RecipientId);
+			try
+			{
+				if (!address.Exists(int.Parse(order.Address.Split('|')[0].Trim()))
+					|| !client.Exists(int.Parse(order.Client.Split('|')[0].Trim()))
+					|| !courier.Exists(int.Parse(order.Courier.Split('|')[0].Trim()))
+					|| !dispatcher.Exists(int.Parse(order.Dispatcher.Split('|')[0].Trim()))
+					|| !recipient.Exists(int.Parse(order.Recipient.Split('|')[0].Trim()))
+					|| !type.Exists(int.Parse(order.Type.Split('|')[0].Trim()))
+					|| !decimal.TryParse(order.Total.Split(' ')[0], out total))
+					return false;
+			}
+			catch
+            {
+				return false;
+            }
+
+			return true;
+        }
+
+		public void Create(OrderDetailsServiceModel order)
+			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_AddOrder {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}", order.OrderDate, order.ReceiveDate, decimal.Parse(order.Total.Split(' ')[0]), order.Address.Split('|')[0].Trim(), order.Type.Split('|')[0].Trim(), order.Dispatcher.Split('|')[0].Trim(), order.Client.Split('|')[0].Trim(), order.Courier.Split('|')[0].Trim(), order.Recipient.Split('|')[0].Trim());
+
+		public void Edit(OrderDetailsServiceModel order)
+			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_UpdateOrder {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}", order.Id, order.OrderDate, order.ReceiveDate, decimal.Parse(order.Total.Split(' ')[0]), order.Address.Split('|')[0].Trim(), order.Type.Split('|')[0].Trim(), order.Dispatcher.Split('|')[0].Trim(), order.Client.Split('|')[0].Trim(), order.Courier.Split('|')[0].Trim(), order.Recipient.Split('|')[0].Trim());
 
 		public bool Exists(int id)
 			=> this.data
