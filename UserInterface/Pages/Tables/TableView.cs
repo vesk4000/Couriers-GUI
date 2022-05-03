@@ -16,5 +16,23 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 		{
 			InitializeComponent();
 		}
+
+		public void InitDataGridView()
+		{
+			if(Parent is TableContainer)
+			{
+				TableContainer parent = Parent as TableContainer;
+				object tableService = parent.tableService;
+				if(tableService is Backend.Services.Implementations.OrderService)
+				{
+					kryptonDataGridView1.DataSource = (tableService as Backend.Services.Implementations.OrderService).All();
+				}
+			}
+			else
+			{
+				MessageBox.Show("TableView: Parent has to be a TableContainer");
+				return;
+			}
+		}
 	}
 }
