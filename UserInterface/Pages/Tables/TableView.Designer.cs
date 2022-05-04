@@ -31,7 +31,7 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 		{
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-			this.commonButton1 = new Couriers_GUI.UserInterface.Components.CommonButton();
+			this.commonButtonAdd = new Couriers_GUI.UserInterface.Components.CommonButton();
 			this.commonButton2 = new Couriers_GUI.UserInterface.Components.CommonButton();
 			this.commonButton3 = new Couriers_GUI.UserInterface.Components.CommonButton();
 			this.commonButton4 = new Couriers_GUI.UserInterface.Components.CommonButton();
@@ -63,7 +63,7 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-			this.tableLayoutPanel2.Controls.Add(this.commonButton1, 0, 0);
+			this.tableLayoutPanel2.Controls.Add(this.commonButtonAdd, 0, 0);
 			this.tableLayoutPanel2.Controls.Add(this.commonButton2, 1, 0);
 			this.tableLayoutPanel2.Controls.Add(this.commonButton3, 2, 0);
 			this.tableLayoutPanel2.Controls.Add(this.commonButton4, 3, 0);
@@ -75,13 +75,13 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			this.tableLayoutPanel2.Size = new System.Drawing.Size(727, 44);
 			this.tableLayoutPanel2.TabIndex = 0;
 			// 
-			// commonButton1
+			// commonButtonAdd
 			// 
-			this.commonButton1.Location = new System.Drawing.Point(3, 3);
-			this.commonButton1.Name = "commonButton1";
-			this.commonButton1.Size = new System.Drawing.Size(112, 31);
-			this.commonButton1.TabIndex = 0;
-			this.commonButton1.Values.Text = "commonButton1";
+			this.commonButtonAdd.Location = new System.Drawing.Point(3, 3);
+			this.commonButtonAdd.Name = "commonButtonAdd";
+			this.commonButtonAdd.Size = new System.Drawing.Size(112, 31);
+			this.commonButtonAdd.TabIndex = 0;
+			this.commonButtonAdd.Values.Text = "Add";
 			// 
 			// commonButton2
 			// 
@@ -136,7 +136,7 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-		private Components.CommonButton commonButton1;
+		private Components.CommonButton commonButtonAdd;
 		private Components.CommonButton commonButton2;
 		private Components.CommonButton commonButton3;
 		private Components.CommonButton commonButton4;

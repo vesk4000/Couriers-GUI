@@ -11,15 +11,14 @@ using Couriers_GUI.Backend.Services.Implementations;
 
 namespace Couriers_GUI.UserInterface.Pages.Tables
 {
-	public partial class TableView : UserControl
+	public partial class AddPage : UserControl
 	{
-		public TableView()
+		public AddPage()
 		{
 			InitializeComponent();
-
 		}
 
-		public void InitDataGridView()
+		public void Init()
 		{
 			if(Parent is TableContainer)
 			{
@@ -27,16 +26,17 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 				object tableService = parent.tableService;
 				if(tableService is OrderService)
 				{
-					kryptonDataGridView1.DataSource = (tableService as OrderService).All();
+					//tableLayoutPanel2.Controls.Add()
 				}
 				else if(tableService is CourierService)
 				{
-					kryptonDataGridView1.DataSource = (tableService as CourierService).All();
+					tableLayoutPanel2.Controls.Add(new Components.TextBoxBlock(), 0, 0);
+					//tableLayoutPanel2.Get
 				}
 			}
 			else
 			{
-				MessageBox.Show("TableView: Parent has to be a TableContainer");
+				MessageBox.Show("AddPageS: Parent has to be a TableContainer");
 				return;
 			}
 		}

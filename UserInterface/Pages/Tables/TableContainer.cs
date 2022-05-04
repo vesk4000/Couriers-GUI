@@ -23,6 +23,7 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 		{
 			this.tableService = tableService;
 			InitializeComponent();
+			tableView1.InitDataGridView();
 		}
 	}
 }
