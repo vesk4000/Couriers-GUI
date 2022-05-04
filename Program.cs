@@ -30,7 +30,7 @@ namespace Couriers_GUI
 					Application.Run(new User_Interface.Form1());
 			}
 			else
-				Application.Run(new User_Interface.Form1());
+				Application.Run(new UserInterface.MainForm());
 		}
 	}
 }

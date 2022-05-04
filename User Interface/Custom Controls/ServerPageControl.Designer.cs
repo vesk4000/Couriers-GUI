@@ -30,7 +30,7 @@ namespace Couriers_GUI.User_Interface.Custom_Controls
 		private void InitializeComponent()
 		{
             this.label1 = new System.Windows.Forms.Label();
-            this.completableTextBox1 = new Couriers_GUI.User_Interface.Custom_Controls.CompletableTextBox();
+            this.completableTextBox1 = new Couriers_GUI.UserInterface.Components.CompletableTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -77,7 +77,7 @@ namespace Couriers_GUI.User_Interface.Custom_Controls
 		#endregion
 
 		private System.Windows.Forms.Label label1;
-        private CompletableTextBox completableTextBox1;
+        private UserInterface.Components.CompletableTextBox completableTextBox1;
         private System.Windows.Forms.Button button1;
     }
 }

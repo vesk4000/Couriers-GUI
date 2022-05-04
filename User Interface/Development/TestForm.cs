@@ -1,5 +1,6 @@
 ﻿using Couriers_GUI.Backend.Services.Implementations;
 using Couriers_GUI.Backend.Services.ServiceModels;
+using Couriers_GUI.Backend.Services.SQLDBCreateScript;
 using Couriers_GUI.Models;
 using System;
 using System.Collections.Generic;
@@ -28,13 +29,19 @@ namespace Couriers_GUI.User_Interface.Development
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			ClientService service = new ClientService();
-			if (service.Validate(new ClientServiceModel("Gosho", "032343224e32")))
-				service.Create(new ClientServiceModel("Gosho", "032343224e32"));
-			else
-				MessageBox.Show("Ha GAYYYY");
+			dataGridView1.DataSource = "";
+		}
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+			OrderService service = new OrderService();
 
 			dataGridView1.DataSource = service.All();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+			DBCreateService.CreateDatabase();
 		}
-	}
+    }
 }

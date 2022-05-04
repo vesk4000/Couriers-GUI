@@ -27,7 +27,13 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 				object tableService = parent.tableService;
 				if(tableService is OrderService)
 				{
-					//tableLayoutPanel2.Controls.Add()
+					var orderDate = new Components.DatePickerBlock();
+					orderDate.commonLabel1.Text = "Order Date:";
+					tableLayoutPanel2.Controls.Add(orderDate, 0, 0);
+
+					var receiveDate = new Components.DatePickerBlock();
+					receiveDate.commonLabel1.Text = "Receive Date:";
+					tableLayoutPanel2.Controls.Add(receiveDate, 0, 1);
 				}
 				else if(tableService is CourierService)
 				{

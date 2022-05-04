@@ -17,6 +17,11 @@ namespace Couriers_GUI.Models
         {
         }
 
+        ~CouriersDBContext()
+        {
+
+        }
+
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<Courier> Couriers { get; set; }

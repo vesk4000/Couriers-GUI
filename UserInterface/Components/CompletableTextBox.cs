@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Couriers_GUI.User_Interface.Custom_Controls
+namespace Couriers_GUI.UserInterface.Components
 {
-	class CompletableTextBox : Krypton.Toolkit.KryptonTextBox
+	public class CompletableTextBox : Krypton.Toolkit.KryptonTextBox
 	{
 		public CompletableTextBox() : base()
 		{
