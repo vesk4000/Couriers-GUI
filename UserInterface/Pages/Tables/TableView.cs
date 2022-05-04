@@ -103,5 +103,22 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 				return;
 			}
 		}
+
+		private void commonButton4_Click(object sender, EventArgs e)
+		{
+			if(Parent is TableContainer)
+			{
+				var page = new FilterPage();
+				Parent.Controls.Add(page);
+				page.Init();
+				page.Dock = DockStyle.Fill;
+				Parent.Controls.Remove(this);
+			}
+			else
+			{
+				MessageBox.Show("TableView: Parent has to be a TableContainer");
+				return;
+			}
+		}
 	}
 }

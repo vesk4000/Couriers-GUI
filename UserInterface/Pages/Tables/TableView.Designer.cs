@@ -108,7 +108,8 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			this.commonButton4.Name = "commonButton4";
 			this.commonButton4.Size = new System.Drawing.Size(112, 31);
 			this.commonButton4.TabIndex = 3;
-			this.commonButton4.Values.Text = "commonButton4";
+			this.commonButton4.Values.Text = "Filter";
+			this.commonButton4.Click += new System.EventHandler(this.commonButton4_Click);
 			// 
 			// kryptonDataGridView1
 			// 

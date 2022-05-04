@@ -22,6 +22,7 @@ namespace Couriers_GUI.UserInterface.Navigation
 			currentTabPanel = kryptonPanel1;
 			AddButton(Properties.Resources.table_solid, new Pages.Tables.TablesPanel());
 			AddButton(Properties.Resources.laptop_code_solid, new Pages.Tables.TablesPanel());
+			AddButton(Properties.Resources.server_solid, new Pages.ServerPage());
 		}
 
 

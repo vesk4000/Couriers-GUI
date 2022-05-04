@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Couriers_GUI.Backend.Services;
 using Couriers_GUI.Backend.Services.Implementations;
+using Couriers_GUI.Backend.Services.ServiceModels;
 
 namespace Couriers_GUI.UserInterface.Pages.Tables
 {
@@ -65,21 +66,14 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 					var phone = tableLayoutPanel2.GetControlFromPosition(0, 1) as Components.TextBoxBlock;
 
 					var model = new Backend.Services.ServiceModels.CourierServiceModel(name.commonTextBox1.Text, phone.commonTextBox1.Text);
-					if(courierService.Validate(model))
-					{
-						courierService.Create(model);
-						var view = new TableView();
-						Parent.Controls.Add(view);
-						view.InitDataGridView();
-						view.Dock = DockStyle.Fill;
-						//view.kryptonDataGridView1.DataSource;
-						Parent.Controls.Remove(this);
-					}
-					else
-					{
-						commonLabel2.Visible = true;
-						return;
-					}
+					
+					var view = new TableView();
+					Parent.Controls.Add(view);
+					view.InitDataGridView();
+					view.Dock = DockStyle.Fill;
+					List<CourierServiceModel> filter = courierService.Filter(name.commonTextBox1.Text, phone.commonTextBox1.Text).ToList();
+					view.kryptonDataGridView1.DataSource = filter;
+					Parent.Controls.Remove(this);
 				}
 
 				//SwitchToView();
