@@ -1,9 +1,37 @@
 ﻿using System;
 
-namespace Couriers_GUI.Backend.Services.Implementations
+namespace Couriers_GUI.Backend.Services.ServiceModels
 {
     public class OrderDetailsServiceModel
     {
+        public OrderDetailsServiceModel() { }
+
+        public OrderDetailsServiceModel(DateTime orderDate, DateTime receiveDate, string total, string address, string client, string courier, string dispatcher, string recipient, string type)
+        {
+            OrderDate = orderDate;
+
+            ReceiveDate = receiveDate;
+
+            Total = total;
+
+            Address = address;
+
+            Type = type;
+
+            Dispatcher = dispatcher;
+
+            Client = client;
+
+            Courier = courier;
+
+            Recipient = recipient;
+        }
+
+        public OrderDetailsServiceModel(int id, DateTime orderDate, DateTime receiveDate, string total, string address, string client, string courier, string dispatcher, string recipient, string type) : this(orderDate, receiveDate, total, address, client, courier, dispatcher, recipient, type)
+        {
+            Id = id;
+        }
+
         public int Id { get; set; }
 
         public DateTime OrderDate { get; set; }

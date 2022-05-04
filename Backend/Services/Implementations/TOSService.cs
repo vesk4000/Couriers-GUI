@@ -33,6 +33,12 @@ namespace Couriers_GUI.Backend.Services.Implementations
 				})
 				.ToList();
 
+		public IEnumerable<string> AllString()
+			=> this.data
+				.TypesOfServices
+				.Select(t => $"{t.Id,-3} | {t.Type}")
+				.ToList();
+
 		public void Create(TypesOfServiceServiceModel tos)
 			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_AddTypeOfService {0}", tos.Type);
 
@@ -48,6 +54,14 @@ namespace Couriers_GUI.Backend.Services.Implementations
 			=> All()
 				.Where(t => (t.Id + " " + t.Type).Contains(containText))
 				.ToList();
+
+		public IEnumerable<string> GetByContainingTextString(string containText)
+			=> GetByContainingText(containText)
+				.Select(t => $"{t.Id,-3} | {t.Type}");
+
+		public IEnumerable<TypesOfServiceServiceModel> GetById(int id)
+			=> All()
+				.Where(t => t.Id == id);
 
 		public void Remove(int id)
 			=> data.Database.ExecuteSqlRaw("EXEC dbo.delete_types {0}", id);
