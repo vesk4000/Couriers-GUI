@@ -143,6 +143,6 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 		private Components.CommonButton commonButton2;
 		private Components.CommonButton commonButton3;
 		private Components.CommonButton commonButton4;
-		private Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
+		public Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
 	}
 }

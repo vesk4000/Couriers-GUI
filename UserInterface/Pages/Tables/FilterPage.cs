@@ -68,6 +68,12 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 					if(courierService.Validate(model))
 					{
 						courierService.Create(model);
+						var view = new TableView();
+						Parent.Controls.Add(view);
+						view.InitDataGridView();
+						view.Dock = DockStyle.Fill;
+						//view.kryptonDataGridView1.DataSource;
+						Parent.Controls.Remove(this);
 					}
 					else
 					{
@@ -76,11 +82,11 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 					}
 				}
 
-				SwitchToView();
+				//SwitchToView();
 			}
 			else
 			{
-				MessageBox.Show("AddPage: Parent has to be a TableContainer");
+				MessageBox.Show("FilterPage: Parent has to be a TableContainer");
 				return;
 			}
 		}
@@ -102,7 +108,7 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			}
 			else
 			{
-				MessageBox.Show("AddPage: Parent has to be a TableContainer");
+				MessageBox.Show("FilterPage: Parent has to be a TableContainer");
 				return;
 			}
 		}
