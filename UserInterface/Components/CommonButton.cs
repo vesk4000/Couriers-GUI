@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Couriers_GUI.UserInterface.Components
 {
-	class CommonButton : Krypton.Toolkit.KryptonButton
+	public class CommonButton : Krypton.Toolkit.KryptonButton
 	{
 		public CommonButton() : base()
 		{

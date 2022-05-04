@@ -1,7 +1,7 @@
 ﻿
 namespace Couriers_GUI.UserInterface.Pages.Tables
 {
-	partial class AddPage
+	partial class EditPage
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -124,13 +124,13 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			this.commonLabel2.Values.Text = "Invalid Parameters!";
 			this.commonLabel2.Visible = false;
 			// 
-			// AddPage
+			// EditPage
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
 			this.Controls.Add(this.tableLayoutPanel1);
-			this.Name = "AddPage";
+			this.Name = "EditPage";
 			this.Size = new System.Drawing.Size(752, 573);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel1.PerformLayout();

@@ -12,16 +12,18 @@ using Couriers_GUI.Backend.Services.Implementations;
 
 namespace Couriers_GUI.UserInterface.Pages.Tables
 {
-	public partial class AddPage : UserControl
+	public partial class DeletePage : UserControl
 	{
-		public AddPage()
+		public int id;
+
+		public DeletePage()
 		{
 			InitializeComponent();
 		}
 
 		public void Init()
 		{
-			if(Parent is TableContainer)
+			/*if(Parent is TableContainer)
 			{
 				TableContainer parent = Parent as TableContainer;
 				object tableService = parent.tableService;
@@ -31,8 +33,11 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 				}
 				else if(tableService is CourierService)
 				{
+					var courierService = tableService as CourierService;
+
 					var name = new Components.TextBoxBlock();
 					name.commonLabel1.Text = "Name";
+					//name.commonTextBox1.Text = courierService.
 					tableLayoutPanel2.Controls.Add(name, 0, 0);
 
 					var phone = new Components.TextBoxBlock();
@@ -44,7 +49,7 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			{
 				MessageBox.Show("AddPage: Parent has to be a TableContainer");
 				return;
-			}
+			}*/
 		}
 
 		private void commonButtonAdd_Click(object sender, EventArgs e)
@@ -60,20 +65,7 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 				else if(tableService is CourierService)
 				{
 					var courierService = tableService as CourierService;
-
-					var name = tableLayoutPanel2.GetControlFromPosition(0, 0) as Components.TextBoxBlock;
-					var phone = tableLayoutPanel2.GetControlFromPosition(0, 1) as Components.TextBoxBlock;
-
-					var model = new Backend.Services.ServiceModels.CourierServiceModel(name.commonTextBox1.Text, phone.commonTextBox1.Text);
-					if(courierService.Validate(model))
-					{
-						courierService.Create(model);
-					}
-					else
-					{
-						commonLabel2.Visible = true;
-						return;
-					}
+					courierService.Remove(id);
 				}
 
 				SwitchToView();

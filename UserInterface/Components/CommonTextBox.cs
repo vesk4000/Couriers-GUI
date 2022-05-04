@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Couriers_GUI.UserInterface.Components
 {
-	class CommonTextBox : Krypton.Toolkit.KryptonTextBox
+	public class CommonTextBox : Krypton.Toolkit.KryptonTextBox
 	{
 	}
 }

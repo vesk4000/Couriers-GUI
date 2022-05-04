@@ -12,9 +12,11 @@ using Couriers_GUI.Backend.Services.Implementations;
 
 namespace Couriers_GUI.UserInterface.Pages.Tables
 {
-	public partial class AddPage : UserControl
+	public partial class EditPage : UserControl
 	{
-		public AddPage()
+		public int id;
+
+		public EditPage()
 		{
 			InitializeComponent();
 		}
@@ -31,8 +33,11 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 				}
 				else if(tableService is CourierService)
 				{
+					var courierService = tableService as CourierService;
+
 					var name = new Components.TextBoxBlock();
 					name.commonLabel1.Text = "Name";
+					//name.commonTextBox1.Text = courierService.
 					tableLayoutPanel2.Controls.Add(name, 0, 0);
 
 					var phone = new Components.TextBoxBlock();
@@ -64,10 +69,10 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 					var name = tableLayoutPanel2.GetControlFromPosition(0, 0) as Components.TextBoxBlock;
 					var phone = tableLayoutPanel2.GetControlFromPosition(0, 1) as Components.TextBoxBlock;
 
-					var model = new Backend.Services.ServiceModels.CourierServiceModel(name.commonTextBox1.Text, phone.commonTextBox1.Text);
+					var model = new Backend.Services.ServiceModels.CourierServiceModel(id, name.commonTextBox1.Text, phone.commonTextBox1.Text);
 					if(courierService.Validate(model))
 					{
-						courierService.Create(model);
+						courierService.Edit(model);
 					}
 					else
 					{

@@ -1,7 +1,7 @@
 ﻿
 namespace Couriers_GUI.UserInterface.Components
 {
-	partial class TextBoxBlock
+	public partial class TextBoxBlock
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -64,7 +64,7 @@ namespace Couriers_GUI.UserInterface.Components
 
 		#endregion
 
-		private CommonLabel commonLabel1;
-		private CommonTextBox commonTextBox1;
+		public CommonLabel commonLabel1;
+		public CommonTextBox commonTextBox1;
 	}
 }

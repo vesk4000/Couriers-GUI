@@ -82,6 +82,7 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			this.commonButtonAdd.Size = new System.Drawing.Size(112, 31);
 			this.commonButtonAdd.TabIndex = 0;
 			this.commonButtonAdd.Values.Text = "Add";
+			this.commonButtonAdd.Click += new System.EventHandler(this.commonButtonAdd_Click);
 			// 
 			// commonButton2
 			// 
@@ -89,7 +90,8 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			this.commonButton2.Name = "commonButton2";
 			this.commonButton2.Size = new System.Drawing.Size(112, 31);
 			this.commonButton2.TabIndex = 1;
-			this.commonButton2.Values.Text = "commonButton2";
+			this.commonButton2.Values.Text = "Edit";
+			this.commonButton2.Click += new System.EventHandler(this.commonButton2_Click);
 			// 
 			// commonButton3
 			// 
@@ -97,7 +99,8 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			this.commonButton3.Name = "commonButton3";
 			this.commonButton3.Size = new System.Drawing.Size(112, 31);
 			this.commonButton3.TabIndex = 2;
-			this.commonButton3.Values.Text = "commonButton3";
+			this.commonButton3.Values.Text = "Delete";
+			this.commonButton3.Click += new System.EventHandler(this.commonButton3_Click);
 			// 
 			// commonButton4
 			// 

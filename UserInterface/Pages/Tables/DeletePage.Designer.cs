@@ -1,7 +1,7 @@
 ﻿
 namespace Couriers_GUI.UserInterface.Pages.Tables
 {
-	partial class AddPage
+	partial class DeletePage
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -31,11 +31,9 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 		{
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.commonLabel1 = new Couriers_GUI.UserInterface.Components.CommonLabel();
-			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.commonButtonCancel = new Couriers_GUI.UserInterface.Components.CommonButton();
 			this.commonButtonAdd = new Couriers_GUI.UserInterface.Components.CommonButton();
-			this.commonLabel2 = new Couriers_GUI.UserInterface.Components.CommonLabel();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
 			this.SuspendLayout();
@@ -45,17 +43,15 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			this.tableLayoutPanel1.ColumnCount = 1;
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel1.Controls.Add(this.commonLabel1, 0, 0);
-			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
-			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 3);
-			this.tableLayoutPanel1.Controls.Add(this.commonLabel2, 0, 2);
+			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 1);
 			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-			this.tableLayoutPanel1.RowCount = 4;
+			this.tableLayoutPanel1.RowCount = 2;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 300F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanel1.Size = new System.Drawing.Size(752, 573);
 			this.tableLayoutPanel1.TabIndex = 0;
 			// 
@@ -68,18 +64,6 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			this.commonLabel1.TabIndex = 0;
 			this.commonLabel1.Values.Text = "Asd";
 			// 
-			// tableLayoutPanel2
-			// 
-			this.tableLayoutPanel2.ColumnCount = 1;
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 33);
-			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-			this.tableLayoutPanel2.RowCount = 1;
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(746, 294);
-			this.tableLayoutPanel2.TabIndex = 1;
-			// 
 			// tableLayoutPanel3
 			// 
 			this.tableLayoutPanel3.ColumnCount = 5;
@@ -90,7 +74,7 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.07692F));
 			this.tableLayoutPanel3.Controls.Add(this.commonButtonCancel, 3, 0);
 			this.tableLayoutPanel3.Controls.Add(this.commonButtonAdd, 1, 0);
-			this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 363);
+			this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 33);
 			this.tableLayoutPanel3.Name = "tableLayoutPanel3";
 			this.tableLayoutPanel3.RowCount = 1;
 			this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -115,22 +99,13 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			this.commonButtonAdd.Values.Text = "Add";
 			this.commonButtonAdd.Click += new System.EventHandler(this.commonButtonAdd_Click);
 			// 
-			// commonLabel2
-			// 
-			this.commonLabel2.Location = new System.Drawing.Point(3, 333);
-			this.commonLabel2.Name = "commonLabel2";
-			this.commonLabel2.Size = new System.Drawing.Size(141, 24);
-			this.commonLabel2.TabIndex = 3;
-			this.commonLabel2.Values.Text = "Invalid Parameters!";
-			this.commonLabel2.Visible = false;
-			// 
-			// AddPage
+			// DeletePage
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
 			this.Controls.Add(this.tableLayoutPanel1);
-			this.Name = "AddPage";
+			this.Name = "DeletePage";
 			this.Size = new System.Drawing.Size(752, 573);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel1.PerformLayout();
@@ -143,10 +118,8 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 		private Components.CommonLabel commonLabel1;
-		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
 		private Components.CommonButton commonButtonCancel;
 		private Components.CommonButton commonButtonAdd;
-		private Components.CommonLabel commonLabel2;
 	}
 }

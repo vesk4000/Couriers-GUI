@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Couriers_GUI.UserInterface.Components
 {
-	class CommonLabel : Krypton.Toolkit.KryptonLabel
+	public class CommonLabel : Krypton.Toolkit.KryptonLabel
 	{
 	}
 }
