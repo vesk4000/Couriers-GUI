@@ -39,6 +39,22 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 					phone.commonLabel1.Text = "Phone";
 					tableLayoutPanel2.Controls.Add(phone, 0, 1);
 				}
+				else if(tableService is AddressService)
+				{
+					var name = new Components.TextBoxBlock();
+					name.commonLabel1.Text = "Address";
+					tableLayoutPanel2.Controls.Add(name, 0, 0);
+				}
+				else if(tableService is ClientService)
+				{
+					var name = new Components.TextBoxBlock();
+					name.commonLabel1.Text = "Name";
+					tableLayoutPanel2.Controls.Add(name, 0, 0);
+
+					var phone = new Components.TextBoxBlock();
+					phone.commonLabel1.Text = "Phone";
+					tableLayoutPanel2.Controls.Add(phone, 0, 1);
+				}
 			}
 			else
 			{
@@ -68,6 +84,41 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 					if(courierService.Validate(model))
 					{
 						courierService.Create(model);
+					}
+					else
+					{
+						commonLabel2.Visible = true;
+						return;
+					}
+				}
+				else if(tableService is AddressService)
+				{
+					var courierService = tableService as AddressService;
+
+					var address = tableLayoutPanel2.GetControlFromPosition(0, 0) as Components.TextBoxBlock;
+
+					var model = new Backend.Services.ServiceModels.AddressServiceModel(address.commonTextBox1.Text);
+					if(courierService.Validate(model))
+					{
+						courierService.Create(model);
+					}
+					else
+					{
+						commonLabel2.Visible = true;
+						return;
+					}
+				}
+				else if(tableService is ClientService)
+				{
+					var clientService = tableService as ClientService;
+
+					var name = tableLayoutPanel2.GetControlFromPosition(0, 0) as Components.TextBoxBlock;
+					var phone = tableLayoutPanel2.GetControlFromPosition(0, 1) as Components.TextBoxBlock;
+
+					var model = new Backend.Services.ServiceModels.ClientServiceModel(name.commonTextBox1.Text, phone.commonTextBox1.Text);
+					if(clientService.Validate(model))
+					{
+						clientService.Create(model);
 					}
 					else
 					{

@@ -44,6 +44,27 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 					phone.commonLabel1.Text = "Phone";
 					tableLayoutPanel2.Controls.Add(phone, 0, 1);
 				}
+				else if(tableService is AddressService)
+				{
+					var addressService = tableService as AddressService;
+
+					var address = new Components.TextBoxBlock();
+					address.commonLabel1.Text = "Address";
+					tableLayoutPanel2.Controls.Add(address, 0, 0);
+				}
+				else if(tableService is ClientService)
+				{
+					var clientService = tableService as ClientService;
+
+					var name = new Components.TextBoxBlock();
+					name.commonLabel1.Text = "Name";
+					//name.commonTextBox1.Text = courierService.
+					tableLayoutPanel2.Controls.Add(name, 0, 0);
+
+					var phone = new Components.TextBoxBlock();
+					phone.commonLabel1.Text = "Phone";
+					tableLayoutPanel2.Controls.Add(phone, 0, 1);
+				}
 			}
 			else
 			{
@@ -73,6 +94,41 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 					if(courierService.Validate(model))
 					{
 						courierService.Edit(model);
+					}
+					else
+					{
+						commonLabel2.Visible = true;
+						return;
+					}
+				}
+				else if(tableService is AddressService)
+				{
+					var addressService = tableService as AddressService;
+
+					var address = tableLayoutPanel2.GetControlFromPosition(0, 0) as Components.TextBoxBlock;
+
+					var model = new Backend.Services.ServiceModels.AddressServiceModel(id, address.commonTextBox1.Text);
+					if(addressService.Validate(model))
+					{
+						addressService.Edit(model);
+					}
+					else
+					{
+						commonLabel2.Visible = true;
+						return;
+					}
+				}
+				else if(tableService is ClientService)
+				{
+					var clientService = tableService as ClientService;
+
+					var name = tableLayoutPanel2.GetControlFromPosition(0, 0) as Components.TextBoxBlock;
+					var phone = tableLayoutPanel2.GetControlFromPosition(0, 1) as Components.TextBoxBlock;
+
+					var model = new Backend.Services.ServiceModels.ClientServiceModel(id, name.commonTextBox1.Text, phone.commonTextBox1.Text);
+					if(clientService.Validate(model))
+					{
+						clientService.Edit(model);
 					}
 					else
 					{

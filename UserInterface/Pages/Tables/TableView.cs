@@ -33,6 +33,14 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 				{
 					kryptonDataGridView1.DataSource = (tableService as CourierService).All();
 				}
+				else if(tableService is AddressService)
+				{
+					kryptonDataGridView1.DataSource = (tableService as AddressService).All();
+				}
+				else if(tableService is ClientService)
+				{
+					kryptonDataGridView1.DataSource = (tableService as ClientService).All();
+				}
 			}
 			else
 			{

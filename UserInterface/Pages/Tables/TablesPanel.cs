@@ -22,6 +22,8 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			currentTabPanel = kryptonPanel1;
 			AddButton(new OrderService());
 			AddButton(new CourierService());
+			AddButton(new AddressService());
+			AddButton(new ClientService());
 
 		}
 
@@ -38,6 +40,14 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			else if(tableService is CourierService)
 			{
 				button.kryptonLabel1.Text = "Couriers";
+			}
+			else if(tableService is AddressService)
+			{
+				button.kryptonLabel1.Text = "Addresses";
+			}
+			else if(tableService is ClientService)
+			{
+				button.kryptonLabel1.Text = "Clients";
 			}
 
 			tableLayoutPanel2.ColumnCount = 100;

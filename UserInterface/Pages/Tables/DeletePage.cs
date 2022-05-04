@@ -67,6 +67,16 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 					var courierService = tableService as CourierService;
 					courierService.Remove(id);
 				}
+				else if(tableService is AddressService)
+				{
+					var courierService = tableService as AddressService;
+					courierService.Remove(id);
+				}
+				else if(tableService is ClientService)
+				{
+					var clientService = tableService as ClientService;
+					clientService.Remove(id);
+				}
 
 				SwitchToView();
 			}
