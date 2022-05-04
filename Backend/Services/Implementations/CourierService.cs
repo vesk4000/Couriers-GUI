@@ -82,5 +82,14 @@ namespace Couriers_GUI.Backend.Services.Implementations
 				return false;
 			return true;
 		}
+
+		public IEnumerable<CourierServiceModel> Filter(string name, string phone)
+        {
+			IEnumerable<CourierServiceModel> result = All();
+			if (name != "") result = result.Where(o => o.Name.Contains(name));
+			if (phone != "") result = result.Where(o => o.PhoneNumber.Contains(phone));
+			return result;
+        }
+
     }
 }
