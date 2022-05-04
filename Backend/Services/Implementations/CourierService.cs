@@ -76,6 +76,7 @@ namespace Couriers_GUI.Backend.Services.Implementations
         {
 			if (courier.Name.Length > 50
 				|| courier.Name == string.Empty
+				|| courier.PhoneNumber == ""
 				|| (courier.PhoneNumber.Length != 10 && courier.PhoneNumber[0] == '0')
 				|| !CheckPhoneNumberFunc.CheckPhoneNumber(courier.PhoneNumber))
 				return false;
