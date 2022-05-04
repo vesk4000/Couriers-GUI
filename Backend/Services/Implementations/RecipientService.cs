@@ -33,6 +33,12 @@ namespace Couriers_GUI.Backend.Services.Implementations
                 })
                 .ToList();
 
+        public IEnumerable<string> AllString()
+            => this.data
+                .Recipients
+                .Select(r => $"{r.Id,-3} | {r.Name}")
+                .ToList();
+
         public void Create(RecipientServiceModel recipient)
             => this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_AddRecipient {0}", recipient.Name);
 
@@ -48,6 +54,14 @@ namespace Couriers_GUI.Backend.Services.Implementations
             => All()
                 .Where(r => (r.Id + " " + r.Name).Contains(containText))
                 .ToList();
+
+        public IEnumerable<RecipientServiceModel> GetById(int id)
+            => All()
+                .Where(r => r.Id == id);
+
+        public IEnumerable<string> GetByContainingTextString(string containText)
+            => GetByContainingText(containText)
+                .Select(r => $"{r.Id,-3} | {r.Name}");
 
         public void Remove(int id)
             => data.Database.ExecuteSqlRaw("EXEC dbo.delete_recipients {0}", id);

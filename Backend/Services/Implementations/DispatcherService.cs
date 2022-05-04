@@ -1,4 +1,5 @@
-﻿using Couriers_GUI.Backend.Services.Interfaces;
+﻿using Couriers_GUI.Backend.Functions;
+using Couriers_GUI.Backend.Services.Interfaces;
 using Couriers_GUI.Backend.Services.ServiceModels;
 using Couriers_GUI.Models;
 using Microsoft.EntityFrameworkCore;
@@ -34,6 +35,14 @@ namespace Couriers_GUI.Backend.Services.Implementations
 				})
 				.ToList();
 
+		public IEnumerable<string> AllString()
+			=> this.data
+				.Dispatchers
+				.Select(d =>
+					$"{d.Id,-3} | {d.Name,-15} | {d.PhoneNumber}"
+				)
+				.ToList();
+
 		//TODO: Create with service models
 
 		public void Create(DispatcherServiceModel dispatcher)
@@ -54,15 +63,23 @@ namespace Couriers_GUI.Backend.Services.Implementations
 				.Where(d => (d.Id + " " + d.Name + " " + d.PhoneNumber).Contains(containText))
 				.ToList();
 
-        public void Remove(int id)
+		public IEnumerable<string> GetByContainingTextString(string containText)
+			=> GetByContainingText(containText)
+				.Select(d =>
+					$"{d.Id,-3} | {d.Name,-15} | {d.PhoneNumber}");
+
+		public IEnumerable<DispatcherServiceModel> GetById(int id)
+			=> All()
+				.Where(o => o.Id == id);
+
+		public void Remove(int id)
 			=> data.Database.ExecuteSqlRaw("EXEC dbo.delete_dispatchers {0}", id);
 
         public bool Validate(DispatcherServiceModel dispatcher)
         {
 			if (dispatcher.Name.Length > 50
 				|| dispatcher.Name == string.Empty
-				|| (dispatcher.PhoneNumber.Length != 10 && dispatcher.PhoneNumber[0] == '0')
-				|| ((dispatcher.PhoneNumber.Length > 13 || dispatcher.PhoneNumber.Length < 12) && dispatcher.PhoneNumber[0] == '+'))
+				|| !CheckPhoneNumberFunc.CheckPhoneNumber(dispatcher.PhoneNumber))
 				return false;
 			return true;
 		}

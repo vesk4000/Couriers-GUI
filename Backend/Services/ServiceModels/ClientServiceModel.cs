@@ -1,11 +1,25 @@
 ﻿namespace Couriers_GUI.Backend.Services.ServiceModels
 {
-    public class ClientServiceModel
-    {
-        public int Id { get; set; }
+	public class ClientServiceModel
+	{
+		public ClientServiceModel() { }
 
-        public string Name { get; set; }
+		public ClientServiceModel(string name, string phoneNumber)
+		{
+			Name = name;
 
-        public string PhoneNumber { get; set; }
-    }
+			PhoneNumber = phoneNumber;
+		}
+
+		public ClientServiceModel(int id, string name, string phoneNumber) : this(name, phoneNumber)
+		{
+			Id = id;
+		}
+
+		public int Id { get; set; }
+
+		public string Name { get; set; }
+
+		public string PhoneNumber { get; set; }
+	}
 }

@@ -1,4 +1,5 @@
-﻿using Couriers_GUI.Backend.Services.Interfaces;
+﻿using Couriers_GUI.Backend.Functions;
+using Couriers_GUI.Backend.Services.Interfaces;
 using Couriers_GUI.Backend.Services.ServiceModels;
 using Couriers_GUI.Models;
 using Microsoft.EntityFrameworkCore;
@@ -34,10 +35,24 @@ namespace Couriers_GUI.Backend.Services.Implementations
 				})
 				.ToList();
 
+		public IEnumerable<string> AllString()
+			=> this.data
+				.Clients
+				.Select(c => $"{c.Id,-3} | {c.Name,-15} | {c.PhoneNumber}")
+				.ToList();
+
 		public IEnumerable<ClientServiceModel> GetByContainingText(string containText)
 			=> All()
 				.Where(c => (c.Id + " " + c.Name + " " + c.PhoneNumber).Contains(containText))
 				.ToList();
+
+		public IEnumerable<string> GetByContainingTextString(string containText)
+			=> GetByContainingText(containText)
+				.Select(c => $"{c.Id,-3} | {c.Name,-15} | {c.PhoneNumber}");
+
+		public IEnumerable<ClientServiceModel> GetById(int id)
+			=> All()
+				.Where(o => o.Id == id);
 
 		public void Create(ClientServiceModel client)
 		    => this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_AddClient {0}", client.Name, client.PhoneNumber);
@@ -57,8 +72,7 @@ namespace Couriers_GUI.Backend.Services.Implementations
         {
 			if (client.Name.Length > 50
 				|| client.Name == string.Empty
-				|| (client.PhoneNumber.Length != 10 && client.PhoneNumber[0] == '0')
-				|| ((client.PhoneNumber.Length > 13 || client.PhoneNumber.Length < 12) && client.PhoneNumber[0] == '+'))
+				|| !CheckPhoneNumberFunc.CheckPhoneNumber(client.PhoneNumber))
 				return false;
 			return true;
         }

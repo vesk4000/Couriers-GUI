@@ -33,7 +33,11 @@ namespace Couriers_GUI.Backend.Services.Implementations
                 })
                 .ToList();
 
-
+        public IEnumerable<string> AllString()
+            => this.data
+                .Addresses
+                .Select(a => $"{a.Id,-3} | {a.AddressText}")
+                .ToList();
 
         public void Create(AddressServiceModel address)
             => this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_AddAddress {0}", address.AddressText);
@@ -56,6 +60,14 @@ namespace Couriers_GUI.Backend.Services.Implementations
             => All()
                 .Where(a => (a.Id + " " + a.AddressText).Contains(containText))
                 .ToList();
+
+        public IEnumerable<string> GetByContainingTextString(string containText)
+            => GetByContainingText(containText)
+                .Select(a => $"{a.Id,-3} | {a.AddressText}");
+
+        public IEnumerable<AddressServiceModel> GetById(int id)
+            => All()
+                .Where(o => o.Id == id);
 
         public void Remove(int id)
             => data.Database.ExecuteSqlRaw("EXEC dbo.delete_addresses {0}", id);
