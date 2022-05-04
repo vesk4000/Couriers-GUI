@@ -78,5 +78,12 @@ namespace Couriers_GUI.Backend.Services.Implementations
                 return false;
             return true;
         }
+
+        public IEnumerable<AddressServiceModel> Filter(string address)
+        {
+			IEnumerable<AddressServiceModel> result = All();
+			if (address != "") result = result.Where(o => o.AddressText.Contains(address));
+			return result;
+        }
     }
 }

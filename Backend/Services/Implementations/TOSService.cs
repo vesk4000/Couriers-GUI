@@ -73,5 +73,12 @@ namespace Couriers_GUI.Backend.Services.Implementations
 				return false;
 			return true;
 		}
+
+		public IEnumerable<TypesOfServiceServiceModel> Filter(string type)
+        {
+			IEnumerable<TypesOfServiceServiceModel> result = All();
+			if (type != "") result = result.Where(o => o.Type.Contains(type));
+			return result;
+        }
     }
 }
