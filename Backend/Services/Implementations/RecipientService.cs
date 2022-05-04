@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Couriers_GUI.Backend.Services.Implementations
 {
-    public class RecipientService : ITableService<RecipientServiceModel, RecipientServiceModel>
+    public class RecipientService : ITableService<RecipientServiceModel>
     {
         private readonly CouriersDBContext data;
 
@@ -51,5 +51,13 @@ namespace Couriers_GUI.Backend.Services.Implementations
 
         public void Remove(int id)
             => data.Database.ExecuteSqlRaw("EXEC dbo.delete_recipients {0}", id);
+
+        public bool Validate(RecipientServiceModel recipient)
+        {
+            if (recipient.Name.Length > 50
+                   || recipient.Name == string.Empty)
+                return false;
+            return true;
+        }
     }
 }

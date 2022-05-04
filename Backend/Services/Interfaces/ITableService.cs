@@ -7,18 +7,20 @@ using System.Threading.Tasks;
 
 namespace Couriers_GUI.Backend.Services.Interfaces
 {
-    interface ITableService<T1, T2>
+    interface ITableService<T>
     {
-        void Create(T1 e);
+        void Create(T e);
 
-        void Edit(T1 e);
+        void Edit(T e);
+
+        bool Validate(T e);
 
         void Remove(int id);
 
         bool Exists(int id);
 
-        IEnumerable<T2> All();
+        IEnumerable<T> All();
 
-        IEnumerable<T2> GetByContainingText(string containText);
+        IEnumerable<T> GetByContainingText(string containText);
     }
 }

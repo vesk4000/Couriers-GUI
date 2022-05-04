@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Couriers_GUI.Backend.Services.Implementations
 {
-    public class AddressService : ITableService<AddressServiceModel, AddressServiceModel>
+    public class AddressService : ITableService<AddressServiceModel>
     {
         private readonly CouriersDBContext data;
 
@@ -32,6 +32,8 @@ namespace Couriers_GUI.Backend.Services.Implementations
                     AddressText = a.AddressText
                 })
                 .ToList();
+
+
 
         public void Create(AddressServiceModel address)
             => this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_AddAddress {0}", address.AddressText);
@@ -57,5 +59,12 @@ namespace Couriers_GUI.Backend.Services.Implementations
 
         public void Remove(int id)
             => data.Database.ExecuteSqlRaw("EXEC dbo.delete_addresses {0}", id);
+
+        public bool Validate(AddressServiceModel address)
+        {
+            if (address.AddressText.Length > 50)
+                return false;
+            return true;
+        }
     }
 }
