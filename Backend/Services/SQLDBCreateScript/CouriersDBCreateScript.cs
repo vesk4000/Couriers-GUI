@@ -12,6 +12,9 @@ namespace Couriers_GUI.Backend.Services.SQLDBCreateScript
 use master
 go
 
+ALTER DATABASE CouriersDB SET SINGLE_USER WITH ROLLBACK IMMEDIATE
+GO
+
 drop database if exists CouriersDB
 go
 

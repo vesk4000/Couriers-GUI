@@ -79,6 +79,7 @@ namespace Couriers_GUI.Backend.Services.Implementations
         {
 			if (dispatcher.Name.Length > 50
 				|| dispatcher.Name == string.Empty
+				|| dispatcher.PhoneNumber == ""
 				|| !CheckPhoneNumberFunc.CheckPhoneNumber(dispatcher.PhoneNumber))
 				return false;
 			return true;

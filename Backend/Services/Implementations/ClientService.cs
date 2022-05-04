@@ -55,10 +55,10 @@ namespace Couriers_GUI.Backend.Services.Implementations
 				.Where(o => o.Id == id);
 
 		public void Create(ClientServiceModel client)
-		    => this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_AddClient {0}", client.Name, client.PhoneNumber);
+		    => this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_AddClient {0}, {1}", client.Name, client.PhoneNumber);
 
 		public void Edit(ClientServiceModel client)
-			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_UpdateClient {0}, {1}", client.Id, client.Name, client.PhoneNumber);
+			=> this.data.Database.ExecuteSqlRaw("EXEC dbo.udp_UpdateClient {0}, {1}, {2}", client.Id, client.Name, client.PhoneNumber);
 
 		public bool Exists(int id)
 			=> this.data
@@ -72,6 +72,7 @@ namespace Couriers_GUI.Backend.Services.Implementations
         {
 			if (client.Name.Length > 50
 				|| client.Name == string.Empty
+				|| client.PhoneNumber == ""
 				|| !CheckPhoneNumberFunc.CheckPhoneNumber(client.PhoneNumber))
 				return false;
 			return true;
