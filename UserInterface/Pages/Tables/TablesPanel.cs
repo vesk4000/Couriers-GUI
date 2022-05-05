@@ -24,6 +24,9 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			AddButton(new CourierService());
 			AddButton(new AddressService());
 			AddButton(new ClientService());
+			AddButton(new DispatcherService());
+			AddButton(new RecipientService());
+			AddButton(new TOSService());
 
 		}
 
@@ -48,6 +51,18 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			else if(tableService is ClientService)
 			{
 				button.kryptonLabel1.Text = "Clients";
+			}
+			else if (tableService is DispatcherService)
+			{
+				button.kryptonLabel1.Text = "Dispatchers";
+			}
+			else if (tableService is RecipientService)
+			{
+				button.kryptonLabel1.Text = "Recipients";
+			}
+			else if (tableService is TOSService)
+			{
+				button.kryptonLabel1.Text = "Types of Orders";
 			}
 
 			tableLayoutPanel2.ColumnCount = 100;
