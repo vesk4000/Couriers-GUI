@@ -56,6 +56,28 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 					phone.commonLabel1.Text = "Phone";
 					tableLayoutPanel2.Controls.Add(phone, 0, 1);
 				}
+				else if (tableService is DispatcherService)
+				{
+					var name = new Components.TextBoxBlock();
+					name.commonLabel1.Text = "Name";
+					tableLayoutPanel2.Controls.Add(name, 0, 0);
+
+					var phone = new Components.TextBoxBlock();
+					phone.commonLabel1.Text = "Phone";
+					tableLayoutPanel2.Controls.Add(phone, 0, 1);
+				}
+				else if (tableService is RecipientService)
+				{
+					var name = new Components.TextBoxBlock();
+					name.commonLabel1.Text = "Name";
+					tableLayoutPanel2.Controls.Add(name, 0, 0);
+				}
+				else if (tableService is TOSService)
+				{
+					var type = new Components.TextBoxBlock();
+					type.commonLabel1.Text = "Type";
+					tableLayoutPanel2.Controls.Add(type, 0, 0);
+				}
 			}
 			else
 			{
@@ -121,6 +143,55 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 					view.InitDataGridView();
 					view.Dock = DockStyle.Fill;
 					List<ClientServiceModel> filter = clientService.Filter(name.commonTextBox1.Text, phone.commonTextBox1.Text).ToList();
+					view.kryptonDataGridView1.DataSource = filter;
+					Parent.Controls.Remove(this);
+				}
+				else if (tableService is DispatcherService)
+				{
+					var dispatcherService = tableService as DispatcherService;
+
+					var name = tableLayoutPanel2.GetControlFromPosition(0, 0) as Components.TextBoxBlock;
+					var phone = tableLayoutPanel2.GetControlFromPosition(0, 1) as Components.TextBoxBlock;
+
+					var model = new Backend.Services.ServiceModels.DispatcherServiceModel(name.commonTextBox1.Text, phone.commonTextBox1.Text);
+
+					var view = new TableView();
+					Parent.Controls.Add(view);
+					view.InitDataGridView();
+					view.Dock = DockStyle.Fill;
+					List<DispatcherServiceModel> filter = dispatcherService.Filter(name.commonTextBox1.Text, phone.commonTextBox1.Text).ToList();
+					view.kryptonDataGridView1.DataSource = filter;
+					Parent.Controls.Remove(this);
+				}
+				else if (tableService is RecipientService)
+				{
+					var recipientService = tableService as RecipientService;
+
+					var name = tableLayoutPanel2.GetControlFromPosition(0, 0) as Components.TextBoxBlock;
+
+					var model = new Backend.Services.ServiceModels.RecipientServiceModel(name.commonTextBox1.Text);
+
+					var view = new TableView();
+					Parent.Controls.Add(view);
+					view.InitDataGridView();
+					view.Dock = DockStyle.Fill;
+					List<RecipientServiceModel> filter = recipientService.Filter(name.commonTextBox1.Text).ToList();
+					view.kryptonDataGridView1.DataSource = filter;
+					Parent.Controls.Remove(this);
+				}
+				else if (tableService is TOSService)
+				{
+					var typeService = tableService as TOSService;
+
+					var type = tableLayoutPanel2.GetControlFromPosition(0, 0) as Components.TextBoxBlock;
+
+					var model = new Backend.Services.ServiceModels.TypesOfServiceServiceModel(type.commonTextBox1.Text);
+
+					var view = new TableView();
+					Parent.Controls.Add(view);
+					view.InitDataGridView();
+					view.Dock = DockStyle.Fill;
+					List<TypesOfServiceServiceModel> filter = typeService.Filter(type.commonTextBox1.Text).ToList();
 					view.kryptonDataGridView1.DataSource = filter;
 					Parent.Controls.Remove(this);
 				}

@@ -74,7 +74,7 @@ namespace Couriers_GUI.Backend.Services.Implementations
             return true;
         }
 
-        public IEnumerable<RecipientServiceModel> Filter(string name, string phone)
+        public IEnumerable<RecipientServiceModel> Filter(string name)
         {
 			IEnumerable<RecipientServiceModel> result = All();
 			if (name != "") result = result.Where(o => o.Name.Contains(name));
