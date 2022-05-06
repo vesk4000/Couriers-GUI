@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Couriers_GUI.Backend.Services.SQLDBCreateScript
 {
-	public static class CouriersDBCreateScript
+	public static class CouriersDBScripts
 	{
-		public static string sqlscript = @"
+		public static string deleteDBScript = @"
 use master
 go
 
@@ -16,7 +16,11 @@ ALTER DATABASE CouriersDB SET SINGLE_USER WITH ROLLBACK IMMEDIATE
 GO
 
 drop database if exists CouriersDB
-go
+go";
+
+		public static string createDBScript = @"
+USE master
+GO
 
 create database CouriersDB
 collate Cyrillic_General_CI_AS
@@ -26,8 +30,6 @@ use master
 go
 use CouriersDB
 go
-
-drop table if exists Addresses
 
 CREATE TABLE Addresses(
 	ID int identity(1, 1) NOT NULL primary key,
@@ -40,7 +42,6 @@ go
 use CouriersDB
 go
 
-drop table if exists Clients
 
 CREATE TABLE Clients(
 	ID int identity(1, 1) NOT NULL primary key,
@@ -55,7 +56,6 @@ go
 use CouriersDB
 go
 
-drop table if exists Couriers
 
 CREATE TABLE Couriers(
 	ID int identity(1, 1) NOT NULL primary key,
@@ -70,7 +70,6 @@ go
 use CouriersDB
 go
 
-drop table if exists Dispatchers
 
 CREATE TABLE Dispatchers(
 	ID int identity(1, 1) NOT NULL primary key,
@@ -85,7 +84,6 @@ go
 use CouriersDB
 go
 
-drop table if exists Recipients
 
 CREATE TABLE Recipients(
 	ID int identity(1, 1) NOT NULL primary key,
@@ -98,7 +96,6 @@ go
 use CouriersDB
 go
 
-drop table if exists TypesOfService
 
 CREATE TABLE TypesOfService(
 	ID int identity(1, 1) NOT NULL primary key,
@@ -111,7 +108,6 @@ go
 use CouriersDB
 go
 
-drop table if exists Orders
 
 CREATE TABLE Orders(
 	ID int identity(1, 1) NOT NULL primary key,
@@ -126,7 +122,9 @@ CREATE TABLE Orders(
 	RecipientID int foreign key references Recipients(ID),
 )
 GO
+";
 
+		public static string populateDBScript = @"
 use master
 go
 use CouriersDB
@@ -521,13 +519,13 @@ SELECT OrderDate, RecieveDate, Total,
 	FROM Recipients
 	WHERE Recipients.Name = Orders_Temp.Recip_Name)
 FROM Orders_Temp;
-		GO
+GO
 
-		DROP TABLE Orders_Temp;
-		GO
+DROP TABLE Orders_Temp;
+GO
+";
 
-		use master
-		go
+		public static string createUSPsScript = @"
 use CouriersDB
 go
 
@@ -815,6 +813,11 @@ go
 
 USE CouriersDB
 GO
+";
+
+		public static string deleteUSPsScript = @"
+USE CouriersDB
+GO
 
 CREATE OR ALTER PROC delete_addresses @OldID INT, @WantToDeleteFromOrders BIT = 1, @NewID INT = NULL
 AS
@@ -1095,73 +1098,11 @@ BEGIN
 			PRINT 'Updated row(s) in Orders with typeID = ' + CAST(@OldID AS VARCHAR) + ' by setting typeID = ' + IIF(@NewID IS NULL, 'NULL', CAST(@NewID AS VARCHAR));
 END;
 GO
-USE master
+";
+
+		public static string updateUSPsScript = @"
+USE CouriersDB
 GO
-
-use CouriersDB
-go
-
-create or alter function _udf_CheckPhoneNumber(@PhoneNumber nvarchar(50))
-returns bit as begin
-	if not @PhoneNumber like '%[^0-9]%'
-		return 1;
-	return 0;
-end
-go
-
-
--- Add Client
-create or alter proc udp_AddClient
-	@Name nvarchar(50),
-	@PhoneNumber nvarchar(50)
-as begin
-	if exists(
-		select* from Clients
-		where Name = @Name and PhoneNumber = @PhoneNumber
-	)
-	begin
-		print 'A client with the same name and phone number already exists!'
-		return
-	end
-	if dbo._udf_CheckPhoneNumber(@PhoneNumber) = 0 begin
-		print 'The phone number provided is not valid!'
-		return
-	end
-	insert into Clients values(@Name, @PhoneNumber);
-		declare @id int = (
-			select top 1 ID from Clients
-			where Name = @Name and PhoneNumber = @PhoneNumber)
-	print 'Client added with ID: ' + cast(@id as nvarchar(50))
-end
-go
-
--- Add Courier
-create or alter proc udp_AddCourier
-	@Name nvarchar(50),
-	@PhoneNumber nvarchar(50)
-as begin
-	if exists(
-		select* from Couriers
-		where Name = @Name and PhoneNumber = @PhoneNumber
-	)
-	begin
-		print 'A courier with the same name and phone number already exists!'
-		return
-	end
-	if dbo._udf_CheckPhoneNumber(@PhoneNumber) = 0 begin
-		print 'The phone number provided is not valid!'
-		return
-	end
-	insert into Couriers values(@Name, @PhoneNumber);
-		declare @id int = (
-			select top 1 ID from Couriers
-			where Name = @Name and PhoneNumber = @PhoneNumber)
-	print 'Courier added with ID: ' + cast(@id as nvarchar(50))
-end
-go
-
-use CouriersDB
-go
 
 create or alter proc udp_UpdateAddress
 	@ID int,
@@ -1447,15 +1388,9 @@ as begin
 	print 'Type updated!'
 end
 go
+";
 
---exec udp_UpdateTypeOfService 2, 'Type Of Service'
---exec udp_UpdateTypeOfService 2, NULL
---exec udp_UpdateTypeOfService 1000
---select* from TypesOfService
-
-use master
-go
-
+		public static string readUSPsScript = @"
 use CouriersDB
 
 go

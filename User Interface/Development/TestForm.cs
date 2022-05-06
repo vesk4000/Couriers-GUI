@@ -41,7 +41,7 @@ namespace Couriers_GUI.User_Interface.Development
 
         private void button3_Click(object sender, EventArgs e)
         {
-			DBCreateService.CreateDatabase();
+			DBService.DeleteDB();
 		}
     }
 }
