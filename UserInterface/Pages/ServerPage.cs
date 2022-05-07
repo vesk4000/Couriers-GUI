@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Couriers_GUI.Backend.Services.Implementations;
 
 namespace Couriers_GUI.UserInterface.Pages
 {
@@ -19,7 +20,11 @@ namespace Couriers_GUI.UserInterface.Pages
 
 		private void commonButton1_Click(object sender, EventArgs e)
 		{
-			Backend.Services.Implementations.DBCreateService.CreateDatabase();
+			DBService.CreateDB();
+
+			DBService.CreateAllUPSs();
+
+			DBService.PopulateDB();
 		}
 	}
 }

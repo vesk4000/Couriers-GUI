@@ -25,6 +25,10 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			AddButton(new AddressService());
 			AddButton(new ClientService());
             tableLayoutPanel2.BackColor = InterfaceSingleton.DIM_BACKGROUND;
+			AddButton(new DispatcherService());
+			AddButton(new RecipientService());
+			AddButton(new TOSService());
+
 		}
 
 		private void AddButton(object tableService)
@@ -50,6 +54,18 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			else if(tableService is ClientService)
 			{
 				button.commonLabel1.Text = "Clients";
+			}
+			else if (tableService is DispatcherService)
+			{
+				button.kryptonLabel1.Text = "Dispatchers";
+			}
+			else if (tableService is RecipientService)
+			{
+				button.kryptonLabel1.Text = "Recipients";
+			}
+			else if (tableService is TOSService)
+			{
+				button.kryptonLabel1.Text = "Types of Orders";
 			}
 
 			tableLayoutPanel2.ColumnCount = 100;

@@ -41,6 +41,18 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 				{
 					kryptonDataGridView1.DataSource = (tableService as ClientService).All();
 				}
+				else if (tableService is DispatcherService)
+				{
+					kryptonDataGridView1.DataSource = (tableService as DispatcherService).All();
+				}
+				else if (tableService is RecipientService)
+				{
+					kryptonDataGridView1.DataSource = (tableService as RecipientService).All();
+				}
+				else if (tableService is TOSService)
+				{
+					kryptonDataGridView1.DataSource = (tableService as TOSService).All();
+				}
 			}
 			else
 			{

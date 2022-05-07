@@ -13,15 +13,14 @@ using System.Text.RegularExpressions;
 
 namespace Couriers_GUI.Backend.Services.Implementations
 {
-	static class DBCreateService
+	static class DBService
 	{
-		public static void CreateDatabase()
+		private static void ExecuteScript(string SQLScript)
 		{
 			try
 			{
-				string script = CouriersDBCreateScript.sqlscript;
+				string script = SQLScript;
 
-				// split script on GO command
 				System.Collections.Generic.IEnumerable<string> commandStrings = Regex.Split(script, @"^\s*GO\s*$",
 										 RegexOptions.Multiline | RegexOptions.IgnoreCase);
 				using (SqlConnection connection = new SqlConnection($"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=master;Data Source=.\\SQLEXPRESS;User Id={System.Security.Principal.WindowsIdentity.GetCurrent().Name};Password="))
@@ -54,6 +53,84 @@ namespace Couriers_GUI.Backend.Services.Implementations
 				MessageBox.Show(ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				return;
 			}
+		}
+
+		public static void CreateDB()
+		{
+			DeleteDB();
+
+			ExecuteScript(CouriersDBScripts.createDBScript);
+		}
+
+		public static void DeleteDB()
+		{
+			if (DBService.Exists())
+				ExecuteScript(CouriersDBScripts.deleteDBScript);
+		}
+
+		public static void PopulateDB()
+			=> ExecuteScript(CouriersDBScripts.populateDBScript);
+
+		public static void CreateUSPs()
+			=> ExecuteScript(CouriersDBScripts.createUSPsScript);
+
+		public static void ReadUSPs()
+			=> ExecuteScript(CouriersDBScripts.readUSPsScript);
+
+		public static void UpdateUSPs()
+			=> ExecuteScript(CouriersDBScripts.updateUSPsScript);
+
+		public static void DeleteUSPs()
+			=> ExecuteScript(CouriersDBScripts.deleteUSPsScript);
+
+		public static void CreateAllUPSs()
+        {
+			CreateUSPs();
+			ReadUSPs();
+			UpdateUSPs();
+			DeleteUSPs();
+        }
+
+		public static bool Exists()
+        {
+			var tmpConn = new SqlConnection();
+			string sqlCreateDBQuery;
+			bool result = false;
+
+			try
+			{
+				tmpConn = new SqlConnection("server=(local)\\SQLEXPRESS;Trusted_Connection=yes");
+
+				sqlCreateDBQuery = string.Format("SELECT database_id FROM sys.databases WHERE Name = 'CouriersDB'");
+			
+
+				using (tmpConn)
+				{
+					using (SqlCommand sqlCmd = new SqlCommand(sqlCreateDBQuery, tmpConn))
+					{
+						tmpConn.Open();
+
+						object resultObj = sqlCmd.ExecuteScalar();
+
+						int databaseID = 0;
+
+						if (resultObj != null)
+						{
+							int.TryParse(resultObj.ToString(), out databaseID);
+						}
+
+						tmpConn.Close();
+
+						result = (databaseID > 0);
+					}
+				}
+			}
+			catch
+			{
+				result = false;
+			}
+
+			return result;
 		}
 	}
 }
