@@ -30,6 +30,7 @@ namespace Couriers_GUI.UserInterface.Components
 		private void InitializeComponent()
 		{
 			this.commonLabel1 = new Couriers_GUI.UserInterface.Components.CommonLabel();
+			this.completableTextBox1 = new Couriers_GUI.UserInterface.Components.CompletableTextBox();
 			this.SuspendLayout();
 			// 
 			// commonLabel1
@@ -43,16 +44,17 @@ namespace Couriers_GUI.UserInterface.Components
 			// completableTextBox
 			//
 			this.completableTextBox1.Location = new System.Drawing.Point(4, 20);
-			this.commonLabel1.Name = "completableTextBox1";
-			this.commonLabel1.Size = new System.Drawing.Size(94, 20);
-			this.commonLabel1.TabIndex = 1;
-			this.commonLabel1.Values.Text = "";
+			this.completableTextBox1.Name = "completableTextBox1";
+			this.completableTextBox1.Size = new System.Drawing.Size(200, 20);
+			this.completableTextBox1.TabIndex = 1;
+			this.completableTextBox1.Text = "";
 			// 
 			// CompletableTextBoxBlock
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.commonLabel1);
+			this.Controls.Add(this.completableTextBox1);
 			this.Name = "CompletableTextBoxBlock";
 			this.Size = new System.Drawing.Size(318, 107);
 			this.ResumeLayout(false);

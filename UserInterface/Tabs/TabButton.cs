@@ -11,7 +11,8 @@ namespace Couriers_GUI.UserInterface.Tabs
 	{
 		public UserControl panelToNavigateTo;
 		public TabPanel parent;
-
+		public bool isOn = false;
+			
 		public void ClickButton()
 		{
 			if(parent is null)
@@ -28,10 +29,10 @@ namespace Couriers_GUI.UserInterface.Tabs
 			{
 				parent.currentTabPanel.Controls.Clear();
 				if(panelToNavigateTo is not null)
-                {
+				{
 					parent.currentTabPanel.Controls.Add(panelToNavigateTo);
 					panelToNavigateTo.Dock = DockStyle.Fill;
-                }
+				}
 				else
 				{
 					MessageBox.Show("Error, panelToNavigateTo");
@@ -40,16 +41,34 @@ namespace Couriers_GUI.UserInterface.Tabs
 					
 			}
 			else
-            {
+			{
 				MessageBox.Show("Error, no place for tab contents");
 				return;
-            }
+			}
 		}
 
-		public virtual void SetStateOff() { }
+		public virtual void SetStateOff()
+		{
+			isOn = false;
+		}
 
 		public virtual void SetStateHover() { }
 
-		public virtual void SetStateOn() { }
+		public virtual void SetStateOn()
+		{
+			isOn = true;
+		}
+
+		public void EnterHover()
+		{
+			if(!isOn)
+				SetStateHover();
+		}
+
+		public void ExitHover()
+        {
+			if(!isOn)
+				SetStateOff();
+        }
 	}
 }

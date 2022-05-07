@@ -7,71 +7,101 @@ using System.Threading.Tasks;
 namespace Couriers_GUI.UserInterface.Pages.Tables
 {
 	class TablesButton : Tabs.TabButton
-	{
-		public Krypton.Toolkit.KryptonLabel kryptonLabel1;
-		private Krypton.Toolkit.KryptonPanel kryptonPanel1;
+    {
+        private Krypton.Toolkit.KryptonPanel kryptonPanel1;
+        public Components.CommonLabel commonLabel1;
 
 		public TablesButton()
 		{
 			InitializeComponent();
+			SetStateOff();
 		}
 
-		public override void SetStateOff() { }
+		public override void SetStateOff()
+		{
+			base.SetStateOff();
 
-		public override void SetStateHover() { }
+			BackColor = InterfaceSingleton.DIM_BACKGROUND;
+			commonLabel1.StateCommon.ShortText.Color1 = InterfaceSingleton.LIGHT_FOREGROUND;
+			commonLabel1.StateCommon.ShortText.Color2 = commonLabel1.StateCommon.ShortText.Color1;
+			kryptonPanel1.Visible = false;
+		}
 
-		public override void SetStateOn() { }
+		public override void SetStateHover()
+		{
+			BackColor = InterfaceSingleton.LIGHT_BACKGROUND;
+			commonLabel1.StateCommon.ShortText.Color1 = InterfaceSingleton.DARK_FOREGROUND;
+			commonLabel1.StateCommon.ShortText.Color2 = commonLabel1.StateCommon.ShortText.Color1;
+		}
+
+		public override void SetStateOn()
+		{
+			base.SetStateOn();
+
+			BackColor = InterfaceSingleton.LIGHT_BACKGROUND;
+			commonLabel1.StateCommon.ShortText.Color1 = InterfaceSingleton.DARK_FOREGROUND;
+			commonLabel1.StateCommon.ShortText.Color2 = commonLabel1.StateCommon.ShortText.Color1;
+			kryptonPanel1.StateCommon.Color1 = InterfaceSingleton.DARK_FOREGROUND;
+			kryptonPanel1.StateCommon.Color2 = kryptonPanel1.StateCommon.Color1;
+			kryptonPanel1.Visible = true;
+		}
 
 		private void InitializeComponent()
 		{
-			this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
+			this.commonLabel1 = new Couriers_GUI.UserInterface.Components.CommonLabel();
 			this.kryptonPanel1 = new Krypton.Toolkit.KryptonPanel();
 			((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// kryptonLabel1
+			// commonLabel1
 			// 
-			this.kryptonLabel1.Location = new System.Drawing.Point(78, 3);
-			this.kryptonLabel1.Name = "kryptonLabel1";
-			this.kryptonLabel1.Size = new System.Drawing.Size(109, 24);
-			this.kryptonLabel1.TabIndex = 0;
-			this.kryptonLabel1.Values.Text = "kryptonLabel1";
-			this.kryptonLabel1.Click += new System.EventHandler(this.kryptonLabel1_Click);
+			this.commonLabel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+			this.commonLabel1.AutoSize = false;
+			this.commonLabel1.Location = new System.Drawing.Point(0, 0);
+			this.commonLabel1.Margin = new System.Windows.Forms.Padding(0);
+			this.commonLabel1.Name = "commonLabel1";
+			this.commonLabel1.Size = new System.Drawing.Size(120, 40);
+			this.commonLabel1.StateCommon.ShortText.TextH = Krypton.Toolkit.PaletteRelativeAlign.Center;
+			this.commonLabel1.StateCommon.ShortText.TextV = Krypton.Toolkit.PaletteRelativeAlign.Center;
+			this.commonLabel1.TabIndex = 0;
+			this.commonLabel1.Values.Text = "commonLabel1";
+			this.commonLabel1.Click += new System.EventHandler(this.commonLabel1_Click);
+			this.commonLabel1.MouseEnter += new System.EventHandler(this.commonLabel1_MouseEnter);
+			this.commonLabel1.MouseLeave += new System.EventHandler(this.commonLabel1_MouseLeave);
 			// 
 			// kryptonPanel1
 			// 
-			this.kryptonPanel1.Location = new System.Drawing.Point(3, 3);
+			this.kryptonPanel1.Location = new System.Drawing.Point(0, 0);
+			this.kryptonPanel1.Margin = new System.Windows.Forms.Padding(0);
 			this.kryptonPanel1.Name = "kryptonPanel1";
-			this.kryptonPanel1.Size = new System.Drawing.Size(69, 24);
+			this.kryptonPanel1.Size = new System.Drawing.Size(120, 4);
 			this.kryptonPanel1.TabIndex = 1;
-			this.kryptonPanel1.Click += new System.EventHandler(this.kryptonPanel1_Click);
 			// 
 			// TablesButton
 			// 
 			this.Controls.Add(this.kryptonPanel1);
-			this.Controls.Add(this.kryptonLabel1);
+			this.Controls.Add(this.commonLabel1);
+			this.Margin = new System.Windows.Forms.Padding(0);
 			this.Name = "TablesButton";
-			this.Size = new System.Drawing.Size(230, 35);
-			this.Click += new System.EventHandler(this.TablesButton_Click);
+			this.Size = new System.Drawing.Size(120, 40);
 			((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
-		private void kryptonPanel1_Click(object sender, EventArgs e)
+		private void commonLabel1_Click(object sender, EventArgs e)
 		{
 			ClickButton();
 		}
 
-		private void kryptonLabel1_Click(object sender, EventArgs e)
+		private void commonLabel1_MouseEnter(object sender, EventArgs e)
 		{
-			ClickButton();
+			EnterHover();
 		}
 
-		private void TablesButton_Click(object sender, EventArgs e)
+		private void commonLabel1_MouseLeave(object sender, EventArgs e)
 		{
-			ClickButton();
+			ExitHover();
 		}
 	}
 }

@@ -34,7 +34,22 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 					var receiveDate = new Components.DatePickerBlock();
 					receiveDate.commonLabel1.Text = "Receive Date:";
 					tableLayoutPanel2.Controls.Add(receiveDate, 0, 1);
-				}
+
+					
+					var total = new Components.TextBoxBlock();
+					total.commonLabel1.Text = "Total";
+					tableLayoutPanel2.Controls.Add(total, 0, 2);
+						
+					var address = new Components.CompletableTextBoxBlock();
+					address.commonLabel1.Text = "Address";
+					address.completableTextBox1.dataSource = (new AddressService()).AllString().ToList();
+					tableLayoutPanel2.Controls.Add(address, 0, 3);
+
+                    tableLayoutPanel2.RowStyles.Clear();
+                    for (int i = 0; i < 4; ++i)
+                        tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.AutoSize, 100));
+
+                }
 				else if(tableService is CourierService)
 				{
 					var name = new Components.TextBoxBlock();
@@ -44,6 +59,11 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 					var phone = new Components.TextBoxBlock();
 					phone.commonLabel1.Text = "Phone";
 					tableLayoutPanel2.Controls.Add(phone, 0, 1);
+
+					var hone = new Components.TextBoxBlock();
+					hone.commonLabel1.Text = "Phone";
+					tableLayoutPanel2.Controls.Add(hone, 0, 1);
+
 				}
 				else if(tableService is AddressService)
 				{
