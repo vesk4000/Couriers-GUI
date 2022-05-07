@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,13 +42,32 @@ namespace Couriers_GUI.UserInterface.Components
 			}
 		}
 
+
+		private Point FindLocation(Control ctrl)
+		{
+			if (ctrl.Parent is Form)
+				return ctrl.Location;
+			else
+			{
+				Point p = FindLocation(ctrl.Parent);
+				p.X += ctrl.Location.X;
+				p.Y += ctrl.Location.Y;
+				return p;
+			}
+		}
+
 		private void kryptonTextBox1_Enter(object sender, EventArgs e)
 		{
+			if (kryptonListBox1 is not null)
+				Form.ActiveForm.Controls.Remove(kryptonListBox1);
 			kryptonListBox1 = new Krypton.Toolkit.KryptonListBox();
-			Parent.Controls.Add(kryptonListBox1);
+			Form.ActiveForm.Controls.Add(kryptonListBox1);
 
-			this.kryptonListBox1.Location = new System.Drawing.Point(this.Location.X, this.Location.Y + this.Height);
+			Point global_loc = FindLocation(this);//LocationInForm(this);
+			this.kryptonListBox1.Location = new System.Drawing.Point(global_loc.X, global_loc.Y + this.Height);
 			this.kryptonListBox1.Size = new System.Drawing.Size(this.Size.Width, kryptonListBox1.Size.Height);
+			this.kryptonListBox1.BringToFront();
+			this.kryptonListBox1.Invalidate();
 
 			SetListBoxSize();
 

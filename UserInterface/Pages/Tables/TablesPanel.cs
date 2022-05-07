@@ -57,15 +57,15 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			}
 			else if (tableService is DispatcherService)
 			{
-				button.kryptonLabel1.Text = "Dispatchers";
+				button.commonLabel1.Text = "Dispatchers";
 			}
 			else if (tableService is RecipientService)
 			{
-				button.kryptonLabel1.Text = "Recipients";
+				button.commonLabel1.Text = "Recipients";
 			}
 			else if (tableService is TOSService)
 			{
-				button.kryptonLabel1.Text = "Types of Orders";
+				button.commonLabel1.Text = "Types of Orders";
 			}
 
 			tableLayoutPanel2.ColumnCount = 100;

@@ -8,13 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Couriers_GUI.User_Interface.Pages
+namespace Couriers_GUI.UserInterface.Components
 {
-    public partial class TablesTabsPage : UserControl
-    {
-        public TablesTabsPage()
-        {
-            InitializeComponent();
-        }
-    }
+	public partial class SingleDatePickerBlock : UserControl
+	{
+		public SingleDatePickerBlock()
+		{
+			InitializeComponent();
+		}
+	}
 }

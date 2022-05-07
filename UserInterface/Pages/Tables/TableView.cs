@@ -65,9 +65,13 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 		{
 			if(Parent is TableContainer)
 			{
-				var page = new AddPage();
+				//var page = new AddPage();
+				//Parent.Controls.Add(page);
+				//page.Init();
+				//page.Dock = DockStyle.Fill;
+				//Parent.Controls.Remove(this);
+				var page = new AddPanel((Parent as TableContainer).tableService, this);
 				Parent.Controls.Add(page);
-				page.Init();
 				page.Dock = DockStyle.Fill;
 				Parent.Controls.Remove(this);
 			}
@@ -83,8 +87,17 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			if(Parent is TableContainer)
 			{
 				int a;
+				if(kryptonDataGridView1.SelectedCells.Count > 0 && int.TryParse(kryptonDataGridView1.Rows[kryptonDataGridView1.SelectedCells[0].RowIndex].Cells[0].Value.ToString(), out a))
+				{
+					var page = new EditPanel((Parent as TableContainer).tableService, this, a);
+					Parent.Controls.Add(page);
+					page.Dock = DockStyle.Fill;
+					Parent.Controls.Remove(this);
+					return;
+				}
 				if(kryptonDataGridView1.SelectedRows.Count > 0 && kryptonDataGridView1.SelectedRows[0].Cells.Count > 0 && int.TryParse(kryptonDataGridView1.SelectedRows[0].Cells[0].Value.ToString(), out a))
 				{
+					MessageBox.Show("Asd");
 					var page = new EditPage();
 					Parent.Controls.Add(page);
 					page.Init();

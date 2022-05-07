@@ -1,4 +1,3 @@
-using Couriers_GUI.User_Interface.Development;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,18 +18,7 @@ namespace Couriers_GUI
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 
-			// TODO: Write a better version of the code that determines which form to open
-
-
-			if (args.Count() != 0)
-			{
-				if (args[0] == "test")
-					Application.Run(new User_Interface.Development.TestForm());
-				else
-					Application.Run(new User_Interface.Form1());
-			}
-			else
-				Application.Run(new UserInterface.MainForm());
+			Application.Run(new UserInterface.MainForm());
 		}
 	}
 }

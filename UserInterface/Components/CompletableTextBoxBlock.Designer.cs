@@ -35,28 +35,30 @@ namespace Couriers_GUI.UserInterface.Components
 			// 
 			// commonLabel1
 			// 
-			this.commonLabel1.Location = new System.Drawing.Point(4, 4);
+			this.commonLabel1.Location = new System.Drawing.Point(5, 5);
+			this.commonLabel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.commonLabel1.Name = "commonLabel1";
-			this.commonLabel1.Size = new System.Drawing.Size(94, 20);
+			this.commonLabel1.Size = new System.Drawing.Size(116, 24);
 			this.commonLabel1.TabIndex = 0;
 			this.commonLabel1.Values.Text = "commonLabel1";
-			//
-			// completableTextBox
-			//
-			this.completableTextBox1.Location = new System.Drawing.Point(4, 20);
+			// 
+			// completableTextBox1
+			// 
+			this.completableTextBox1.Location = new System.Drawing.Point(5, 27);
+			this.completableTextBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.completableTextBox1.Name = "completableTextBox1";
-			this.completableTextBox1.Size = new System.Drawing.Size(200, 20);
+			this.completableTextBox1.Size = new System.Drawing.Size(229, 27);
 			this.completableTextBox1.TabIndex = 1;
-			this.completableTextBox1.Text = "";
 			// 
 			// CompletableTextBoxBlock
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.commonLabel1);
 			this.Controls.Add(this.completableTextBox1);
+			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "CompletableTextBoxBlock";
-			this.Size = new System.Drawing.Size(318, 107);
+			this.Size = new System.Drawing.Size(363, 82);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
