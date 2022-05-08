@@ -113,6 +113,26 @@ namespace Couriers_GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap question_solid_dark_grey {
+            get {
+                object obj = ResourceManager.GetObject("question_solid_dark_grey", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap question_solid_grey {
+            get {
+                object obj = ResourceManager.GetObject("question_solid_grey", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap server_solid {
             get {
                 object obj = ResourceManager.GetObject("server_solid", resourceCulture);

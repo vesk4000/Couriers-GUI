@@ -23,7 +23,8 @@ namespace Couriers_GUI.UserInterface.Navigation
 			currentTabPanel = kryptonPanel1;
 			tableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(255, 235, 235, 235);
 			AddButton(new NavigationButton(Resources.table_solid_dark_grey, Resources.table_solid_grey), new Pages.Tables.TablesPanel());
-			AddButton(new NavigationButton(Resources.server_solid_dark_grey, Resources.server_solid_grey), new Components.StackPanel());
+			AddButton(new NavigationButton(Resources.server_solid_dark_grey, Resources.server_solid_grey), new Pages.ServerPage());
+            AddButton(new NavigationButton(Resources.question_solid_dark_grey, Resources.question_solid_grey), new Pages.AboutPage());
 		}
 
 

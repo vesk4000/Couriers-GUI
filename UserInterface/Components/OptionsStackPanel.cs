@@ -60,6 +60,11 @@ namespace Couriers_GUI.UserInterface.Components
 						else
 							validationLabel.Visible = true;
 					}
+					else
+					{
+						leftButtonAction.Invoke(this);
+						SwitchToTableView();
+					}
 				},
 				SwitchToTableView
 			);
