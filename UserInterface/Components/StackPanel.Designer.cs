@@ -62,6 +62,6 @@
 
 		#endregion
 
-		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+		public System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 	}
 }

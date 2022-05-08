@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Couriers_GUI.Properties;
+using Couriers_GUI.UserInterface.Pages;
+using Couriers_GUI.UserInterface.Pages.Tables;
 
 namespace Couriers_GUI.UserInterface.Navigation
 {
@@ -22,9 +24,11 @@ namespace Couriers_GUI.UserInterface.Navigation
 			InitializeComponent();
 			currentTabPanel = kryptonPanel1;
 			tableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(255, 235, 235, 235);
-			AddButton(new NavigationButton(Resources.table_solid_dark_grey, Resources.table_solid_grey), new Pages.Tables.TablesPanel());
-			AddButton(new NavigationButton(Resources.server_solid_dark_grey, Resources.server_solid_grey), new Pages.ServerPage());
-            AddButton(new NavigationButton(Resources.question_solid_dark_grey, Resources.question_solid_grey), new Pages.AboutPage());
+            var def = new NavigationButton(Resources.table_solid_dark_grey, Resources.table_solid_grey);
+			AddButton(def, new TablesPanel());
+			AddButton(new NavigationButton(Resources.server_solid_dark_grey, Resources.server_solid_grey), new ServerPage());
+            AddButton(new NavigationButton(Resources.question_solid_dark_grey, Resources.question_solid_grey), new AboutPage());
+            def.ClickButton();
 		}
 
 

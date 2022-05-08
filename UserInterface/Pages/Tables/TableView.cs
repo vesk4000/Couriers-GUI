@@ -21,11 +21,12 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 		{
 			InitializeComponent();
 			BackColor = InterfaceSingleton.LIGHT_BACKGROUND;
+			InterfaceSingleton.tableViews.Add(this);
 		}
 
 		public void InitDataGridView()
 		{
-			if (DBService.ExistsDatabase())
+			if (DBService.ExistTables())
 			{
 				if (Parent is TableContainer)
 				{

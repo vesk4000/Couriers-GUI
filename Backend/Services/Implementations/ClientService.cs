@@ -36,10 +36,9 @@ namespace Couriers_GUI.Backend.Services.Implementations
 				.ToList();
 
 		public IEnumerable<string> AllString()
-			=> this.data
-				.Clients
-				.Select(c => c.ToString())
-				.ToList();
+			=> All()
+			.Select(c => c.ToString())
+			.ToList();
 
 		public IEnumerable<ClientServiceModel> GetByContainingText(string containText)
 			=> All()

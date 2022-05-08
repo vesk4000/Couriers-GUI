@@ -20,7 +20,7 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
         {
             InitializeComponent();
 			currentTabPanel = kryptonPanel1;
-			AddButton(new OrderService());
+			AddButton(new OrderService()).ClickButton();
 			AddButton(new CourierService());
 			AddButton(new AddressService());
 			AddButton(new ClientService());
@@ -31,7 +31,7 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 
 		}
 
-		private void AddButton(object tableService)
+		private TablesButton AddButton(object tableService)
 		{
 			var button = new TablesButton();
             tabButtons.Add(button);
@@ -70,7 +70,8 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 
 			tableLayoutPanel2.ColumnCount = 100;
 			tableLayoutPanel2.Controls.Add(button, nextButtonIndex++, 0);
-			
+
+            return button;
 		}
 
 		private void InitializeComponent()
