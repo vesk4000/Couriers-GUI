@@ -34,10 +34,12 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 
 				if(tableService is OrderService)
 				{
-					filterModel = new OrderFilterServiceModel(DateTime.MinValue, DateTime.MaxValue, DateTime.MinValue, DateTime.MaxValue, "0", "1000000", "", "", "", "", "", "");
 					var service = tableService as OrderService;
 					if (filterModel is null)
+					{
 						kryptonDataGridView1.DataSource = service.All();
+						filterModel = new OrderFilterServiceModel(DateTime.MinValue, DateTime.MaxValue, DateTime.MinValue, DateTime.MaxValue, "0", "1000000", "", "", "", "", "", "");
+					}
 					else
 					{
 						var model = filterModel as OrderFilterServiceModel;
