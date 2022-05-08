@@ -19,7 +19,6 @@ namespace Couriers_GUI.UserInterface.Components
 			this.Enter += new System.EventHandler(kryptonTextBox1_Enter);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.completableTextBox1_KeyDown);
 			//	this.Move += new EventHandler(this.RelocateListBox);
-			BuildChain();
 
 			//
 			dataSource.Add("qwert");
