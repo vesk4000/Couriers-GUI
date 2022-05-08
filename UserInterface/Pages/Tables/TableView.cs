@@ -34,15 +34,21 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 
 				if(tableService is OrderService)
 				{
+					filterModel = new OrderFilterServiceModel(DateTime.MinValue, DateTime.MaxValue, DateTime.MinValue, DateTime.MaxValue, "0", "1000000", "", "", "", "", "", "");
+					var service = tableService as OrderService;
 					if (filterModel is null)
-						kryptonDataGridView1.DataSource = (tableService as OrderService).All();
+						kryptonDataGridView1.DataSource = service.All();
 					else
-						kryptonDataGridView1.DataSource = (tableService as OrderService).All();
-				}
+					{
+						var model = filterModel as OrderFilterServiceModel;
+						kryptonDataGridView1.DataSource = service.Filter(model).ToList();
+						afterFilter = service.Filter(model).Count();
+						beforeFilter = service.All().Count();
+					}				}
 				else if(tableService is CourierService)
 				{
 					var service = tableService as CourierService;
-					if(filterModel is null)
+					if (filterModel is null)
 						kryptonDataGridView1.DataSource = service.All();
 					else
 					{

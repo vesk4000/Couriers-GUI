@@ -58,12 +58,12 @@ namespace Couriers_GUI.Backend.Services.Implementations
 
         public IEnumerable<AddressServiceModel> GetByContainingText(string containText)
             => All()
-                .Where(a => (a.Id + " " + a.AddressText).Contains(containText))
+                .Where(a => a.ToString().Contains(containText))
                 .ToList();
 
         public IEnumerable<string> GetByContainingTextString(string containText)
             => GetByContainingText(containText)
-                .Select(a => $"{a.Id,-3} | {a.AddressText}");
+                .Select(a => a.ToString());
 
         public IEnumerable<AddressServiceModel> GetById(int id)
             => All()

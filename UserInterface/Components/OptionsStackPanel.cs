@@ -70,6 +70,7 @@ namespace Couriers_GUI.UserInterface.Components
 			);
 			dualButtons.commonButton1.Text = leftButtonName;
 			dualButtons.commonButton2.Text = "Cancel";
+			dualButtons.Anchor = AnchorStyles.Top;
 			AddControl(dualButtons);
 		}
 
@@ -80,49 +81,66 @@ namespace Couriers_GUI.UserInterface.Components
 			{
 				if(serviceModel is null)
 					serviceModel = new OrderDetailsServiceModel(DateTime.Now, DateTime.Now, "", "", "", "", "", "", "");
-
+				
 				OrderDetailsServiceModel model = new OrderDetailsServiceModel(DateTime.Now, DateTime.Now, "", "", "", "", "", "", "");
+
+				if(serviceModel is OrderDetailsServiceModel)
+					model = serviceModel as OrderDetailsServiceModel;
 
 				if(serviceModel is OrderFilterServiceModel)
 				{
 					var modelFilter = serviceModel as OrderFilterServiceModel;
 
 					var orderDate = new DatePickerBlock();
-					orderDate.commonLabel1.Text = "Order Date:";
+					orderDate.commonLabel1.Text = "Order Date";
 					orderDate.commonDateTimePicker1.Value = modelFilter.OrderDateFrom;
 					orderDate.commonDateTimePicker2.Value = modelFilter.OrderDateTo;
 					AddControl(orderDate);
 					options.Add(orderDate);
 
 					var receiveDate = new DatePickerBlock();
-					receiveDate.commonLabel1.Text = "Receive Date:";
+					receiveDate.commonLabel1.Text = "Receive Date";
 					receiveDate.commonDateTimePicker1.Value = modelFilter.ReceiveDateFrom;
 					receiveDate.commonDateTimePicker2.Value = modelFilter.ReceiveDateTo;
 					AddControl(receiveDate);
 					options.Add(receiveDate);
+
+					var total = new NumberRangeBlock();
+					total.commonLabel1.Text = "Total";
+					total.commonTextBox1.Text = modelFilter.TotalFrom;
+					total.commonTextBox2.Text = modelFilter.TotalTo;
+					AddControl(total);
+					options.Add(total);
+
+					model.Dispatcher = modelFilter.Dispatcher;
+					model.Address = modelFilter.Address;
+					model.Client = modelFilter.Client;
+					model.Courier = modelFilter.Courier;
+					model.Recipient = modelFilter.Recipient;
+					model.Type = modelFilter.Type;
 				}
 				else if(serviceModel is OrderDetailsServiceModel)
 				{
 					model = serviceModel as OrderDetailsServiceModel;
 
 					var orderDate = new SingleDatePickerBlock();
-					orderDate.commonLabel1.Text = "Order Date:";
+					orderDate.commonLabel1.Text = "Order Date";
 					orderDate.commonDateTimePicker1.Value = model.OrderDate;
 					AddControl(orderDate);
 					options.Add(orderDate);
 
 					var receiveDate = new SingleDatePickerBlock();
-					receiveDate.commonLabel1.Text = "Receive Date:";
+					receiveDate.commonLabel1.Text = "Receive Date";
 					receiveDate.commonDateTimePicker1.Value = model.ReceiveDate;
 					AddControl(receiveDate);
 					options.Add(receiveDate);
-				}
 
-				var total = new TextBoxBlock();
-				total.commonLabel1.Text = "Total";
-				total.commonTextBox1.Text = model.Total;
-				AddControl(total);
-				options.Add(total);
+					var total = new TextBoxBlock();
+					total.commonLabel1.Text = "Total";
+					total.commonTextBox1.Text = model.Total;
+					AddControl(total);
+					options.Add(total);
+				}
 				
 				var address = new CompletableTextBoxBlock();
 				address.commonLabel1.Text = "Address";
@@ -130,6 +148,42 @@ namespace Couriers_GUI.UserInterface.Components
 				address.completableTextBox1.dataSource = new AddressService().AllString().ToList();
 				AddControl(address);
 				options.Add(address);
+
+
+				var type = new CompletableTextBoxBlock();
+				type.commonLabel1.Text = "Type of Order";
+				type.completableTextBox1.Text = model.Type;
+				type.completableTextBox1.dataSource = new TOSService().AllString().ToList();
+				AddControl(type);
+				options.Add(type);
+
+				var dispatcher = new CompletableTextBoxBlock();
+				dispatcher.commonLabel1.Text = "Dispatcher";
+				dispatcher.completableTextBox1.Text = model.Dispatcher;
+				dispatcher.completableTextBox1.dataSource = new DispatcherService().AllString().ToList();
+				AddControl(dispatcher);
+				options.Add(dispatcher);
+
+				var client = new CompletableTextBoxBlock();
+				client.commonLabel1.Text = "Client";
+				client.completableTextBox1.Text = model.Client;
+				client.completableTextBox1.dataSource = new ClientService().AllString().ToList();
+				AddControl(client);
+				options.Add(client);
+
+				var courier = new CompletableTextBoxBlock();
+				courier.commonLabel1.Text = "Courier";
+				courier.completableTextBox1.Text = model.Courier;
+				courier.completableTextBox1.dataSource = new CourierService().AllString().ToList();
+				AddControl(courier);
+				options.Add(courier);
+
+				var recipient = new CompletableTextBoxBlock();
+				recipient.commonLabel1.Text = "Recipient";
+				recipient.completableTextBox1.Text = model.Recipient;
+				recipient.completableTextBox1.dataSource = new RecipientService().AllString().ToList();
+				AddControl(recipient);
+				options.Add(recipient);
 			}
 			else if(tableService is CourierService)
 			{
@@ -160,22 +214,38 @@ namespace Couriers_GUI.UserInterface.Components
 
 			if(tableService is OrderService)
 			{
-				var total = options[2] as TextBoxBlock;
 				var address = options[3] as CompletableTextBoxBlock;
+				var type = options[4] as CompletableTextBoxBlock;
+				var dispatcher = options[5] as CompletableTextBoxBlock;
+				var client = options[6] as CompletableTextBoxBlock;
+				var courier = options[7] as CompletableTextBoxBlock;
+				var recipient = options[8] as CompletableTextBoxBlock;
 
-				var model = new OrderDetailsServiceModel(DateTime.Now, DateTime.Now, total.commonTextBox1.Text, address.completableTextBox1.Text, null, null, null, null, null);
+				var model = new OrderDetailsServiceModel(
+					DateTime.Now,
+					DateTime.Now,
+					"",
+					address.completableTextBox1.Text,
+					type.completableTextBox1.Text,
+					dispatcher.completableTextBox1.Text,
+					client.completableTextBox1.Text,
+					courier.completableTextBox1.Text,
+					recipient.completableTextBox1.Text
+				);
 
 				if(options[0] is DatePickerBlock)
 				{
 					var orderDate = options[0] as DatePickerBlock;
 					var receiveDate = options[1] as DatePickerBlock;
+					var total = options[2] as NumberRangeBlock;
 					var modelFilter = new OrderFilterServiceModel
 					(
 						orderDate.commonDateTimePicker1.Value,
 						orderDate.commonDateTimePicker2.Value,
 						receiveDate.commonDateTimePicker1.Value,
 						receiveDate.commonDateTimePicker2.Value,
-						model.Total,
+						total.commonTextBox1.Text,
+						total.commonTextBox2.Text,
 						model.Address,
 						model.Client,
 						model.Courier,
@@ -189,6 +259,8 @@ namespace Couriers_GUI.UserInterface.Components
 				{
 					var orderDate = options[0] as SingleDatePickerBlock;
 					var receiveDate = options[1] as SingleDatePickerBlock;
+					var total = options[2] as TextBoxBlock;
+					model.Total = total.commonTextBox1.Text;
 					model.OrderDate = orderDate.commonDateTimePicker1.Value;
 					model.ReceiveDate = receiveDate.commonDateTimePicker1.Value;
 				}
@@ -223,7 +295,7 @@ namespace Couriers_GUI.UserInterface.Components
 		{
 			if(tableService is OrderService)
 			{
-				return true;
+				return (tableService as OrderService).Validate(GetOptions() as OrderDetailsServiceModel);
 			}
 			if(tableService is CourierService)
 			{

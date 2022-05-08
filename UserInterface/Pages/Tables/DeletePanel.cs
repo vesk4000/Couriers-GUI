@@ -24,10 +24,8 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			{
 				if (tableService is OrderService)
 				{
-					OrderService orderService = tableService as OrderService;
-					OrderDetailsServiceModel model = panel.GetOptions() as OrderDetailsServiceModel;
-					orderService.Create(model);
-					//orderService.Create(new OrderDetailsServiceModel(model.OrderDate, model.ReceiveDate, model.Total, model.Address, model.Client, model.Courier, model.Dispatcher, model.Recipient, model.Type));
+					OrderService service = tableService as OrderService;
+					service.Remove(id);
 				}
 				else if (tableService is CourierService)
 				{

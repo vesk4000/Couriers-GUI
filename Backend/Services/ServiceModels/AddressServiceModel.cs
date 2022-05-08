@@ -19,5 +19,10 @@ namespace Couriers_GUI.Backend.Services.ServiceModels
         public int Id { get; set; }
 
         public string AddressText { get; set; }
-    }
+
+		public override string ToString()
+		{
+            return $"{this.Id,-3} | {this.AddressText}";
+		}
+	}
 }
