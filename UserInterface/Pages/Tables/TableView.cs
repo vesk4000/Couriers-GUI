@@ -8,15 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Couriers_GUI.Backend.Services.Implementations;
+using Couriers_GUI.Backend.Services.ServiceModels;
 
 namespace Couriers_GUI.UserInterface.Pages.Tables
 {
 	public partial class TableView : UserControl
 	{
+		public object filterModel;
+
+
 		public TableView()
 		{
 			InitializeComponent();
-
+			BackColor = InterfaceSingleton.LIGHT_BACKGROUND;
 		}
 
 		public void InitDataGridView()
@@ -25,13 +29,28 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			{
 				TableContainer parent = Parent as TableContainer;
 				object tableService = parent.tableService;
+
+				int afterFilter = 0, beforeFilter = 0;
+
 				if(tableService is OrderService)
 				{
-					kryptonDataGridView1.DataSource = (tableService as OrderService).All();
+					if (filterModel is null)
+						kryptonDataGridView1.DataSource = (tableService as OrderService).All();
+					else
+						kryptonDataGridView1.DataSource = (tableService as OrderService).All();
 				}
 				else if(tableService is CourierService)
 				{
-					kryptonDataGridView1.DataSource = (tableService as CourierService).All();
+					var service = tableService as CourierService;
+					if(filterModel is null)
+						kryptonDataGridView1.DataSource = service.All();
+					else
+					{
+						var model = filterModel as CourierServiceModel;
+						kryptonDataGridView1.DataSource = service.Filter(model.Name, model.PhoneNumber).ToList();
+						afterFilter = service.Filter(model.Name, model.PhoneNumber).Count();
+						beforeFilter = service.All().Count();
+					}
 				}
 				else if(tableService is AddressService)
 				{
@@ -53,6 +72,11 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 				{
 					kryptonDataGridView1.DataSource = (tableService as TOSService).All();
 				}
+				if (afterFilter == beforeFilter)
+					commonButton4.Text = "Filter";
+				else
+					commonButton4.Text = "Fitler (" + afterFilter + "/" + beforeFilter  + ")";
+
 			}
 			else
 			{
@@ -65,9 +89,13 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 		{
 			if(Parent is TableContainer)
 			{
-				var page = new AddPage();
+				//var page = new AddPage();
+				//Parent.Controls.Add(page);
+				//page.Init();
+				//page.Dock = DockStyle.Fill;
+				//Parent.Controls.Remove(this);
+				var page = new AddPanel((Parent as TableContainer).tableService, this);
 				Parent.Controls.Add(page);
-				page.Init();
 				page.Dock = DockStyle.Fill;
 				Parent.Controls.Remove(this);
 			}
@@ -83,8 +111,17 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			if(Parent is TableContainer)
 			{
 				int a;
+				if(kryptonDataGridView1.SelectedCells.Count > 0 && int.TryParse(kryptonDataGridView1.Rows[kryptonDataGridView1.SelectedCells[0].RowIndex].Cells[0].Value.ToString(), out a))
+				{
+					var page = new EditPanel((Parent as TableContainer).tableService, this, a);
+					Parent.Controls.Add(page);
+					page.Dock = DockStyle.Fill;
+					Parent.Controls.Remove(this);
+					return;
+				}
 				if(kryptonDataGridView1.SelectedRows.Count > 0 && kryptonDataGridView1.SelectedRows[0].Cells.Count > 0 && int.TryParse(kryptonDataGridView1.SelectedRows[0].Cells[0].Value.ToString(), out a))
 				{
+					MessageBox.Show("Asd");
 					var page = new EditPage();
 					Parent.Controls.Add(page);
 					page.Init();
@@ -106,6 +143,14 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			if(Parent is TableContainer)
 			{
 				int a;
+				if(kryptonDataGridView1.SelectedCells.Count > 0 && int.TryParse(kryptonDataGridView1.Rows[kryptonDataGridView1.SelectedCells[0].RowIndex].Cells[0].Value.ToString(), out a))
+				{
+					var page = new DeletePanel((Parent as TableContainer).tableService, this, a);
+					Parent.Controls.Add(page);
+					page.Dock = DockStyle.Fill;
+					Parent.Controls.Remove(this);
+					return;
+				}
 				if(kryptonDataGridView1.SelectedRows.Count > 0 && kryptonDataGridView1.SelectedRows[0].Cells.Count > 0 && int.TryParse(kryptonDataGridView1.SelectedRows[0].Cells[0].Value.ToString(), out a))
 				{
 					var page = new DeletePage();
@@ -128,9 +173,8 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 		{
 			if(Parent is TableContainer)
 			{
-				var page = new FilterPage();
+				var page = new FilterPanel((Parent as TableContainer).tableService, this);
 				Parent.Controls.Add(page);
-				page.Init();
 				page.Dock = DockStyle.Fill;
 				Parent.Controls.Remove(this);
 			}
