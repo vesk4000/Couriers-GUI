@@ -10,6 +10,7 @@ using Microsoft.SqlServer.Management.Common;
 using Couriers_GUI.Backend.Services.SQLDBCreateScript;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using Couriers_GUI.Models;
 
 namespace Couriers_GUI.Backend.Services.Implementations
 {
@@ -64,7 +65,7 @@ namespace Couriers_GUI.Backend.Services.Implementations
 
 		public static void DeleteDB()
 		{
-			if (DBService.Exists())
+			if (DBService.ExistsDatabase())
 				ExecuteScript(CouriersDBScripts.deleteDBScript);
 		}
 
@@ -91,8 +92,11 @@ namespace Couriers_GUI.Backend.Services.Implementations
 			DeleteUSPs();
         }
 
-		public static bool Exists()
+		public static bool ExistsDatabase()
         {
+			if (!ExistsConnection())
+				return false;
+
 			var tmpConn = new SqlConnection();
 			string sqlCreateDBQuery;
 			bool result = false;
@@ -132,5 +136,93 @@ namespace Couriers_GUI.Backend.Services.Implementations
 
 			return result;
 		}
+
+		public static bool ExistsConnection()
+        {
+			try
+			{
+				var tmpConn = new SqlConnection("server=(local)\\SQLEXPRESS;Trusted_Connection=yes");
+
+				tmpConn.Open();
+
+				tmpConn.Close();
+			}
+            catch
+            {
+				return false;
+            }
+
+			return true;
+        }
+
+		public static bool ExistTables()
+		{
+			if (!ExistsDatabase())
+				return false;
+
+			int exists = 0;
+
+			try
+			{
+				using (var tmpConn = new SqlConnection("server=(local)\\SQLEXPRESS;Database=CouriersDB;Trusted_Connection=yes"))
+				{
+					tmpConn.Open();
+
+					using (var cmd = new SqlCommand("select case when exists((select * from information_schema.tables where table_name = 'Addresses')) then 1 else 0 end", tmpConn))
+					{
+						exists += (int)cmd.ExecuteScalar() == 1 ? 1 : 0;
+					}
+
+					using (var cmd = new SqlCommand("select case when exists((select * from information_schema.tables where table_name = 'Clients')) then 1 else 0 end", tmpConn))
+					{
+						exists += (int)cmd.ExecuteScalar() == 1 ? 1 : 0;
+					}
+
+					using (var cmd = new SqlCommand("select case when exists((select * from information_schema.tables where table_name = 'Couriers')) then 1 else 0 end", tmpConn))
+					{
+						exists += (int)cmd.ExecuteScalar() == 1 ? 1 : 0;
+					}
+
+					using (var cmd = new SqlCommand("select case when exists((select * from information_schema.tables where table_name = 'Dispatchers')) then 1 else 0 end", tmpConn))
+					{
+						exists += (int)cmd.ExecuteScalar() == 1 ? 1 : 0;
+					}
+
+					using (var cmd = new SqlCommand("select case when exists((select * from information_schema.tables where table_name = 'Orders')) then 1 else 0 end", tmpConn))
+					{
+						exists += (int)cmd.ExecuteScalar() == 1 ? 1 : 0;
+					}
+
+					using (var cmd = new SqlCommand("select case when exists((select * from information_schema.tables where table_name = 'Recipients')) then 1 else 0 end", tmpConn))
+					{
+						exists += (int)cmd.ExecuteScalar() == 1 ? 1 : 0;
+					}
+
+					using (var cmd = new SqlCommand("select case when exists((select * from information_schema.tables where table_name = 'TypesOfService')) then 1 else 0 end", tmpConn))
+					{
+						exists += (int)cmd.ExecuteScalar() == 1 ? 1 : 0;
+					}
+
+					tmpConn.Close();
+				}
+			}
+			catch
+			{
+				exists = 0;
+			}
+
+			return exists == 7;
+		}
+
+		public static int RowsCount()
+        {
+			if (!ExistsDatabase())
+				return 0;
+
+			using (var ctx = new CouriersDBContext())
+			{
+				return ctx.Addresses.Count() + ctx.Clients.Count() + ctx.Couriers.Count() + ctx.Dispatchers.Count() + ctx.Recipients.Count() + ctx.TypesOfServices.Count() + ctx.Orders.Count();
+			}
+        }
 	}
 }

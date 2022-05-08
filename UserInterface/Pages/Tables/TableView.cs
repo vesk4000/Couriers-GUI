@@ -25,63 +25,66 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 
 		public void InitDataGridView()
 		{
-			if(Parent is TableContainer)
+			if (DBService.ExistsDatabase())
 			{
-				TableContainer parent = Parent as TableContainer;
-				object tableService = parent.tableService;
-
-				int afterFilter = 0, beforeFilter = 0;
-
-				if(tableService is OrderService)
+				if (Parent is TableContainer)
 				{
-					if (filterModel is null)
-						kryptonDataGridView1.DataSource = (tableService as OrderService).All();
-					else
-						kryptonDataGridView1.DataSource = (tableService as OrderService).All();
-				}
-				else if(tableService is CourierService)
-				{
-					var service = tableService as CourierService;
-					if(filterModel is null)
-						kryptonDataGridView1.DataSource = service.All();
-					else
+					TableContainer parent = Parent as TableContainer;
+					object tableService = parent.tableService;
+
+					int afterFilter = 0, beforeFilter = 0;
+
+					if (tableService is OrderService)
 					{
-						var model = filterModel as CourierServiceModel;
-						kryptonDataGridView1.DataSource = service.Filter(model.Name, model.PhoneNumber).ToList();
-						afterFilter = service.Filter(model.Name, model.PhoneNumber).Count();
-						beforeFilter = service.All().Count();
+						if (filterModel is null)
+							kryptonDataGridView1.DataSource = (tableService as OrderService).All();
+						else
+							kryptonDataGridView1.DataSource = (tableService as OrderService).All();
 					}
-				}
-				else if(tableService is AddressService)
-				{
-					kryptonDataGridView1.DataSource = (tableService as AddressService).All();
-				}
-				else if(tableService is ClientService)
-				{
-					kryptonDataGridView1.DataSource = (tableService as ClientService).All();
-				}
-				else if (tableService is DispatcherService)
-				{
-					kryptonDataGridView1.DataSource = (tableService as DispatcherService).All();
-				}
-				else if (tableService is RecipientService)
-				{
-					kryptonDataGridView1.DataSource = (tableService as RecipientService).All();
-				}
-				else if (tableService is TOSService)
-				{
-					kryptonDataGridView1.DataSource = (tableService as TOSService).All();
-				}
-				if (afterFilter == beforeFilter)
-					commonButton4.Text = "Filter";
-				else
-					commonButton4.Text = "Fitler (" + afterFilter + "/" + beforeFilter  + ")";
+					else if (tableService is CourierService)
+					{
+						var service = tableService as CourierService;
+						if (filterModel is null)
+							kryptonDataGridView1.DataSource = service.All();
+						else
+						{
+							var model = filterModel as CourierServiceModel;
+							kryptonDataGridView1.DataSource = service.Filter(model.Name, model.PhoneNumber).ToList();
+							afterFilter = service.Filter(model.Name, model.PhoneNumber).Count();
+							beforeFilter = service.All().Count();
+						}
+					}
+					else if (tableService is AddressService)
+					{
+						kryptonDataGridView1.DataSource = (tableService as AddressService).All();
+					}
+					else if (tableService is ClientService)
+					{
+						kryptonDataGridView1.DataSource = (tableService as ClientService).All();
+					}
+					else if (tableService is DispatcherService)
+					{
+						kryptonDataGridView1.DataSource = (tableService as DispatcherService).All();
+					}
+					else if (tableService is RecipientService)
+					{
+						kryptonDataGridView1.DataSource = (tableService as RecipientService).All();
+					}
+					else if (tableService is TOSService)
+					{
+						kryptonDataGridView1.DataSource = (tableService as TOSService).All();
+					}
+					if (afterFilter == beforeFilter)
+						commonButton4.Text = "Filter";
+					else
+						commonButton4.Text = "Fitler (" + afterFilter + "/" + beforeFilter + ")";
 
-			}
-			else
-			{
-				MessageBox.Show("TableView: Parent has to be a TableContainer");
-				return;
+				}
+				else
+				{
+					MessageBox.Show("TableView: Parent has to be a TableContainer");
+					return;
+				}
 			}
 		}
 

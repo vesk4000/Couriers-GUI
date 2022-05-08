@@ -21,10 +21,8 @@ namespace Couriers_GUI.UserInterface.Pages
 		private void commonButton1_Click(object sender, EventArgs e)
 		{
 			DBService.CreateDB();
-
-			DBService.CreateAllUPSs();
-
 			DBService.PopulateDB();
+			DBService.CreateAllUPSs();
 		}
 	}
 }
