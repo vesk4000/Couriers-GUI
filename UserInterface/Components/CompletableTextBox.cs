@@ -59,15 +59,21 @@ namespace Couriers_GUI.UserInterface.Components
 
 		private Point FindLocation(Control ctrl)
 		{
-			if (ctrl.Parent is Form)
-				return ctrl.Location;
-			else
+			if (ctrl.Parent is not null)
 			{
-				Point p = FindLocation(ctrl.Parent);
-				p.X += ctrl.Location.X;
-				p.Y += ctrl.Location.Y;
-				return p;
+				if (ctrl.Parent is Form)
+					return ctrl.Location;
+				else
+				{
+					Point p = FindLocation(ctrl.Parent);
+					p.X += ctrl.Location.X;
+					p.Y += ctrl.Location.Y;
+					return p;
+				}
 			}
+			else
+				return new Point();
+			
 		}
 
 		private void kryptonTextBox1_Enter(object sender, EventArgs e)
@@ -107,7 +113,15 @@ namespace Couriers_GUI.UserInterface.Components
 			if (kryptonListBox1 is not null)
 				Form.ActiveForm.Controls.Remove(kryptonListBox1);
 			kryptonListBox1 = new Krypton.Toolkit.KryptonListBox();
-			Form.ActiveForm.Controls.Add(kryptonListBox1);
+
+			if (Form.ActiveForm is not null)
+				Form.ActiveForm.Controls.Add(kryptonListBox1);
+
+			Point global_loc = FindLocation(this);//LocationInForm(this);
+			this.kryptonListBox1.Location = new System.Drawing.Point(global_loc.X, global_loc.Y + this.Height);
+			this.kryptonListBox1.Size = new System.Drawing.Size(this.Size.Width, kryptonListBox1.Size.Height);
+			this.kryptonListBox1.BringToFront();
+			this.kryptonListBox1.Invalidate();
 
 			SetListBoxSize();
 

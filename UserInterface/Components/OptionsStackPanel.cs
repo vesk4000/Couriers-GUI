@@ -316,11 +316,11 @@ namespace Couriers_GUI.UserInterface.Components
 					DateTime.Now,
 					"",
 					address.completableTextBox1.Text,
-					type.completableTextBox1.Text,
-					dispatcher.completableTextBox1.Text,
 					client.completableTextBox1.Text,
 					courier.completableTextBox1.Text,
-					recipient.completableTextBox1.Text
+					dispatcher.completableTextBox1.Text,
+					recipient.completableTextBox1.Text,
+					type.completableTextBox1.Text
 				);
 
 				if(options[0] is DatePickerBlock)
