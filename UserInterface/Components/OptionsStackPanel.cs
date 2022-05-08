@@ -139,7 +139,7 @@ namespace Couriers_GUI.UserInterface.Components
 
 					var total = new TextBoxBlock();
 					total.commonLabel1.Text = "Total";
-					total.commonTextBox1.Text = model.Total;
+					total.commonTextBox1.Text = model.Total.Split(" ")[0];
 					AddCenteredControl(total);
 					options.Add(total);
 				}
