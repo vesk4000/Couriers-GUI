@@ -28,6 +28,7 @@ namespace Couriers_GUI.UserInterface.Navigation
 			InitializeComponent();
 			this.darkImage = darkImage;
 			this.lightImage = lightImage;
+			Cursor = System.Windows.Forms.Cursors.Hand;
 			SetStateOff();	
         }
 

@@ -116,13 +116,21 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			// 
 			// kryptonDataGridView1
 			// 
+			this.kryptonDataGridView1.AllowUserToAddRows = false;
+			this.kryptonDataGridView1.AllowUserToDeleteRows = false;
+			this.kryptonDataGridView1.AllowUserToResizeColumns = false;
+			this.kryptonDataGridView1.AllowUserToResizeRows = false;
+			this.kryptonDataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
 			this.kryptonDataGridView1.ColumnHeadersHeight = 36;
 			this.kryptonDataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.kryptonDataGridView1.Location = new System.Drawing.Point(3, 48);
+			this.kryptonDataGridView1.Location = new System.Drawing.Point(10, 55);
+			this.kryptonDataGridView1.Margin = new System.Windows.Forms.Padding(10);
 			this.kryptonDataGridView1.Name = "kryptonDataGridView1";
+			this.kryptonDataGridView1.ReadOnly = true;
 			this.kryptonDataGridView1.RowHeadersWidth = 51;
+			this.kryptonDataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
 			this.kryptonDataGridView1.RowTemplate.Height = 29;
-			this.kryptonDataGridView1.Size = new System.Drawing.Size(727, 452);
+			this.kryptonDataGridView1.Size = new System.Drawing.Size(713, 452);
 			this.kryptonDataGridView1.TabIndex = 1;
 			// 
 			// TableView

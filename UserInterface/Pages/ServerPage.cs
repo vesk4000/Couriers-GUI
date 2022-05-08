@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Couriers_GUI.UserInterface.Components;
 using System.Windows.Forms;
 using Couriers_GUI.Backend.Services.Implementations;
+using System.Drawing;
 
 namespace Couriers_GUI.UserInterface.Pages
 {
@@ -19,7 +20,7 @@ namespace Couriers_GUI.UserInterface.Pages
 		public void Init()
 		{
 			tableLayoutPanel1.Controls.Clear();
-			tableLayoutPanel1.Width = 300;
+			tableLayoutPanel1.Width = 400;
 
 			AddHeader("Database Dashboard");
 
@@ -34,17 +35,23 @@ namespace Couriers_GUI.UserInterface.Pages
 			{
 
 				label.Text = "Online";
+				label.StateCommon.ShortText.Color1 = Color.MediumSpringGreen;
 			}
 			else
 			{
 				label.Text = "Offline";
+				label.StateCommon.ShortText.Color1 = Color.OrangeRed;
 			}
+			//label.StateCommon.ShortText.Font = FontStyle.
+			label.StateCommon.ShortText.Font = new Font(label.StateCommon.ShortText.Font.Name, label.StateCommon.ShortText.Font.Size, FontStyle.Bold);
+			label.StateCommon.ShortText.Color2 = label.StateCommon.ShortText.Color1;
 			AddControl(label);
 
 			var button = new CommonButton();
 			button.Anchor = AnchorStyles.Right;
-			button.Text = "(Re)Connect";
+			button.Text = "(Re)Connect to Server";
 			button.Click += new EventHandler((sender, e) => { InterfaceSingleton.InvalidateTableViews(); Init(); });
+			button.AutoSize = true;
 			AddControl(button);
 
 			label = new CommonLabel();
@@ -57,11 +64,15 @@ namespace Couriers_GUI.UserInterface.Pages
 			if(DBService.ExistsDatabase())
 			{
 				label.Text = "Exists";
+				label.StateCommon.ShortText.Color1 = Color.MediumSpringGreen;
 			}
 			else
 			{
 				label.Text = "Doesn't Exist";
+				label.StateCommon.ShortText.Color1 = Color.OrangeRed;
 			}
+			label.StateCommon.ShortText.Color2 = label.StateCommon.ShortText.Color1;
+			label.StateCommon.ShortText.Font = new Font(label.StateCommon.ShortText.Font.Name, label.StateCommon.ShortText.Font.Size, FontStyle.Bold);
 			AddControl(label);
 
 			label = new CommonLabel();
@@ -74,11 +85,15 @@ namespace Couriers_GUI.UserInterface.Pages
 			if(DBService.ExistTables())
 			{
 				label.Text = "Correct";
+				label.StateCommon.ShortText.Color1 = Color.MediumSpringGreen;
 			}
 			else
 			{
 				label.Text = "Incorrect";
+				label.StateCommon.ShortText.Color1 = Color.OrangeRed;
 			}
+			label.StateCommon.ShortText.Color2 = label.StateCommon.ShortText.Color1;
+			label.StateCommon.ShortText.Font = new Font(label.StateCommon.ShortText.Font.Name, label.StateCommon.ShortText.Font.Size, FontStyle.Bold);
 			AddControl(label);
 
 
@@ -86,6 +101,7 @@ namespace Couriers_GUI.UserInterface.Pages
 			button.Anchor = AnchorStyles.Right;
 			button.Text = "(Re)Create Database";
 			button.Click += new EventHandler((sender, e) => { DBService.CreateDB(); DBService.CreateAllUSPs(); InterfaceSingleton.InvalidateTableViews(); Init(); });
+			button.AutoSize = true;
 			AddControl(button);
 			
 			label = new CommonLabel();
@@ -96,12 +112,14 @@ namespace Couriers_GUI.UserInterface.Pages
 			label = new CommonLabel();
 			label.Anchor = AnchorStyles.Right;
 			label.Text = $"{DBService.RowsCount()}";
+			AddControl(label);
 
 			
 			button = new CommonButton();
 			button.Anchor = AnchorStyles.Right;
 			button.Text = "Populate Database";
 			button.Click += new EventHandler((sender, e) => { DBService.PopulateDB(); InterfaceSingleton.InvalidateTableViews(); Init(); });
+			button.AutoSize = true;
 			AddControl(button);
 		}
 	}

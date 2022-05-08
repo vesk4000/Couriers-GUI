@@ -11,7 +11,7 @@ namespace Couriers_GUI.UserInterface.Components
 		public CommonLabel()
         {
 			StateCommon.ShortText.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			StateCommon.ShortText.Color1 = System.Drawing.Color.FromArgb(255, 90, 90, 90);
+			StateCommon.ShortText.Color1 = InterfaceSingleton.DARK_FOREGROUND;
 			StateCommon.ShortText.Color2 = StateCommon.ShortText.Color1;
         }
 	}
