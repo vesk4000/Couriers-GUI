@@ -43,12 +43,12 @@ namespace Couriers_GUI.Backend.Services.Implementations
 						  OrderDate = o.OrderDate,
 						  ReceiveDate = o.ReceiveDate,
 						  Total = o.Total.ToString("N2") + " лв.",
-						  Address = $"{o.Address.Id, -3} | {o.Address.AddressText, -15}",
+						  Address = $"{o.Address.Id, -3} | {o.Address.AddressText}",
 						  Client = $"{o.Client.Id, -3} | {o.Client.Name, -15} | {o.Client.PhoneNumber}",
 						  Courier = $"{o.Courier.Id, -3} | {o.Courier.Name, -15} | {o.Courier.PhoneNumber}",
 						  Dispatcher = $"{o.Dispatcher.Id, -3} | {o.Dispatcher.Name, -15} | {o.Dispatcher.PhoneNumber}",
-						  Recipient = $"{o.Recipient.Id, -3} | {o.Recipient.Name, -15}",
-						  Type = $"{o.Type.Id, -3} | {o.Type.Type, -15}"
+						  Recipient = $"{o.Recipient.Id, -3} | {o.Recipient.Name}",
+						  Type = $"{o.Type.Id, -3} | {o.Type.Type}"
 					  })
 					  .ToList();
 		}
@@ -69,12 +69,12 @@ namespace Couriers_GUI.Backend.Services.Implementations
 						  o.Id + " " + 
 						  o.OrderDate + " " +
 						  o.ReceiveDate + " " +
-						  o.Total.ToString("N2") + " лв." + " " +
-						  $"{o.Address.Id,-3} | {o.Address.AddressText,-15}" + " " +
-						  $"{o.Client.Id,-3} | {o.Client.Name,-15} | {o.Client.PhoneNumber}" + " " +
-						  $"{o.Courier.Id,-3} | {o.Courier.Name,-15} | {o.Courier.PhoneNumber}" + " " +
-						  $"{o.Dispatcher.Id,-3} | {o.Dispatcher.Name,-15} | {o.Dispatcher.PhoneNumber}" + " " +
-						  $"{o.Recipient.Id,-3} | {o.Recipient.Name,-15}" + " " +
+						  o.Total.ToString("N2") + " лв." + " || " +
+						  $"{o.Address.Id,-3} | {o.Address.AddressText,-15}" + " || " +
+						  $"{o.Client.Id,-3} | {o.Client.Name,-15} | {o.Client.PhoneNumber}" + " || " +
+						  $"{o.Courier.Id,-3} | {o.Courier.Name,-15} | {o.Courier.PhoneNumber}" + " || " +
+						  $"{o.Dispatcher.Id,-3} | {o.Dispatcher.Name,-15} | {o.Dispatcher.PhoneNumber}" + " || " +
+						  $"{o.Recipient.Id,-3} | {o.Recipient.Name,-15}" + " || " +
 						  $"{o.Type.Id,-3} | {o.Type.Type,-15}")
 					  .ToList();
 		}
