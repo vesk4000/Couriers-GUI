@@ -41,6 +41,12 @@ namespace Couriers_GUI.UserInterface.Pages
 			}
 			AddControl(label);
 
+			var button = new CommonButton();
+			button.Anchor = AnchorStyles.Right;
+			button.Text = "(Re)Connect";
+			button.Click += new EventHandler((sender, e) => { InterfaceSingleton.InvalidateTableViews(); Init(); });
+			AddControl(button);
+
 			label = new CommonLabel();
 			label.Anchor = AnchorStyles.Left;
 			label.Text = "Database...";
@@ -76,7 +82,7 @@ namespace Couriers_GUI.UserInterface.Pages
 			AddControl(label);
 
 
-			var button = new CommonButton();
+			button = new CommonButton();
 			button.Anchor = AnchorStyles.Right;
 			button.Text = "(Re)Create Database";
 			button.Click += new EventHandler((sender, e) => { DBService.CreateDB(); DBService.CreateUSPs(); InterfaceSingleton.InvalidateTableViews(); Init(); });
