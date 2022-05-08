@@ -63,11 +63,7 @@ namespace Couriers_GUI.UserInterface.Components
 			kryptonListBox1 = new Krypton.Toolkit.KryptonListBox();
 			Form.ActiveForm.Controls.Add(kryptonListBox1);
 
-			Point global_loc = FindLocation(this);//LocationInForm(this);
-			this.kryptonListBox1.Location = new System.Drawing.Point(global_loc.X, global_loc.Y + this.Height);
-			this.kryptonListBox1.Size = new System.Drawing.Size(this.Size.Width, kryptonListBox1.Size.Height);
-			this.kryptonListBox1.BringToFront();
-			this.kryptonListBox1.Invalidate();
+
 
 			SetListBoxSize();
 

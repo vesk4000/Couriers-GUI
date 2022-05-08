@@ -39,7 +39,7 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 
 			},
 			tableView,
-			tableService is OrderService ? new OrderDetailsServiceModel((tableService as OrderService).GetById(id).ToList()[0].OrderDate, (tableService as OrderService).GetById(id).ToList()[0].ReceiveDate, (tableService as OrderService).GetById(id).ToList()[0].Total, (tableService as OrderService).GetById(id).ToList()[0].Address, (tableService as OrderService).GetById(id).ToList()[0].Client, (tableService as OrderService).GetById(id).ToList()[0].Courier,(tableService as OrderService).GetById(id).ToList()[0].Dispatcher, (tableService as OrderService).GetById(id).ToList()[0].Recipient, (tableService as OrderService).GetById(id).ToList()[0].Recipient) :
+			tableService is OrderService ? new OrderDetailsServiceModel((tableService as OrderService).GetById(id).ToList()[0].OrderDate, (tableService as OrderService).GetById(id).ToList()[0].ReceiveDate, (tableService as OrderService).GetById(id).ToList()[0].Total, (tableService as OrderService).GetById(id).ToList()[0].Address, (tableService as OrderService).GetById(id).ToList()[0].Client, (tableService as OrderService).GetById(id).ToList()[0].Courier,(tableService as OrderService).GetById(id).ToList()[0].Dispatcher, (tableService as OrderService).GetById(id).ToList()[0].Recipient, (tableService as OrderService).GetById(id).ToList()[0].Type) :
 			tableService is CourierService ? new CourierServiceModel((tableService as CourierService).GetById(id).ToList()[0].Name, (tableService as CourierService).GetById(id).ToList()[0].PhoneNumber) :
 			null
 		)
