@@ -32,7 +32,31 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 					CourierService service = tableService as CourierService;
 					service.Remove(id);
 				}
-
+				else if (tableService is AddressService)
+				{
+					AddressService service = tableService as AddressService;
+					service.Remove(id);
+				}
+				else if (tableService is ClientService)
+				{
+					ClientService service = tableService as ClientService;
+					service.Remove(id);
+				}
+				else if (tableService is DispatcherService)
+				{
+					DispatcherService service = tableService as DispatcherService;
+					service.Remove(id);
+				}
+				else if (tableService is RecipientService)
+				{
+					RecipientService service = tableService as RecipientService;
+					service.Remove(id);
+				}
+				else if (tableService is TOSService)
+				{
+					TOSService service = tableService as TOSService;
+					service.Remove(id);
+				}
 			},
 			tableView,
 			null,

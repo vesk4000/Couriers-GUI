@@ -207,6 +207,88 @@ namespace Couriers_GUI.UserInterface.Components
 				AddCenteredControl(phone);
 				options.Add(phone);
 			}
+			else if (tableService is AddressService)
+			{
+				AddressServiceModel addressServiceModel;
+				if (serviceModel is null)
+					addressServiceModel = new AddressServiceModel("");
+				else
+					addressServiceModel = serviceModel as AddressServiceModel;
+
+				var address = new TextBoxBlock();
+				address.commonLabel1.Text = "Name";
+				address.commonTextBox1.Text = addressServiceModel.AddressText;
+				AddCenteredControl(address);
+				options.Add(address);
+			}
+			else if (tableService is ClientService)
+			{
+				ClientServiceModel clientServiceModel;
+				if (serviceModel is null)
+					clientServiceModel = new ClientServiceModel("", "");
+				else
+					clientServiceModel = serviceModel as ClientServiceModel;
+
+				var name = new TextBoxBlock();
+				name.commonLabel1.Text = "Name";
+				name.commonTextBox1.Text = clientServiceModel.Name;
+				AddCenteredControl(name);
+				options.Add(name);
+
+				var phone = new TextBoxBlock();
+				phone.commonLabel1.Text = "Phone";
+				phone.commonTextBox1.Text = clientServiceModel.PhoneNumber;
+				AddCenteredControl(phone);
+				options.Add(phone);
+			}
+			else if (tableService is DispatcherService)
+			{
+				DispatcherServiceModel dispatcherServiceModel;
+				if (serviceModel is null)
+					dispatcherServiceModel = new DispatcherServiceModel("", "");
+				else
+					dispatcherServiceModel = serviceModel as DispatcherServiceModel;
+
+				var name = new TextBoxBlock();
+				name.commonLabel1.Text = "Name";
+				name.commonTextBox1.Text = dispatcherServiceModel.Name;
+				AddCenteredControl(name);
+				options.Add(name);
+
+				var phone = new TextBoxBlock();
+				phone.commonLabel1.Text = "Phone";
+				phone.commonTextBox1.Text = dispatcherServiceModel.PhoneNumber;
+				AddCenteredControl(phone);
+				options.Add(phone);
+			}
+			else if (tableService is RecipientService)
+			{
+				RecipientServiceModel recipientServiceModel;
+				if (serviceModel is null)
+					recipientServiceModel = new RecipientServiceModel("");
+				else
+					recipientServiceModel = serviceModel as RecipientServiceModel;
+
+				var name = new TextBoxBlock();
+				name.commonLabel1.Text = "Name";
+				name.commonTextBox1.Text = recipientServiceModel.Name;
+				AddCenteredControl(name);
+				options.Add(name);
+			}
+			else if (tableService is TOSService)
+			{
+				TypesOfServiceServiceModel tosServiceModel;
+				if (serviceModel is null)
+					tosServiceModel = new TypesOfServiceServiceModel("");
+				else
+					tosServiceModel = serviceModel as TypesOfServiceServiceModel;
+
+				var type = new TextBoxBlock();
+				type.commonLabel1.Text = "Name";
+				type.commonTextBox1.Text = tosServiceModel.Type;
+				AddCenteredControl(type);
+				options.Add(type);
+			}
 		}
 
 
@@ -280,7 +362,33 @@ namespace Couriers_GUI.UserInterface.Components
 				var phone = options[1] as TextBoxBlock;
 				return new CourierServiceModel(name.commonTextBox1.Text, phone.commonTextBox1.Text);
 			}
-
+			else if (tableService is AddressService)
+			{
+				var address = options[0] as TextBoxBlock;
+				return new AddressServiceModel(address.commonTextBox1.Text);
+			}
+			else if (tableService is ClientService)
+			{
+				var name = options[0] as TextBoxBlock;
+				var phone = options[1] as TextBoxBlock;
+				return new ClientServiceModel(name.commonTextBox1.Text, phone.commonTextBox1.Text);
+			}
+			else if (tableService is DispatcherService)
+			{
+				var name = options[0] as TextBoxBlock;
+				var phone = options[1] as TextBoxBlock;
+				return new DispatcherServiceModel(name.commonTextBox1.Text, phone.commonTextBox1.Text);
+			}
+			else if (tableService is RecipientService)
+			{
+				var name = options[0] as TextBoxBlock;
+				return new RecipientServiceModel(name.commonTextBox1.Text);
+			}
+			else if (tableService is TOSService)
+			{
+				var type = options[0] as TextBoxBlock;
+				return new TypesOfServiceServiceModel(type.commonTextBox1.Text);
+			}
 			return ans;
 		}
 
@@ -308,6 +416,26 @@ namespace Couriers_GUI.UserInterface.Components
 			if(tableService is CourierService)
 			{
 				return (tableService as CourierService).Validate(GetOptions() as CourierServiceModel);
+			}
+			if (tableService is AddressService)
+			{
+				return (tableService as AddressService).Validate(GetOptions() as AddressServiceModel);
+			}
+			if (tableService is ClientService)
+			{
+				return (tableService as ClientService).Validate(GetOptions() as ClientServiceModel);
+			}
+			if (tableService is DispatcherService)
+			{
+				return (tableService as DispatcherService).Validate(GetOptions() as DispatcherServiceModel);
+			}
+			if (tableService is RecipientService)
+			{
+				return (tableService as RecipientService).Validate(GetOptions() as RecipientServiceModel);
+			}
+			if (tableService is TOSService)
+			{
+				return (tableService as TOSService).Validate(GetOptions() as TypesOfServiceServiceModel);
 			}
 			return false;
 		}

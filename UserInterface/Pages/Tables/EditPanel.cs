@@ -36,11 +36,55 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 					model.Id = id;
 					service.Edit(model);
 				}
+				else if (tableService is AddressService)
+				{
+					AddressService service = tableService as AddressService;
+					AddressServiceModel model = panel.GetOptions() as AddressServiceModel;
+					model.Id = id;
+					service.Edit(model);
+				}
+				else if (tableService is ClientService)
+				{
+					ClientService service = tableService as ClientService;
+					ClientServiceModel model = panel.GetOptions() as ClientServiceModel;
+					model.Id = id;
+					service.Edit(model);
+				}
+				else if (tableService is DispatcherService)
+				{
+					DispatcherService service = tableService as DispatcherService;
+					DispatcherServiceModel model = panel.GetOptions() as DispatcherServiceModel;
+					model.Id = id;
+					service.Edit(model);
+				}
+				else if (tableService is RecipientService)
+				{
+					RecipientService service = tableService as RecipientService;
+					RecipientServiceModel model = panel.GetOptions() as RecipientServiceModel;
+					model.Id = id;
+					service.Edit(model);
+				}
+				else if (tableService is TOSService)
+				{
+					TOSService service = tableService as TOSService;
+					TypesOfServiceServiceModel model = panel.GetOptions() as TypesOfServiceServiceModel;
+					model.Id = id;
+					service.Edit(model);
+				}
 
 			},
 			tableView,
 			tableService is OrderService ? new OrderDetailsServiceModel((tableService as OrderService).GetById(id).ToList()[0].OrderDate, (tableService as OrderService).GetById(id).ToList()[0].ReceiveDate, (tableService as OrderService).GetById(id).ToList()[0].Total, (tableService as OrderService).GetById(id).ToList()[0].Address, (tableService as OrderService).GetById(id).ToList()[0].Client, (tableService as OrderService).GetById(id).ToList()[0].Courier,(tableService as OrderService).GetById(id).ToList()[0].Dispatcher, (tableService as OrderService).GetById(id).ToList()[0].Recipient, (tableService as OrderService).GetById(id).ToList()[0].Type) :
 			tableService is CourierService ? new CourierServiceModel((tableService as CourierService).GetById(id).ToList()[0].Name, (tableService as CourierService).GetById(id).ToList()[0].PhoneNumber) :
+			tableService is AddressService ? new AddressServiceModel((tableService as AddressService).GetById(id).ToList()[0].AddressText) :
+			tableService is ClientService ? new ClientServiceModel((tableService as ClientService).GetById(id).ToList()[0].Name, (tableService as ClientService).GetById(id).ToList()[0].PhoneNumber) :
+			tableService is DispatcherService ? new DispatcherServiceModel((tableService as DispatcherService).GetById(id).ToList()[0].Name, (tableService as DispatcherService).GetById(id).ToList()[0].PhoneNumber) :
+			tableService is RecipientService ? new RecipientServiceModel((tableService as RecipientService).GetById(id).ToList()[0].Name) :
+			tableService is TOSService ? new TypesOfServiceServiceModel((tableService as TOSService).GetById(id).ToList()[0].Type) :
+
+
+
+
 			null
 		)
 		{ }

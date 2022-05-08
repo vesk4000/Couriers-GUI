@@ -31,6 +31,36 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 					CourierServiceModel model = panel.GetOptions() as CourierServiceModel;
 					service.Create(model);
 				}
+				else if (tableService is AddressService)
+				{
+					AddressService service = tableService as AddressService;
+					AddressServiceModel model = panel.GetOptions() as AddressServiceModel;
+					service.Create(model);
+				}
+				else if (tableService is ClientService)
+				{
+					ClientService service = tableService as ClientService;
+					ClientServiceModel model = panel.GetOptions() as ClientServiceModel;
+					service.Create(model);
+				}
+				else if (tableService is DispatcherService)
+				{
+					DispatcherService service = tableService as DispatcherService;
+					DispatcherServiceModel model = panel.GetOptions() as DispatcherServiceModel;
+					service.Create(model);
+				}
+				else if (tableService is RecipientService)
+				{
+					RecipientService service = tableService as RecipientService;
+					RecipientServiceModel model = panel.GetOptions() as RecipientServiceModel;
+					service.Create(model);
+				}
+				else if (tableService is TOSService)
+				{
+					TOSService service = tableService as TOSService;
+					TypesOfServiceServiceModel model = panel.GetOptions() as TypesOfServiceServiceModel;
+					service.Create(model);
+				}
 
 			}, 
 			tableView

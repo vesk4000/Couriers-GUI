@@ -93,25 +93,70 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 						beforeFilter = service.All().Count();
 					}
 				}
-				else if(tableService is AddressService)
+				else if (tableService is AddressService)
 				{
-					kryptonDataGridView1.DataSource = (tableService as AddressService).All();
+					var service = tableService as AddressService;
+					if (filterModel is null)
+						kryptonDataGridView1.DataSource = service.All();
+					else
+					{
+						var model = filterModel as AddressServiceModel;
+						kryptonDataGridView1.DataSource = service.Filter(model.AddressText).ToList();
+						afterFilter = service.Filter(model.AddressText).Count();
+						beforeFilter = service.All().Count();
+					}
 				}
-				else if(tableService is ClientService)
+				else if (tableService is ClientService)
 				{
-					kryptonDataGridView1.DataSource = (tableService as ClientService).All();
+					var service = tableService as ClientService;
+					if (filterModel is null)
+						kryptonDataGridView1.DataSource = service.All();
+					else
+					{
+						var model = filterModel as ClientServiceModel;
+						kryptonDataGridView1.DataSource = service.Filter(model.Name, model.PhoneNumber).ToList();
+						afterFilter = service.Filter(model.Name, model.PhoneNumber).Count();
+						beforeFilter = service.All().Count();
+					}
 				}
 				else if (tableService is DispatcherService)
 				{
-					kryptonDataGridView1.DataSource = (tableService as DispatcherService).All();
+					var service = tableService as DispatcherService;
+					if (filterModel is null)
+						kryptonDataGridView1.DataSource = service.All();
+					else
+					{
+						var model = filterModel as DispatcherServiceModel;
+						kryptonDataGridView1.DataSource = service.Filter(model.Name, model.PhoneNumber).ToList();
+						afterFilter = service.Filter(model.Name, model.PhoneNumber).Count();
+						beforeFilter = service.All().Count();
+					}
 				}
 				else if (tableService is RecipientService)
 				{
-					kryptonDataGridView1.DataSource = (tableService as RecipientService).All();
+					var service = tableService as RecipientService;
+					if (filterModel is null)
+						kryptonDataGridView1.DataSource = service.All();
+					else
+					{
+						var model = filterModel as RecipientServiceModel;
+						kryptonDataGridView1.DataSource = service.Filter(model.Name).ToList();
+						afterFilter = service.Filter(model.Name).Count();
+						beforeFilter = service.All().Count();
+					}
 				}
 				else if (tableService is TOSService)
 				{
-					kryptonDataGridView1.DataSource = (tableService as TOSService).All();
+					var service = tableService as TOSService;
+					if (filterModel is null)
+						kryptonDataGridView1.DataSource = service.All();
+					else
+					{
+						var model = filterModel as TypesOfServiceServiceModel;
+						kryptonDataGridView1.DataSource = service.Filter(model.Type).ToList();
+						afterFilter = service.Filter(model.Type).Count();
+						beforeFilter = service.All().Count();
+					}
 				}
 				if (afterFilter == beforeFilter)
 					commonButton4.Text = "Filter";
