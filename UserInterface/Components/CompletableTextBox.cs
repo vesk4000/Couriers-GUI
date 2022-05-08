@@ -18,6 +18,8 @@ namespace Couriers_GUI.UserInterface.Components
 			this.CursorChanged += new System.EventHandler(kryptonTextBox1_CursorChanged);
 			this.Enter += new System.EventHandler(kryptonTextBox1_Enter);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.completableTextBox1_KeyDown);
+			//	this.Move += new EventHandler(this.RelocateListBox);
+			BuildChain();
 
 			//
 			dataSource.Add("qwert");
@@ -30,6 +32,19 @@ namespace Couriers_GUI.UserInterface.Components
 			//
 
 
+		}
+
+		private void RelocateListBox(object sender = null, EventArgs e = null)
+		{
+			if(kryptonListBox1 is not null && kryptonListBox1.Visible == true)
+			{
+				Point global_loc = FindLocation(this);//LocationInForm(this);
+				this.kryptonListBox1.Location = new System.Drawing.Point(global_loc.X, global_loc.Y + this.Height);
+				this.kryptonListBox1.Size = new System.Drawing.Size(this.Size.Width, kryptonListBox1.Size.Height);
+				this.kryptonListBox1.BringToFront();
+				this.kryptonListBox1.Invalidate();
+
+			}
 		}
 
 		private void completableTextBox1_KeyDown(object sender, KeyEventArgs e)
@@ -63,11 +78,7 @@ namespace Couriers_GUI.UserInterface.Components
 			kryptonListBox1 = new Krypton.Toolkit.KryptonListBox();
 			Form.ActiveForm.Controls.Add(kryptonListBox1);
 
-			Point global_loc = FindLocation(this);//LocationInForm(this);
-			this.kryptonListBox1.Location = new System.Drawing.Point(global_loc.X, global_loc.Y + this.Height);
-			this.kryptonListBox1.Size = new System.Drawing.Size(this.Size.Width, kryptonListBox1.Size.Height);
-			this.kryptonListBox1.BringToFront();
-			this.kryptonListBox1.Invalidate();
+			RelocateListBox();
 
 			SetListBoxSize();
 
