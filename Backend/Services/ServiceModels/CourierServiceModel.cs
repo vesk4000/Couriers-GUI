@@ -22,5 +22,10 @@
 		public string Name { get; set; }
 		
 		public string PhoneNumber { get; set; }
+
+		public override string ToString()
+		{
+			return $"{Id,-3} | {Name,-15} | {PhoneNumber}";
+		}
 	}
 }

@@ -243,6 +243,38 @@ namespace Couriers_GUI.Backend.Services.Implementations
 					.ToList();
 		}
 
+		public List<OrderDetailsServiceModel> Filter(OrderFilterServiceModel filterModel)
+		{
+			List<OrderDetailsServiceModel> ans = All().ToList();
+
+			ans = ans.Where(o => o.OrderDate >= filterModel.OrderDateFrom && o.OrderDate <= filterModel.OrderDateTo).ToList();
+			ans = ans.Where(o => o.ReceiveDate >= filterModel.ReceiveDateFrom && o.ReceiveDate <= filterModel.ReceiveDateTo).ToList();
+			int a = 0;
+			float f = 0;
+			if(int.TryParse(filterModel.TotalFrom, out a) && int.TryParse(filterModel.TotalTo, out a))
+				ans = ans.Where(o => float.TryParse(o.Total.Split()[0], out f) && float.Parse(o.Total.Split()[0]) >= int.Parse(filterModel.TotalFrom) && float.Parse(o.Total.Split()[0]) <= int.Parse(filterModel.TotalTo)).ToList();
+
+			var addresses = new AddressService().GetByContainingText(filterModel.Address);
+			ans = ans.Where(o => addresses.Any(a => o.Address == a.ToString())).ToList();
+
+			var clients = new ClientService().GetByContainingText(filterModel.Client);
+			ans = ans.Where(o => clients.Any(c => o.Client == c.ToString())).ToList();
+
+			var couriers = new CourierService().GetByContainingText(filterModel.Courier);
+			ans = ans.Where(o => couriers.Any(c => o.Courier == c.ToString())).ToList();
+
+			var dispatchers = new DispatcherService().GetByContainingText(filterModel.Dispatcher);
+			ans = ans.Where(o => dispatchers.Any(d => o.Dispatcher == d.ToString())).ToList();
+
+			var recipients = new RecipientService().GetByContainingText(filterModel.Recipient);
+			ans = ans.Where(o => recipients.Any(r => o.Recipient == r.ToString())).ToList();
+
+			var types = new TOSService().GetByContainingText(filterModel.Type);
+			ans = ans.Where(o => types.Any(t => o.Type == t.ToString())).ToList();
+
+			return ans;
+		}
+
 		public void Remove(int id)
 			=> data.Database.ExecuteSqlRaw("EXEC dbo.delete_orders {0}", id);
 	}

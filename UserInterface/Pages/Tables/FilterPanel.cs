@@ -21,21 +21,7 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			"Save",
 			(OptionsStackPanel panel) =>
 			{
-				//if (tableService is OrderService)
-				//{
-				//	OrderService orderService = tableService as OrderService;
-				//	OrderDetailsServiceModel model = panel.GetOptions() as OrderDetailsServiceModel;
-				//	orderService.Create(model);
-				//	//orderService.Create(new OrderDetailsServiceModel(model.OrderDate, model.ReceiveDate, model.Total, model.Address, model.Client, model.Courier, model.Dispatcher, model.Recipient, model.Type));
-				//}
-				//else if (tableService is CourierService)
-				//{
-				//	CourierService service = tableService as CourierService;
-				//	CourierServiceModel model = panel.GetOptions() as CourierServiceModel;
-				//	tableView.filterModel = model;
-				//}
 				tableView.filterModel = panel.GetOptions();
-
 			},
 			tableView,
 			tableView.filterModel,

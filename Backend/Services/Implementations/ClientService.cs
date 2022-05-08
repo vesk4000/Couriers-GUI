@@ -38,12 +38,12 @@ namespace Couriers_GUI.Backend.Services.Implementations
 		public IEnumerable<string> AllString()
 			=> this.data
 				.Clients
-				.Select(c => $"{c.Id,-3} | {c.Name,-15} | {c.PhoneNumber}")
+				.Select(c => c.ToString())
 				.ToList();
 
 		public IEnumerable<ClientServiceModel> GetByContainingText(string containText)
 			=> All()
-				.Where(c => (c.Id + " " + c.Name + " " + c.PhoneNumber).Contains(containText))
+				.Where(c => c.ToString().Contains(containText))
 				.ToList();
 
 		public IEnumerable<string> GetByContainingTextString(string containText)
