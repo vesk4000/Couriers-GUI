@@ -85,7 +85,7 @@ namespace Couriers_GUI.UserInterface.Pages
 			button = new CommonButton();
 			button.Anchor = AnchorStyles.Right;
 			button.Text = "(Re)Create Database";
-			button.Click += new EventHandler((sender, e) => { DBService.CreateDB(); DBService.CreateUSPs(); InterfaceSingleton.InvalidateTableViews(); Init(); });
+			button.Click += new EventHandler((sender, e) => { DBService.CreateDB(); DBService.CreateAllUSPs(); InterfaceSingleton.InvalidateTableViews(); Init(); });
 			AddControl(button);
 			
 			label = new CommonLabel();

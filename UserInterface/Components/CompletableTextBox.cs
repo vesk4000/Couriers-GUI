@@ -94,6 +94,11 @@ namespace Couriers_GUI.UserInterface.Components
 		{
 			activeDataSource = dataSource.Where(s => s.Contains(this.Text)).ToList();
 
+			if (kryptonListBox1 is not null)
+				Form.ActiveForm.Controls.Remove(kryptonListBox1);
+			kryptonListBox1 = new Krypton.Toolkit.KryptonListBox();
+			Form.ActiveForm.Controls.Add(kryptonListBox1);
+
 			SetListBoxSize();
 
 

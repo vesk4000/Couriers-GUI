@@ -27,7 +27,7 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 					OrderService service = tableService as OrderService;
 					OrderDetailsServiceModel model = panel.GetOptions() as OrderDetailsServiceModel;
 					model.Id = id;
-					service.Create(model);
+					service.Edit(model);
 				}
 				else if (tableService is CourierService)
 				{

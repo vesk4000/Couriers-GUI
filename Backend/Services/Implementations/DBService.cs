@@ -84,7 +84,7 @@ namespace Couriers_GUI.Backend.Services.Implementations
 		public static void DeleteUSPs()
 			=> ExecuteScript(CouriersDBScripts.deleteUSPsScript);
 
-		public static void CreateAllUPSs()
+		public static void CreateAllUSPs()
         {
 			CreateUSPs();
 			ReadUSPs();
