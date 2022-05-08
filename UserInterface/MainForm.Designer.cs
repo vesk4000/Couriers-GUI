@@ -31,24 +31,26 @@ namespace Couriers_GUI.UserInterface
 		{
 			this.navigationPanel1 = new Couriers_GUI.UserInterface.Navigation.NavigationPanel();
 			this.SuspendLayout();
-
 			// 
 			// navigationPanel1
 			// 
 			this.navigationPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.navigationPanel1.Location = new System.Drawing.Point(0, 0);
 			this.navigationPanel1.Name = "navigationPanel1";
-			this.navigationPanel1.Size = new System.Drawing.Size(693, 427);
+			this.navigationPanel1.Size = new System.Drawing.Size(897, 563);
 			this.navigationPanel1.TabIndex = 0;
 			// 
 			// MainForm
 			// 
-			this.components = new System.ComponentModel.Container();
+			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
-			this.Text = "MainForm";
+			this.ClientSize = new System.Drawing.Size(897, 563);
 			this.Controls.Add(this.navigationPanel1);
+			this.MinimumSize = new System.Drawing.Size(915, 610);
+			this.Name = "MainForm";
+			this.Text = "MainForm";
 			this.ResumeLayout(false);
+
 		}
 
 		#endregion

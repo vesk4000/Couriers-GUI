@@ -68,7 +68,7 @@
 			// 
 			// commonButton2
 			// 
-			this.commonButton2.Location = new System.Drawing.Point(285, 3);
+			this.commonButton2.Location = new System.Drawing.Point(235, 3);
 			this.commonButton2.Name = "commonButton2";
 			this.commonButton2.Size = new System.Drawing.Size(112, 31);
 			this.commonButton2.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
@@ -107,7 +107,7 @@
 			this.Controls.Add(this.commonButton2);
 			this.Controls.Add(this.commonButton1);
 			this.Name = "DualButtonBlock";
-			this.Size = new System.Drawing.Size(400, 37);
+			this.Size = new System.Drawing.Size(350, 100);
 			this.ResumeLayout(false);
 
 		}

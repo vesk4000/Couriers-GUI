@@ -17,7 +17,7 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			TableView tableView,
 			int id
 		) : base(
-			"Are you sure you want to delete this entry",
+			"Are you sure you want to delete this entry?",
 			tableService,
 			"Delete",
 			(OptionsStackPanel panel) =>

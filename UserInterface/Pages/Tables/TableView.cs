@@ -22,6 +22,35 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			InitializeComponent();
 			BackColor = InterfaceSingleton.LIGHT_BACKGROUND;
 			InterfaceSingleton.tableViews.Add(this);
+
+			kryptonDataGridView1.StateCommon.Background.Color1 = InterfaceSingleton.DIM_BACKGROUND;
+			kryptonDataGridView1.StateCommon.Background.Color2 = kryptonDataGridView1.StateCommon.Background.Color1;
+			kryptonDataGridView1.StateCommon.DataCell.Back.Color1 = InterfaceSingleton.DIM_BACKGROUND;
+			kryptonDataGridView1.StateCommon.DataCell.Back.Color2 = kryptonDataGridView1.StateCommon.DataCell.Back.Color1;
+			kryptonDataGridView1.StateCommon.DataCell.Border.Color1 = InterfaceSingleton.DIM_GREY_BORDER;
+			kryptonDataGridView1.StateCommon.DataCell.Border.Color2 = kryptonDataGridView1.StateCommon.DataCell.Border.Color1;
+			kryptonDataGridView1.StateCommon.DataCell.Border.Width = 2;
+			kryptonDataGridView1.StateCommon.HeaderColumn.Back.Color1 = InterfaceSingleton.LIGHT_BACKGROUND;
+			kryptonDataGridView1.StateCommon.HeaderColumn.Back.Color2 = kryptonDataGridView1.StateCommon.HeaderColumn.Back.Color1;
+			kryptonDataGridView1.StateCommon.HeaderColumn.Border.Color1 = InterfaceSingleton.LIGHT_FOREGROUND;
+			kryptonDataGridView1.StateCommon.HeaderColumn.Border.Color2 = kryptonDataGridView1.StateCommon.HeaderColumn.Border.Color1;
+			kryptonDataGridView1.StateCommon.HeaderColumn.Border.Width = 2;
+			kryptonDataGridView1.StateCommon.HeaderRow.Back.Color1 = InterfaceSingleton.DIM_BACKGROUND;
+			kryptonDataGridView1.StateCommon.HeaderRow.Back.Color2 = kryptonDataGridView1.StateCommon.HeaderRow.Back.Color1;
+			kryptonDataGridView1.StateCommon.HeaderRow.Border.Color1 = InterfaceSingleton.DIM_GREY_BORDER;
+			kryptonDataGridView1.StateCommon.HeaderRow.Border.Color2 = kryptonDataGridView1.StateCommon.HeaderRow.Border.Color1;
+			kryptonDataGridView1.StateCommon.HeaderRow.Border.Width = 2;
+			kryptonDataGridView1.StateCommon.DataCell.Content.Color1 = InterfaceSingleton.LIGHT_FOREGROUND;
+			kryptonDataGridView1.StateCommon.DataCell.Content.Color2 = kryptonDataGridView1.StateCommon.DataCell.Content.Color1;
+
+			kryptonDataGridView1.StateSelected.DataCell.Back.Color1 = InterfaceSingleton.LIGHT_BACKGROUND;
+			kryptonDataGridView1.StateSelected.DataCell.Back.Color2 = kryptonDataGridView1.StateSelected.DataCell.Back.Color1;
+			//kryptonDataGridView1.StateSelected.DataCell.Border.Color1 = InterfaceSingleton.LIGHT_FOREGROUND;
+			//kryptonDataGridView1.StateSelected.DataCell.Border.Color2 = kryptonDataGridView1.StateSelected.DataCell.Border.Color2;
+			kryptonDataGridView1.StateSelected.HeaderRow.Back.Color1 = InterfaceSingleton.LIGHT_BACKGROUND;
+			kryptonDataGridView1.StateSelected.HeaderRow.Back.Color2 = kryptonDataGridView1.StateSelected.HeaderRow.Back.Color1;
+			kryptonDataGridView1.StateSelected.DataCell.Content.Color1 = InterfaceSingleton.DARK_FOREGROUND;
+			kryptonDataGridView1.StateSelected.DataCell.Content.Color2 = kryptonDataGridView1.StateSelected.DataCell.Content.Color1;
 		}
 
 		public void InitDataGridView()
@@ -49,7 +78,8 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 						kryptonDataGridView1.DataSource = service.Filter(model).ToList();
 						afterFilter = service.Filter(model).Count();
 						beforeFilter = service.All().Count();
-					}				}
+					}				
+				}
 				else if(tableService is CourierService)
 				{
 					var service = tableService as CourierService;

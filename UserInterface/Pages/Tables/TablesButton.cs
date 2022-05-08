@@ -14,6 +14,7 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 		public TablesButton()
 		{
 			InitializeComponent();
+			Cursor = System.Windows.Forms.Cursors.Hand;
 			SetStateOff();
 		}
 

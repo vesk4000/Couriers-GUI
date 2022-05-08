@@ -10,6 +10,8 @@ namespace Couriers_GUI.UserInterface.Components
 	{
 		public CommonButton() : base()
 		{
+			Cursor = System.Windows.Forms.Cursors.Hand;
+
 			StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(255, 235, 235, 235);
 			StateCommon.Back.Color2 = StateCommon.Back.Color1;
 			StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(255, 224, 224, 224);
@@ -33,6 +35,12 @@ namespace Couriers_GUI.UserInterface.Components
             StateTracking.Border.Width = 2;
             StateTracking.Content.ShortText.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
             StateTracking.Content.ShortText.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+
+			OverrideDefault.Back.ColorStyle = StateCommon.Back.ColorStyle;
+			OverrideDefault.Back.Color1 = StateCommon.Back.Color1;
+			OverrideDefault.Back.Color2 = StateCommon.Back.Color2;
+			OverrideDefault.Border.Color1 = StateCommon.Border.Color1;
+			OverrideDefault.Border.Color2 = StateCommon.Border.Color2;
 		}
 	}
 }

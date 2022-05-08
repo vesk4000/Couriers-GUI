@@ -19,25 +19,6 @@ namespace Couriers_GUI.UserInterface.Components
 		public StackPanel()
 		{
 			InitializeComponent();
-			//AddHeader("Stack Panel");
-			//	var orderDate = new Components.DatePickerBlock();
-			//		orderDate.commonLabel1.Text = "Order Date:";
-			//		AddControl(orderDate);
-			//		var receiveDate = new Components.DatePickerBlock();
-			//		receiveDate.commonLabel1.Text = "Receive Date:";
-			//		AddControl((receiveDate));
-
-					
-			//		var total = new Components.TextBoxBlock();
-			//		total.commonLabel1.Text = "Total";
-			//	AddControl(total);						
-			//		var address = new Components.CompletableTextBoxBlock();
-			//		address.commonLabel1.Text = "Address";
-			//		address.completableTextBox1.dataSource = (new AddressService()).AllString().ToList();
-			//AddControl(address);
-		
-			//tableLayoutPanel1.Location = new Point(0, 0);
-			//tableLayoutPanel1.Anchor = AnchorStyles.Top;
 		}
 
 
@@ -63,7 +44,7 @@ namespace Couriers_GUI.UserInterface.Components
 		{
 			var label = new CommonLabel();
 			label.Text = text;
-			label.Font = new Font(label.Font.FontFamily, 14F);
+			label.StateCommon.ShortText.Font = new Font(label.StateCommon.ShortText.Font.FontFamily, 14F);
 			label.Anchor = AnchorStyles.None;
 			AddControl(label);
 		}

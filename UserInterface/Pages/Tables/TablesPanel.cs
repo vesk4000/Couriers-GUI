@@ -65,7 +65,7 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			}
 			else if (tableService is TOSService)
 			{
-				button.commonLabel1.Text = "Types of Orders";
+				button.commonLabel1.Text = "Order Types";
 			}
 
 			tableLayoutPanel2.ColumnCount = 100;

@@ -35,7 +35,7 @@
 			// 
 			this.tableLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.tableLayoutPanel1.AutoSize = true;
-			this.tableLayoutPanel1.BackColor = System.Drawing.Color.RosyBrown;
+			this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
 			this.tableLayoutPanel1.ColumnCount = 1;
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(200, 0);
@@ -51,10 +51,12 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
+			this.BackColor = System.Drawing.Color.Transparent;
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Margin = new System.Windows.Forms.Padding(0);
 			this.Name = "StackPanel";
 			this.Size = new System.Drawing.Size(600, 600);
+			this.BackColor = InterfaceSingleton.LIGHT_BACKGROUND;
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

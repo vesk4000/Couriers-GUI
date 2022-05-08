@@ -42,9 +42,11 @@ namespace Couriers_GUI.UserInterface.Components
 
 			var validationLabel = new CommonLabel();
 			validationLabel.Text = "Parameters entered are invalid!";
-			validationLabel.ForeColor = Color.Red;
+			validationLabel.StateCommon.ShortText.Color1 = Color.OrangeRed;
+			validationLabel.StateCommon.ShortText.Color2 = validationLabel.StateCommon.ShortText.Color1;
+			validationLabel.StateCommon.ShortText.Font = new Font(validationLabel.StateCommon.ShortText.Font.Name, validationLabel.StateCommon.ShortText.Font.Size, FontStyle.Bold);
 			validationLabel.Visible = false;
-			AddControl(validationLabel);
+			AddCenteredControl(validationLabel);
 
 			var dualButtons = new DualButtonBlock
 			(
@@ -95,21 +97,21 @@ namespace Couriers_GUI.UserInterface.Components
 					orderDate.commonLabel1.Text = "Order Date";
 					orderDate.commonDateTimePicker1.Value = modelFilter.OrderDateFrom;
 					orderDate.commonDateTimePicker2.Value = modelFilter.OrderDateTo;
-					AddControl(orderDate);
+					AddCenteredControl(orderDate);
 					options.Add(orderDate);
 
 					var receiveDate = new DatePickerBlock();
 					receiveDate.commonLabel1.Text = "Receive Date";
 					receiveDate.commonDateTimePicker1.Value = modelFilter.ReceiveDateFrom;
 					receiveDate.commonDateTimePicker2.Value = modelFilter.ReceiveDateTo;
-					AddControl(receiveDate);
+					AddCenteredControl(receiveDate);
 					options.Add(receiveDate);
 
 					var total = new NumberRangeBlock();
 					total.commonLabel1.Text = "Total";
 					total.commonTextBox1.Text = modelFilter.TotalFrom;
 					total.commonTextBox2.Text = modelFilter.TotalTo;
-					AddControl(total);
+					AddCenteredControl(total);
 					options.Add(total);
 
 					model.Dispatcher = modelFilter.Dispatcher;
@@ -126,19 +128,19 @@ namespace Couriers_GUI.UserInterface.Components
 					var orderDate = new SingleDatePickerBlock();
 					orderDate.commonLabel1.Text = "Order Date";
 					orderDate.commonDateTimePicker1.Value = model.OrderDate;
-					AddControl(orderDate);
+					AddCenteredControl(orderDate);
 					options.Add(orderDate);
 
 					var receiveDate = new SingleDatePickerBlock();
 					receiveDate.commonLabel1.Text = "Receive Date";
 					receiveDate.commonDateTimePicker1.Value = model.ReceiveDate;
-					AddControl(receiveDate);
+					AddCenteredControl(receiveDate);
 					options.Add(receiveDate);
 
 					var total = new TextBoxBlock();
 					total.commonLabel1.Text = "Total";
 					total.commonTextBox1.Text = model.Total;
-					AddControl(total);
+					AddCenteredControl(total);
 					options.Add(total);
 				}
 				
@@ -146,7 +148,7 @@ namespace Couriers_GUI.UserInterface.Components
 				address.commonLabel1.Text = "Address";
 				address.completableTextBox1.Text = model.Address;
 				address.completableTextBox1.dataSource = new AddressService().AllString().ToList();
-				AddControl(address);
+				AddCenteredControl(address);
 				options.Add(address);
 
 
@@ -154,35 +156,35 @@ namespace Couriers_GUI.UserInterface.Components
 				type.commonLabel1.Text = "Type of Order";
 				type.completableTextBox1.Text = model.Type;
 				type.completableTextBox1.dataSource = new TOSService().AllString().ToList();
-				AddControl(type);
+				AddCenteredControl(type);
 				options.Add(type);
 
 				var dispatcher = new CompletableTextBoxBlock();
 				dispatcher.commonLabel1.Text = "Dispatcher";
 				dispatcher.completableTextBox1.Text = model.Dispatcher;
 				dispatcher.completableTextBox1.dataSource = new DispatcherService().AllString().ToList();
-				AddControl(dispatcher);
+				AddCenteredControl(dispatcher);
 				options.Add(dispatcher);
 
 				var client = new CompletableTextBoxBlock();
 				client.commonLabel1.Text = "Client";
 				client.completableTextBox1.Text = model.Client;
 				client.completableTextBox1.dataSource = new ClientService().AllString().ToList();
-				AddControl(client);
+				AddCenteredControl(client);
 				options.Add(client);
 
 				var courier = new CompletableTextBoxBlock();
 				courier.commonLabel1.Text = "Courier";
 				courier.completableTextBox1.Text = model.Courier;
 				courier.completableTextBox1.dataSource = new CourierService().AllString().ToList();
-				AddControl(courier);
+				AddCenteredControl(courier);
 				options.Add(courier);
 
 				var recipient = new CompletableTextBoxBlock();
 				recipient.commonLabel1.Text = "Recipient";
 				recipient.completableTextBox1.Text = model.Recipient;
 				recipient.completableTextBox1.dataSource = new RecipientService().AllString().ToList();
-				AddControl(recipient);
+				AddCenteredControl(recipient);
 				options.Add(recipient);
 			}
 			else if(tableService is CourierService)
@@ -196,17 +198,23 @@ namespace Couriers_GUI.UserInterface.Components
 				var name = new TextBoxBlock();
 				name.commonLabel1.Text = "Name";
 				name.commonTextBox1.Text = courierServiceModel.Name;
-				AddControl(name);
+				AddCenteredControl(name);
 				options.Add(name);
 
 				var phone = new TextBoxBlock();
 				phone.commonLabel1.Text = "Phone";
 				phone.commonTextBox1.Text = courierServiceModel.PhoneNumber;
-				AddControl(phone);
+				AddCenteredControl(phone);
 				options.Add(phone);
 			}
 		}
 
+
+		public void AddCenteredControl(Control control)
+		{
+			control.Anchor = AnchorStyles.Top;
+			AddControl(control);
+		}
 
 		public object GetOptions()
 		{

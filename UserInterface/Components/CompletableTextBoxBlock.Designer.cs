@@ -44,10 +44,10 @@ namespace Couriers_GUI.UserInterface.Components
 			// 
 			// completableTextBox1
 			// 
-			this.completableTextBox1.Location = new System.Drawing.Point(5, 27);
+			this.completableTextBox1.Location = new System.Drawing.Point(7, 36);
 			this.completableTextBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.completableTextBox1.Name = "completableTextBox1";
-			this.completableTextBox1.Size = new System.Drawing.Size(229, 27);
+			this.completableTextBox1.Size = new System.Drawing.Size(334, 27);
 			this.completableTextBox1.TabIndex = 1;
 			// 
 			// CompletableTextBoxBlock
@@ -58,7 +58,7 @@ namespace Couriers_GUI.UserInterface.Components
 			this.Controls.Add(this.completableTextBox1);
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "CompletableTextBoxBlock";
-			this.Size = new System.Drawing.Size(363, 82);
+			this.Size = new System.Drawing.Size(350, 70);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
