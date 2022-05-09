@@ -74,6 +74,20 @@ namespace Couriers_GUI.UserInterface.Components
 			dualButtons.commonButton2.Text = "Cancel";
 			dualButtons.Anchor = AnchorStyles.Top;
 			AddControl(dualButtons);
+
+			this.Scroll += new ScrollEventHandler((sender, e) => { HandleChange(); });
+			this.Resize += new EventHandler((sender, e) => { HandleChange(); });
+			this.MouseWheel += new MouseEventHandler((sender, e) => { HandleChange(); });
+		}
+
+		
+		private void HandleChange()
+		{
+			foreach(var list in InterfaceSingleton.activeListBoxes)
+			{
+				if (list != null && list.kryptonListBox1 != null)
+					list.RelocateListBox();
+			}
 		}
 
 

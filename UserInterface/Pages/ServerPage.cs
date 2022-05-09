@@ -49,7 +49,7 @@ namespace Couriers_GUI.UserInterface.Pages
 
 			var button = new CommonButton();
 			button.Anchor = AnchorStyles.Right;
-			button.Text = "(Re)Connect to Server";
+			button.Text = "Refresh";
 			button.Click += new EventHandler((sender, e) => { InterfaceSingleton.InvalidateTableViews(); Init(); });
 			button.AutoSize = true;
 			AddControl(button);
@@ -99,7 +99,7 @@ namespace Couriers_GUI.UserInterface.Pages
 
 			button = new CommonButton();
 			button.Anchor = AnchorStyles.Right;
-			button.Text = "(Re)Create Database";
+			button.Text = label.Text == "Correct" ? "Recreate Database" : "Create Database";
 			button.Click += new EventHandler((sender, e) => { DBService.CreateDB(); DBService.CreateAllUSPs(); InterfaceSingleton.InvalidateTableViews(); Init(); });
 			button.AutoSize = true;
 			AddControl(button);

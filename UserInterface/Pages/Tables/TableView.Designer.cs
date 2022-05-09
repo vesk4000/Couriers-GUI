@@ -70,8 +70,8 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			this.tableLayoutPanel2.Controls.Add(this.commonButton3, 2, 0);
 			this.tableLayoutPanel2.Controls.Add(this.commonButton4, 3, 0);
 			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tableLayoutPanel2.Location = new System.Drawing.Point(5, 5);
-			this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(5, 5, 0, 0);
+			this.tableLayoutPanel2.Location = new System.Drawing.Point(5, 8);
+			this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(5, 8, 0, 0);
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
 			this.tableLayoutPanel2.RowCount = 1;
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -123,7 +123,7 @@ namespace Couriers_GUI.UserInterface.Pages.Tables
 			this.kryptonDataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
 			this.kryptonDataGridView1.ColumnHeadersHeight = 36;
 			this.kryptonDataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.kryptonDataGridView1.Location = new System.Drawing.Point(10, 55);
+			this.kryptonDataGridView1.Location = new System.Drawing.Point(10, 58);
 			this.kryptonDataGridView1.Margin = new System.Windows.Forms.Padding(10);
 			this.kryptonDataGridView1.Name = "kryptonDataGridView1";
 			this.kryptonDataGridView1.ReadOnly = true;

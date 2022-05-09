@@ -19,7 +19,7 @@ namespace Couriers_GUI.UserInterface
 		public static Color DARK_FOREGROUND = Color.FromArgb(255, 38, 38, 38);
 
 		public static List<TableView> tableViews = new List<TableView>();
-		public static List<Krypton.Toolkit.KryptonListBox> activeListBoxes = new List<Krypton.Toolkit.KryptonListBox>();
+		public static List<Components.CompletableTextBox> activeListBoxes = new List<Components.CompletableTextBox>();
 
 		public static void InvalidateTableViews()
 		{

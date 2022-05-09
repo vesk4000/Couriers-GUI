@@ -33,7 +33,7 @@ namespace Couriers_GUI.UserInterface.Components
 
 		}
 
-		private void RelocateListBox(object sender = null, EventArgs e = null)
+		public void RelocateListBox(object sender = null, EventArgs e = null)
 		{
 			if(kryptonListBox1 is not null && kryptonListBox1.Visible == true)
 			{
@@ -81,6 +81,7 @@ namespace Couriers_GUI.UserInterface.Components
 			if (kryptonListBox1 is not null)
 				Form.ActiveForm.Controls.Remove(kryptonListBox1);
 			kryptonListBox1 = new Krypton.Toolkit.KryptonListBox();
+			InterfaceSingleton.activeListBoxes.Add(this);
 			Form.ActiveForm.Controls.Add(kryptonListBox1);
 
 			RelocateListBox();
@@ -108,11 +109,17 @@ namespace Couriers_GUI.UserInterface.Components
 
 		private void kryptonTextBox1_TextChanged(object sender, EventArgs e)
 		{
+			var oldSource = activeDataSource;
+
 			activeDataSource = dataSource.Where(s => s.Contains(this.Text)).ToList();
+
+			if (activeDataSource.SequenceEqual(oldSource))
+				return;
 
 			if (kryptonListBox1 is not null)
 				Form.ActiveForm.Controls.Remove(kryptonListBox1);
 			kryptonListBox1 = new Krypton.Toolkit.KryptonListBox();
+			InterfaceSingleton.activeListBoxes.Add(this);
 
 			if (Form.ActiveForm is not null)
 				Form.ActiveForm.Controls.Add(kryptonListBox1);
@@ -121,13 +128,19 @@ namespace Couriers_GUI.UserInterface.Components
 			this.kryptonListBox1.Location = new System.Drawing.Point(global_loc.X, global_loc.Y + this.Height);
 			this.kryptonListBox1.Size = new System.Drawing.Size(this.Size.Width, kryptonListBox1.Size.Height);
 			this.kryptonListBox1.BringToFront();
-			this.kryptonListBox1.Invalidate();
+		//	kryptonListBox1.Click += new EventHandler(this.kryptonListBox1_Click);
+			//this.kryptonListBox1.Invalidate();
 
 			SetListBoxSize();
 
 
 			if(kryptonListBox1 is not null)
 				kryptonListBox1.DataSource = activeDataSource;
+			this.kryptonListBox1.SelectedIndexChanged += new System.EventHandler(this.kryptonListBox1_SelectedIndexChanged);
+			this.kryptonListBox1.Click += new System.EventHandler(this.kryptonListBox1_Click);
+			this.kryptonListBox1.Enter += new System.EventHandler(this.kryptonListBox1_Enter);
+			this.kryptonListBox1.GotFocus += new System.EventHandler(this.kryptonListBox1_GotFocus);
+
 		}
 
 		private void kryptonListBox1_Enter(object sender, EventArgs e)
@@ -182,7 +195,7 @@ namespace Couriers_GUI.UserInterface.Components
 		}
 
 
-		private Krypton.Toolkit.KryptonListBox kryptonListBox1;
+		public Krypton.Toolkit.KryptonListBox kryptonListBox1;
 		public List<string> dataSource = new List<string>();
 		private List<string> activeDataSource = new List<string>();
 		private bool lbEntered;
