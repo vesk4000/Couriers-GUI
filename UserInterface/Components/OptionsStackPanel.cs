@@ -412,7 +412,8 @@ namespace Couriers_GUI.UserInterface.Components
 			if (Parent is TableContainer && tableView is TableView)
 			{
 				Parent.Controls.Add(tableView);
-				tableView.InitDataGridView();
+				foreach (var tableView in InterfaceSingleton.tableViews)
+					tableView.InitDataGridView();
 				Parent.Controls.Remove(this);
 			}
 			else
